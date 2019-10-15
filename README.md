@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Docker environment for a Symfony4 project
 ==================================
 
@@ -44,3 +45,6 @@ Once you're done, simply `cd` to your project and run `docker-compose up -d`. Th
 
 
 Disclaimer: This project has been generated on phpdocker.io
+=======
+# myrepo
+>>>>>>> ee71e743da9d3f75bbdecc6ed5b1a15a4a25ad6c
