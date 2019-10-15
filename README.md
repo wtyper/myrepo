@@ -48,3 +48,7 @@ Disclaimer: This project has been generated on phpdocker.io
 =======
 # myrepo
 >>>>>>> ee71e743da9d3f75bbdecc6ed5b1a15a4a25ad6c
+>
+#Twórcy
+Wiktoria Typer
+w.typer@wearevirtua.com
