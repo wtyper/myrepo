@@ -11,12 +11,10 @@
 <div class="example-wrapper">
     <h1>Welcome to my page!</h1>
 
-    <p>Date/Time: <span id="datetime"></span></p>
-
-    <script>
-        var dt = new Date();
-        document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-    </script>
+    <?php
+    $currentDateTime = date('d-m-Y');
+    echo $currentDateTime;
+    ?>
 
 
     <ul>
