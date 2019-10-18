@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PizzaController!{% endblock %}
+{% block title %}Welcome strager!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Welcome to my page!</h1>
 
-    This friendly message is coming from:
+    <p>Date/Time: <span id="datetime"></span></p>
+
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+    </script>
+
+
     <ul>
-        <li>Your controller at <code><a href="{{ '/application/src/Controller/PizzaController.php'|file_link(0) }}">src/Controller/PizzaController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/application/templates/pizza/index.html.twig'|file_link(0) }}">templates/pizza/index.html.twig</a></code></li>
+        <i>fhjfhjfhjfLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</i>
     </ul>
 </div>
 {% endblock %}
