@@ -19,8 +19,8 @@ class ProductController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $product = new Product();
         $product->setName('Keyboard');
-        $product->setDate_of_creation(18-10-2019);
-        $product->setDate_of_las_modification(18-10-2019);
+        $product->setDate_of_creation('2019-10-18');
+        $product->setDate_of_last_modification('listopad');
         $product->setDescription('Ergonomic and stylish!');
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
