@@ -14,7 +14,7 @@ class WelcomeController extends AbstractController
 
     {
         $dt = new DateTime();
-        $dt->format('d-m-Y');
+
 
         return $this->render('welcome/index.html.twig', [
             'controller_name' => 'WelcomeController',
