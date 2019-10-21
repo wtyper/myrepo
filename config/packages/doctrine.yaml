@@ -2,6 +2,12 @@ doctrine:
     dbal:
         # configure these for your database server
         driver: 'pdo_mysql'
+        host: localhost
+        port: 3306
+        dbname: my_database
+        user: root
+        password: root
+
         server_version: '5.7'
         charset: utf8mb4
         default_table_options:

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 // ...
-use App\Entity\Product;
+use App\Entity\ProductDb;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product", name="create_product")
+     * @Route("/productdb", name="create_product")
      */
     public function createProduct(): Response
     {
@@ -19,8 +19,8 @@ class ProductController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $product = new Product();
         $product->setName('Keyboard');
-        $product->setDate_of_creation('2019-10-18');
-        $product->setDate_of_last_modification('listopad');
+        $product->setDate_of_creation('2019-10-18 11:12:50');
+        $product->setDate_of_last_modification('2019-10-21 15:02:33');
         $product->setDescription('Ergonomic and stylish!');
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
