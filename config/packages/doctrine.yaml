@@ -4,7 +4,12 @@ doctrine:
         # use postgresql for PostgreSQL
         # use sqlite for SQLite
         driver: 'mysql'
-        server_version: '5.7'
+        server_version: '5.6'
+        host: 'mysql'
+        port: '3306'
+        dbname: 'docker_symfony4'
+        user: 'dbuser'
+        password: 'dbpw'
 
         # only needed for MySQL
         charset: utf8mb4
