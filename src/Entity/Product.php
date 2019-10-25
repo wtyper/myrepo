@@ -65,24 +65,24 @@ class Product
         return $this;
     }
 
-    public function getdateOfCreation(): ?\DateTimeInterface
+    public function getDateOfCreation(): ?\DateTimeInterface
     {
         return $this->dateOfCreation;
     }
 
-    public function setdateOfCreation(\DateTimeInterface $dateOfCreation): self
+    public function setDateOfCreation(\DateTimeInterface $dateOfCreation): self
     {
         $this->dateOfCreation = $dateOfCreation;
 
         return $this;
     }
 
-    public function getdateOfLastModification(): ?\DateTimeInterface
+    public function getDateOfLastModification(): ?\DateTimeInterface
     {
         return $this->dateOfLastModification;
     }
 
-    public function setdateOfLastModification(\DateTimeInterface $dateOfLastModification): self
+    public function setDateOfLastModification(\DateTimeInterface $dateOfLastModification): self
     {
         $this->dateOfLastModification = $dateOfLastModification;
 
