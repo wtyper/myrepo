@@ -17,7 +17,6 @@ services:
         - MYSQL_PASSWORD=dbpw
       ports:
         - "8002:3306"
-
     webserver:
       image: nginx:alpine
       container_name: docker-symfony4-webserver
