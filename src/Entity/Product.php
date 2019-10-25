@@ -29,12 +29,12 @@ class Product
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_of_creation;
+    private $DateOfCreation;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_of_last_modification;
+    private $DateOfLastModification;
 
     public function getId(): ?int
     {
@@ -65,26 +65,26 @@ class Product
         return $this;
     }
 
-    public function getDate_of_creation(): ?\DateTimeInterface
+    public function getDateOfCreation(): ?\DateTimeInterface
     {
-        return $this->date_of_creation;
+        return $this->DateOfCreation;
     }
 
-    public function setDate_of_creation(\DateTimeInterface $date_of_creation): self
+    public function setDateOfCreation(\DateTimeInterface $DateOfCreation): self
     {
-        $this->date_of_creation = $date_of_creation;
+        $this->DateOfCreation = $DateOfCreation;
 
         return $this;
     }
 
-    public function getDate_of_last_modification(): ?\DateTimeInterface
+    public function getDateOfLastModification(): ?\DateTimeInterface
     {
-        return $this->date_of_last_modification;
+        return $this->DateOfLastModification;
     }
 
-    public function setDate_of_last_modification(\DateTimeInterface $date_of_last_modification): self
+    public function setDateOfLastModification(\DateTimeInterface $DateOfLastModification): self
     {
-        $this->date_of_last_modification = $date_of_last_modification;
+        $this->DateOfLastModification = $DateOfLastModification;
 
         return $this;
     }
