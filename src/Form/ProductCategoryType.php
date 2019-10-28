@@ -16,6 +16,7 @@ class ProductCategoryType extends AbstractType
             ->add('description')
             ->add('dateOfCreation')
             ->add('dateOfLastModification')
+
         ;
     }
 
