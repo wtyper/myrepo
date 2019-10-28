@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use \App\Form\ProductCategoryType;
 use Doctrine\ORM\ProductCategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 
 class ProductType extends AbstractType
@@ -21,7 +22,11 @@ class ProductType extends AbstractType
             ->add('description')
             ->add('productCategory', EntityType::class, [
                 'class' => ProductCategory::class,
-                'choice_label' => 'category'])
+                'query_builder' => static function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.name');
+                },
+                'choice_label' => 'name'])
             ->add('dateOfCreation')
             ->add('dateOfLastModification');
         }
