@@ -40,7 +40,7 @@ class ProductCategory
     private $dateOfLastModification;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="ProductCategory")
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="productCategory")
      */
     private $products;
 

@@ -42,6 +42,7 @@ class Product
      */
     private $productCategory;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,12 +96,12 @@ class Product
         return $this;
     }
 
-    public function getProductCategory(): ?productCategory
+    public function getProductCategory(): ?ProductCategory
     {
         return $this->productCategory;
     }
 
-    public function setProductCategory(?productCategory $productCategory): self
+    public function setProductCategory(?ProductCategory $productCategory): self
     {
         $this->productCategory = $productCategory;
 
