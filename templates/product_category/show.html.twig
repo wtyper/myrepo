@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <th>Products</th> <td>
-                <td> {%for products in product_category %} {{product_category.products}} {% endfor %} </td>
+                <td>{%for products in product_category.products %} {{products.name}} {% endfor %} </td>
             </tr>
         </tbody>
     </table>
