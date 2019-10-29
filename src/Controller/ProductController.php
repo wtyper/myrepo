@@ -38,6 +38,10 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+            $this->addFlash(
+                'notice',
+                'Product created successfully!'
+            );
 
             return $this->redirectToRoute('product_index');
         }
@@ -68,7 +72,10 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'notice',
+                'Product edited successfully!'
+            );
             return $this->redirectToRoute('product_index');
         }
 
@@ -87,6 +94,10 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
+            $this->addFlash(
+                'notice',
+                'Product delted successfully!'
+            );
         }
 
         return $this->redirectToRoute('product_index');
