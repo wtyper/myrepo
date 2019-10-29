@@ -39,13 +39,16 @@ class ProductController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
             $this->addFlash(
-                'notice',
+                'success',
                 'Product created successfully!'
             );
-
             return $this->redirectToRoute('product_index');
+        }else{
+            $this->addFlash(
+                'error',
+                'Something goes wrong!'
+            );
         }
-
         return $this->render('product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
@@ -73,12 +76,16 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
-                'notice',
+                'success',
                 'Product edited successfully!'
             );
             return $this->redirectToRoute('product_index');
+        }else{
+            $this->addFlash(
+                'error',
+                'Something goes wrong!'
+            );
         }
-
         return $this->render('product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
@@ -95,11 +102,15 @@ class ProductController extends AbstractController
             $entityManager->remove($product);
             $entityManager->flush();
             $this->addFlash(
-                'notice',
-                'Product delted successfully!'
+                'success',
+                'Product deleted successfully!'
+            );
+        }else{
+            $this->addFlash(
+                'error',
+                'Something goes wrong!'
             );
         }
-
         return $this->redirectToRoute('product_index');
     }
 }
