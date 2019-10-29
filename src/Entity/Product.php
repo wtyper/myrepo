@@ -40,7 +40,7 @@ class Product
      * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $ProductCategory;
+    private $productCategory;
 
     public function getId(): ?int
     {
@@ -95,14 +95,14 @@ class Product
         return $this;
     }
 
-    public function getProductCategory(): ?ProductCategory
+    public function getProductCategory(): ?productCategory
     {
-        return $this->ProductCategory;
+        return $this->productCategory;
     }
 
-    public function setProductCategory(?ProductCategory $ProductCategory): self
+    public function setProductCategory(?productCategory $productCategory): self
     {
-        $this->ProductCategory = $ProductCategory;
+        $this->productCategory = $productCategory;
 
         return $this;
     }

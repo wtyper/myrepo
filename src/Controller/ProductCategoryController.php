@@ -6,7 +6,6 @@ use App\Entity\ProductCategory;
 use App\Form\ProductCategoryType;
 use App\Repository\ProductCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -91,14 +90,5 @@ class ProductCategoryController extends AbstractController
         }
 
         return $this->redirectToRoute('product_category_index');
-    }
-
-    public function showProduct($id)
-    {
-        $product_category = $this->getDoctrine()
-            ->getRepository(productCategory::class)
-            ->find($id);
-
-        $products = $product_category->getProducts();
     }
 }
