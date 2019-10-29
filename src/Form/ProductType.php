@@ -23,8 +23,8 @@ class ProductType extends AbstractType
             ->add('productCategory', EntityType::class, [
                 'class' => ProductCategory::class,
                 'query_builder' => static function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->orderBy('c.name');
+                    return $er->createQueryBuilder('n')
+                        ->orderBy('n.name');
                 },
                 'choice_label' => 'name'])
             ->add('dateOfCreation')

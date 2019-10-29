@@ -27,6 +27,10 @@
                 <th>DateOfLastModification</th>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ product.productCategory.name }}</td>
+            </tr>
         </tbody>
     </table>
 

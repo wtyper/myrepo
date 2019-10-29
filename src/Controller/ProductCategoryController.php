@@ -6,6 +6,7 @@ use App\Entity\ProductCategory;
 use App\Form\ProductCategoryType;
 use App\Repository\ProductCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -83,12 +84,21 @@ class ProductCategoryController extends AbstractController
      */
     public function delete(Request $request, ProductCategory $productCategory): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$productCategory->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $productCategory->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($productCategory);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('product_category_index');
+    }
+
+    public function showProduct($id)
+    {
+        $product_category = $this->getDoctrine()
+            ->getRepository(productCategory::class)
+            ->find($id);
+
+        $products = $product_category->getProducts();
     }
 }
