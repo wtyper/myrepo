@@ -27,6 +27,12 @@
                 <th>DateOfLastModification</th>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Category</th>
+                <td>
+                    <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 

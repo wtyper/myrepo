@@ -2,15 +2,18 @@
 #                          Generated on phpdocker.io                          #
 ###############################################################################
 version: "3.1"
+volumes:
+  mysql-data:
 services:
 
-#pierwsza baza
+
     mysql:
       image: mysql:5.7
       container_name: docker-symfony4-mysql
       working_dir: /application
       volumes:
         - .:/application
+        - mysql-data:/var/lib/mysql
       environment:
         - MYSQL_ROOT_PASSWORD=dbrootpw
         - MYSQL_DATABASE=docker_symfony4

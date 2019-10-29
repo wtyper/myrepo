@@ -27,6 +27,10 @@
                 <th>DateOfLastModification</th>
                 <td>{{ product_category.dateOfLastModification ? product_category.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Products</th> <td>
+                <td>{%for products in product_category.products %} {{products.name}} {% endfor %} </td>
+            </tr>
         </tbody>
     </table>
 
