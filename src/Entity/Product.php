@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -27,11 +28,13 @@ class Product
     private $description;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $dateOfCreation;
+    private $dateOfCreationt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $dateOfLastModification;
@@ -41,6 +44,7 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $productCategory;
+
 
 
     public function getId(): ?int
@@ -72,28 +76,20 @@ class Product
         return $this;
     }
 
-    public function getDateOfCreation(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfCreation()
     {
-        return $this->dateOfCreation;
+        return $this->dateOfCreationt;
     }
 
-    public function setDateOfCreation(\DateTimeInterface $dateOfCreation): self
-    {
-        $this->dateOfCreation = $dateOfCreation;
-
-        return $this;
-    }
-
-    public function getDateOfLastModification(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfLastModification()
     {
         return $this->dateOfLastModification;
-    }
-
-    public function setDateOfLastModification(\DateTimeInterface $dateOfLastModification): self
-    {
-        $this->dateOfLastModification = $dateOfLastModification;
-
-        return $this;
     }
 
     public function getProductCategory(): ?ProductCategory

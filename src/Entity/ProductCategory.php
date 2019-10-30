@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
@@ -30,11 +31,13 @@ class ProductCategory
     private $description;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $dateOfCreation;
+    private $dateOfCreationt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     private $dateOfLastModification;
@@ -78,28 +81,20 @@ class ProductCategory
         return $this;
     }
 
-    public function getDateOfCreation(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfCreation()
     {
-        return $this->dateOfCreation;
+        return $this->dateOfCreationt;
     }
 
-    public function setDateOfCreation(\DateTimeInterface $dateOfCreation): self
-    {
-        $this->dateOfCreation = $dateOfCreation;
-
-        return $this;
-    }
-
-    public function getDateOfLastModification(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDateOfLastModification()
     {
         return $this->dateOfLastModification;
-    }
-
-    public function setDateOfLastModification(\DateTimeInterface $dateOfLastModification): self
-    {
-        $this->dateOfLastModification = $dateOfLastModification;
-
-        return $this;
     }
 
     /**
