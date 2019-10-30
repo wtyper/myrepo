@@ -36,6 +36,6 @@
 
     <a class="btn btn-primary"  href="{{ path('product_category_index') }}"  role="button">back to list</a>
     <a class="btn btn-primary"  href="{{ path('product_category_edit', {'id': product_category.id}) }}"  role="button">Edit</a>
-    
+
     {{ include('product_category/_delete_form.html.twig') }}
 {% endblock %}
