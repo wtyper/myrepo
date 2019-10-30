@@ -38,10 +38,12 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                'Product created successfully!'
+            );
             return $this->redirectToRoute('product_index');
         }
-
         return $this->render('product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
@@ -68,10 +70,12 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'success',
+                'Product edited successfully!'
+            );
             return $this->redirectToRoute('product_index');
         }
-
         return $this->render('product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
@@ -87,8 +91,11 @@ class ProductController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Product deleted successfully!'
+            );
         }
-
         return $this->redirectToRoute('product_index');
     }
 }

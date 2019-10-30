@@ -38,10 +38,12 @@ class ProductCategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($productCategory);
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                'Category created successfully!'
+            );
             return $this->redirectToRoute('product_category_index');
         }
-
         return $this->render('product_category/new.html.twig', [
             'product_category' => $productCategory,
             'form' => $form->createView(),
@@ -68,10 +70,12 @@ class ProductCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'success',
+                'Category edited successfully!'
+            );
             return $this->redirectToRoute('product_category_index');
         }
-
         return $this->render('product_category/edit.html.twig', [
             'product_category' => $productCategory,
             'form' => $form->createView(),
@@ -87,8 +91,11 @@ class ProductCategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($productCategory);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Category deleted successfully!'
+            );
         }
-
         return $this->redirectToRoute('product_category_index');
     }
 }
