@@ -26,9 +26,7 @@ class ProductType extends AbstractType
                     return $er->createQueryBuilder('n')
                         ->orderBy('n.name');
                 },
-                'choice_label' => 'name'])
-            ->add('dateOfCreation')
-            ->add('dateOfLastModification');
+                'choice_label' => 'name']);
         }
 
     public function configureOptions(OptionsResolver $resolver)
