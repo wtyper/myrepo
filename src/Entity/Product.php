@@ -31,7 +31,7 @@ class Product
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
-    private $dateOfCreationt;
+    private $dateOfCreation;
 
     /**
      * @Gedmo\Timestampable(on="update")
@@ -76,18 +76,12 @@ class Product
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateOfCreation()
+    public function getDateOfCreation(): ?\DateTimeInterface
     {
-        return $this->dateOfCreationt;
+        return $this->dateOfCreation;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateOfLastModification()
+    public function getDateOfLastModification(): ?\DateTimeInterface
     {
         return $this->dateOfLastModification;
     }
