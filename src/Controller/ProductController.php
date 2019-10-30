@@ -43,11 +43,6 @@ class ProductController extends AbstractController
                 'Product created successfully!'
             );
             return $this->redirectToRoute('product_index');
-        }else{
-            $this->addFlash(
-                'error',
-                'Something goes wrong!'
-            );
         }
         return $this->render('product/new.html.twig', [
             'product' => $product,
@@ -80,11 +75,6 @@ class ProductController extends AbstractController
                 'Product edited successfully!'
             );
             return $this->redirectToRoute('product_index');
-        }else{
-            $this->addFlash(
-                'error',
-                'Something goes wrong!'
-            );
         }
         return $this->render('product/edit.html.twig', [
             'product' => $product,
@@ -104,11 +94,6 @@ class ProductController extends AbstractController
             $this->addFlash(
                 'success',
                 'Product deleted successfully!'
-            );
-        }else{
-            $this->addFlash(
-                'error',
-                'Something goes wrong!'
             );
         }
         return $this->redirectToRoute('product_index');
