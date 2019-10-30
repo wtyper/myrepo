@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}" />
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('welcome') }}">Home</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="navbar-brand">
+                            <a href="{{ path('product_index') }}">Product</a>
+                        </li>
+                        <li class="navbar-brand">
+                            <a href="{{ path('product_category_index') }}">Product Category</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container main">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    </main><!-- /.container -->
+    {% block javascripts %}{% endblock %}
     </body>
 </html>
 
@@ -18,3 +44,4 @@
         </div>
     {% endfor %}
 {% endfor %}
+
