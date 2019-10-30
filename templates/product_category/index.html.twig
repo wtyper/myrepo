@@ -39,13 +39,7 @@
 
     <a href="{{ path('product_category_new') }}">Create new</a>
 
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+
 
 {% endblock %}
 

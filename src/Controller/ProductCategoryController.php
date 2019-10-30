@@ -40,7 +40,7 @@ class ProductCategoryController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Product created successfully!'
+                'Category created successfully!'
             );
             return $this->redirectToRoute('product_category_index');
         }
@@ -72,7 +72,7 @@ class ProductCategoryController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Product edited successfully!'
+                'Category edited successfully!'
             );
             return $this->redirectToRoute('product_category_index');
         }
@@ -93,7 +93,7 @@ class ProductCategoryController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Product deleted successfully!'
+                'Category deleted successfully!'
             );
         }
         return $this->redirectToRoute('product_category_index');
