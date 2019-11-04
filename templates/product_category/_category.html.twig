@@ -1,5 +1,5 @@
-{% for category in category %}
-    <a href="{{ path('product_category_show', {slug: category.slug}) }}">
-        {{ category.id }}
+{% for product_category in product_category %}
+    <a href="{{ path('product_category_show', {slug: product_category.slug}) }}">
+        {{ product_category.id }}
     </a>
 {% endfor %}
