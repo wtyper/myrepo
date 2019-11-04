@@ -100,14 +100,12 @@ class ProductCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="_category", methods={"GET"})
+     * @Route("/{id}", name="_category", methods="GET")
      */
     public function product_category(ProductCategory $productCategory): Response
     {
-        return $this->render('_category.html.twig',[
-            'product_category'=> $productCategory,
-        ]);
+        return $this->render('product_category/_category.html.twig', [
+        'product_category'=>$productCategory,
+    ]);
     }
 }
-
-
