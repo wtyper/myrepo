@@ -98,13 +98,11 @@ class ProductCategoryController extends AbstractController
         }
         return $this->redirectToRoute('product_category_index');
     }
-    public function base(ProductCategory $productCategory): Response
-    {
-        // get the recent articles somehow (e.g. making a database query)
-        $productCategory = ['...', '...', '...'];
 
-        return $this->render('welcome/base.html.twig', [
-            'product_category' => $productCategory
+    public function category($category)
+    {
+        return $this->render('product_category/_category.html.twig', [
+            'category' => $category->findAll(),
         ]);
     }
 }
