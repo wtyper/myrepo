@@ -100,7 +100,7 @@ class ProductCategoryController extends AbstractController
     }
 
     /**
-     * @Route("/", name="product_category_category", methods="GET")
+     * @Route("/", name="product_category", methods="GET")
      */
         public function product_category(ProductCategoryRepository $productCategoryRepository): Response
     {
