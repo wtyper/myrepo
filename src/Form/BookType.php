@@ -19,8 +19,6 @@ class BookType extends AbstractType
             ->add('yearOfPublishment')
             ->add('countryOfPublishment')
             ->add('availability')
-            ->add('dateOfCreate')
-            ->add('dateOfUpdate')
         ;
     }
 
