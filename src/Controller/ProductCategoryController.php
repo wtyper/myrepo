@@ -98,4 +98,14 @@ class ProductCategoryController extends AbstractController
         }
         return $this->redirectToRoute('product_category_index');
     }
+
+    /**
+     * @Route("/", name="product_categories", methods="GET")
+     */
+        public function productCategories(ProductCategoryRepository $productCategoryRepository): Response
+    {
+        return $this->render('product_category/_categories.html.twig', [
+            'productCategories'=> $productCategoryRepository->findAll(),
+        ]);
+    }
 }
