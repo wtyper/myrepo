@@ -26,6 +26,11 @@ class Genre
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Book", mappedBy="genres", cascade={"persist", "remove"})
+     */
+    private $book;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,23 @@ class Genre
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
+
+    public function setBook(Book $book): self
+    {
+        $this->book = $book;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $book->getGenres()) {
+            $book->setGenres($this);
+        }
 
         return $this;
     }

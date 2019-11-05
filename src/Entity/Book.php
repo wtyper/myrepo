@@ -64,6 +64,18 @@ class Book
      */
     private $dateOfUpdate;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Author;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Genre", inversedBy="book", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $genres;
+
 
     public function getId(): ?int
     {
@@ -174,6 +186,18 @@ class Book
     public function setDateOfUpdate(\DateTimeInterface $dateOfUpdate): self
     {
         $this->dateOfUpdate = $dateOfUpdate;
+
+        return $this;
+    }
+
+    public function getGenres(): ?Genre
+    {
+        return $this->genres;
+    }
+
+    public function setGenres(Genre $genres): self
+    {
+        $this->genres = $genres;
 
         return $this;
     }
