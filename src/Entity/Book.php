@@ -27,16 +27,6 @@ class Book
     private $description;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $author;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $genre;
-
-    /**
      *
      * @ORM\Column(type="date")
      */
@@ -68,7 +58,7 @@ class Book
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Author;
+    private $author;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Genre", inversedBy="book", cascade={"persist", "remove"})
@@ -106,26 +96,14 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getAuthor(): ?Author
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(?Author $author): self
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(string $genre): self
-    {
-        $this->genre = $genre;
 
         return $this;
     }

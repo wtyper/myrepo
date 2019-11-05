@@ -27,8 +27,15 @@
                 <td>{{ book.id }}</td>
                 <td>{{ book.title }}</td>
                 <td>{{ book.description }}</td>
-                <td>{{ book.author }}</td>
-                <td>{{ book.genre }}</td>
+                <td>
+                    <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.name }}</a>
+                    <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.lastName }}</a>
+                </td>
+
+                <td>
+                <a>
+                    <a href="{{ path('genre_show', {'id': book.genre.id}) }}">{{ book.genre.name }}</a>
+                </td>
                 <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
                 <td>{{ book.countryOfPublishment }}</td>
                 <td>{{ book.availability }}</td>
