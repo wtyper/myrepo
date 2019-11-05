@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <th>DateOfBirth</th>
-                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>DateOfDeath</th>
-                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>

@@ -38,7 +38,10 @@ class GenreController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($genre);
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                'Genre created successfully!'
+            );
             return $this->redirectToRoute('genre_index');
         }
 
@@ -68,7 +71,10 @@ class GenreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'success',
+                'Genre updated successfully!'
+            );
             return $this->redirectToRoute('genre_index');
         }
 
@@ -87,6 +93,10 @@ class GenreController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($genre);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Genre deleted successfully!'
+            );
         }
 
         return $this->redirectToRoute('genre_index');

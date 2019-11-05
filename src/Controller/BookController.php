@@ -38,7 +38,10 @@ class BookController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
-
+            $this->addFlash(
+                'success',
+                'Book created successfully!'
+            );
             return $this->redirectToRoute('book_index');
         }
 
@@ -68,7 +71,10 @@ class BookController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash(
+                'success',
+                'Book updated successfully!'
+            );
             return $this->redirectToRoute('book_index');
         }
 
@@ -87,6 +93,10 @@ class BookController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($book);
             $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Book deleted successfully!'
+            );
         }
 
         return $this->redirectToRoute('book_index');
