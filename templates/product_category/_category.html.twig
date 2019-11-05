@@ -1,3 +1,4 @@
-{% for productCategory in product_category %}
-    <a href="{{ path('product_category', {'id': product_category.id}) }}">{{ product_category.id }}</a>
+{% for categories in product_category %}
+    <a href="{{ path('product_category_show', {'id': categories.id}) }}"
+    >{{ product_category.id }}</a>
 {% endfor %}
