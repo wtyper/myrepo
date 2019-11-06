@@ -101,4 +101,13 @@ class GenreController extends AbstractController
 
         return $this->redirectToRoute('genre_index');
     }
+    /**
+     * @Route("/", name="genres", methods="GET")
+     */
+    public function genres (GenreRepository $genreRepository): Response
+    {
+        return $this->render('genre/_genres.html.twig', [
+            'genres'=> $genreRepository->findAll(),
+        ]);
+    }
 }

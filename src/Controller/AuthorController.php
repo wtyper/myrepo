@@ -101,4 +101,13 @@ class AuthorController extends AbstractController
 
         return $this->redirectToRoute('author_index');
     }
+    /**
+     * @Route("/", name="authors", methods="GET")
+     */
+    public function authors (AuthorRepository $authorRepository): Response
+    {
+        return $this->render('author/_authors.html.twig', [
+            'authors'=> $authorRepository->findAll(),
+        ]);
+    }
 }

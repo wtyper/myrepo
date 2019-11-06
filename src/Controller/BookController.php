@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Entity\Genre;
-use App\Entity\Author;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -102,5 +100,14 @@ class BookController extends AbstractController
         }
 
         return $this->redirectToRoute('book_index');
+    }
+    /**
+     * @Route("/", name="books", methods="GET")
+     */
+    public function books (BookRepository $bookRepository): Response
+    {
+        return $this->render('book/_books.html.twig', [
+            'books'=> $bookRepository->findAll(),
+        ]);
     }
 }

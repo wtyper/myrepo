@@ -1,0 +1,4 @@
+{% for book in books %}
+    <a href="{{ path('book_show', {'id': book.id}) }}"
+    >{{ book.name }}</a>
+{% endfor %}

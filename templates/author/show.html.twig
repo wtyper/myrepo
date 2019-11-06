@@ -48,27 +48,27 @@
                 <th>actions</th>
             </tr>
             </thead>
-{#            <tbody>#}
-{#            {% for book in author.books %}#}
-{#                <tr class="striped-row">#}
-{#                    <td>{{ book.id }}</td>#}
-{#                    <td>{{ book.title }}</td>#}
-{#                    <td>{{ book.description }}</td>#}
-{#                    <td><a href="{{ path('genre_show', {id: book.genre.id }) }}">{{ book.genre.name }}</a></td>#}
-{#                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>#}
-{#                    <td>{{ book.countryOfPublishment }}</td>#}
-{#                    <td>{{ book.availability}}</td>#}
-{#                    <td>#}
-{#                        <a href="{{ path('book_show', {'id': book.id}) }}">show</a>#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% else %}#}
-{#                <tr>#}
-{#                    <td colspan="7">No records for this author</td>#}
-{#                </tr>#}
-{#            {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
+            <tbody>
+            {% for book in author.books %}
+                <tr class="striped-row">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.description }}</td>
+                    <td><a href="{{ path('genre_show', {id: book.genre.id }) }}">{{ book.genre.name }}</a></td>
+                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
+                    <td>{{ book.countryOfPublishment }}</td>
+                    <td>{{ book.availability}}</td>
+                    <td>
+                        <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">No records for this author</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         This author has no books yet<br>
     {% endif %}
