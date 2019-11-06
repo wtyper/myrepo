@@ -112,16 +112,16 @@ class BookController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/random", name="random", methods={"GET"})
-     */
-    public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
-    {
-        $bookIds = $em->createQueryBuilder()
-            ->select('b.id')
-            ->from('App:Book', 'b')
-            ->getQuery()
-            ->getArrayResult();
-        return $this->show($bookRepository->find($bookIds[array_rand($bookIds)]['id']));
-    }
+//    /**
+//     * @Route("/random", name="book_random", methods={"GET"})
+//     */
+//    public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
+//    {
+//        $bookIds = $em->createQueryBuilder()
+//            ->select('b.id')
+//            ->from('App:Book', 'b')
+//            ->getQuery()
+//            ->getArrayResult();
+//        return $this->show($bookRepository->find($book.id[array_rand($book.id)]['id']));
+//    }
 }

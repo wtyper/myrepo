@@ -49,6 +49,11 @@
         {% endfor %}
         </tbody>
     </table>
+
     <a href="{{ path('book_new') }}">Create new</a>
-    <a href="{{ path('random') }}">RNG book</a>
 {% endblock %}
+{#    {{ render(controller(#}
+{#        'App\\Controller\\BookController::random'#}
+{#    )) }}#}
+{#    <a href="{{ path('book_random') }}">RNG book</a>#}
+
