@@ -107,7 +107,7 @@ class AuthorController extends AbstractController
     public function authors (AuthorRepository $authorRepository): Response
     {
         return $this->render('author/_authors.html.twig', [
-            'authors'=> $authorRepository->findAll(),
+            'authors'=> $authorRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
         ]);
     }
 }

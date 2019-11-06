@@ -35,12 +35,12 @@ class Author
     private $originCountry;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $dateOfBirth;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $dateOfDeath;
 
@@ -108,24 +108,24 @@ class Author
         return $this;
     }
 
-    public function getDateOfBirth(): ?\DateTimeInterface
+    public function getDateOfBirth(): ?int
     {
         return $this->dateOfBirth;
     }
 
-    public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
+    public function setDateOfBirth(int $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
-    public function getDateOfDeath(): ?\DateTimeInterface
+    public function getDateOfDeath(): ?int
     {
         return $this->dateOfDeath;
     }
 
-    public function setDateOfDeath(?\DateTimeInterface $dateOfDeath): self
+    public function setDateOfDeath(int $dateOfDeath): self
     {
         $this->dateOfDeath = $dateOfDeath;
 
