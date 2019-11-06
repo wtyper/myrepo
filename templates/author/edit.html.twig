@@ -1,9 +1,9 @@
 {% extends 'baseBase.html.twig' %}
 
-{% block title %}Edit Author{% endblock %}
+{% block title %}Edit {{ author.name ~ ' ' ~ author.lastName }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Author</h1>
+    <h1>Edit {{ author.name ~ ' ' ~ author.lastName }}</h1>
 
     {{ include('author/_form.html.twig', {'button_label': 'Update'}) }}
 

@@ -1,9 +1,9 @@
 {% extends 'baseBase.html.twig' %}
 
-{% block title %}Genre{% endblock %}
+{% block title %}Genre {{ genre.name }}{% endblock %}
 
 {% block body %}
-    <h1>Genre</h1>
+    <h1>Genre {{ genre.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -21,7 +21,7 @@
             </tr>
         </tbody>
     </table>
-    <h3>Books</h3>
+    <h3>Books for this genre</h3>
     {% if genre.books %}
         <table class="table">
             <thead>

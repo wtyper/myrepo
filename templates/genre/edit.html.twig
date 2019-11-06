@@ -1,9 +1,9 @@
 {% extends 'baseBase.html.twig' %}
 
-{% block title %}Edit Genre{% endblock %}
+{% block title %}Edit {{ genre.name }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Genre</h1>
+    <h1>Edit {{ genre.name }}</h1>
 
     {{ include('genre/_form.html.twig', {'button_label': 'Update'}) }}
 
