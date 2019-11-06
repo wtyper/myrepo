@@ -61,7 +61,7 @@ class Book
     private $author;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Genre", inversedBy="book", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Genre", inversedBy="books")
      * @ORM\JoinColumn(nullable=false)
      */
     private $genres;
@@ -168,14 +168,14 @@ class Book
         return $this;
     }
 
-    public function getGenres(): ?Genre
+    public function getGenre(): ?Genre
     {
         return $this->genres;
     }
 
-    public function setGenres(Genre $genres): self
+    public function setGenre(?Genre $genre): self
     {
-        $this->genres = $genres;
+        $this->genres = $genre;
 
         return $this;
     }

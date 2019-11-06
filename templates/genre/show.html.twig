@@ -21,6 +21,47 @@
             </tr>
         </tbody>
     </table>
+    <h3>Books</h3>
+    {% if genre.books %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Year Of Publishment</th>
+                <th>Country Of Publishment</th>
+                <th>Availabilyty</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in genre.books %}
+                <tr class="striped-row">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>
+                        <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.name ~ ' ' ~ book.author.lastName }}</a>
+                    </td>
+                    <td>{{ book.description }}</td>
+                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
+                    <td>{{ book.countryOfPublishment }}</td>
+                    <td>{{ book.availability}}</td>
+                    <td>
+                        <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        No books found for this genre.<br>
+    {% endif %}
 
     <a href="{{ path('genre_index') }}">back to list</a>
 

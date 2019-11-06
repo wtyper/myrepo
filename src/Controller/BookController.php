@@ -40,7 +40,7 @@ class BookController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Book created successfully!'
+                'Book "' . $book->getTitle() . '" created successfully!'
             );
             return $this->redirectToRoute('book_index');
         }
@@ -73,7 +73,7 @@ class BookController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Book updated successfully!'
+                'Book "' . $book->getTitle() . '" updated successfully!'
             );
             return $this->redirectToRoute('book_index');
         }
@@ -95,7 +95,7 @@ class BookController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Book deleted successfully!'
+                'Book "' . $book->getTitle() . '" deleted successfully!'
             );
         }
 

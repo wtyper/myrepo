@@ -40,7 +40,7 @@ class AuthorController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Author created successfully!'
+                'Author' . $author->getName() . ' ' . $author->getLastName() . ' created successfully!'
             );
             return $this->redirectToRoute('author_index');
         }
@@ -73,7 +73,7 @@ class AuthorController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Author updated successfully!'
+                'Author' . $author->getName() . ' ' . $author->getLastName() . ' edited successfully!'
             );
             return $this->redirectToRoute('author_index');
         }
@@ -95,7 +95,7 @@ class AuthorController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Author deleted successfully!'
+                'Author' . $author->getName() . ' ' . $author->getLastName() . ' deleted successfully!'
             );
         }
 

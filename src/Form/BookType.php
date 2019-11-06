@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class BookType extends AbstractType
 {
@@ -20,21 +21,16 @@ class BookType extends AbstractType
             ->add('description')
             ->add('author', EntityType::class,[
                 'class'=>Author::class,
-        'query_builder' => static function (EntityRepository $er){
-                return $er->createQueryBuilder('a')
-                    ->orderBy('a.name')
-                    ->orderBy('a.lastName');
-        },
-                'choice_label' => 'name'])
+                'choice_label'=> static function ($author, $_, $__) {
+                 /** @var Author $author */
+                 return $author->getName() . ' ' . $author->getLastName();
+                }
+                ])
             ->add('genres', EntityType::class,[
-        'class'=>Genre::class,
-        'query_builder' => static function (EntityRepository $er){
-            return $er->createQueryBuilder('g')
-                ->orderBy('g.name');
-        },
-        'choice_label' => 'name'])
+                'class'=>Genre::class,
+                'choice_label' => 'name'])
             ->add('yearOfPublishment')
-            ->add('countryOfPublishment')
+            ->add('countryOfPublishment', CountryType::class)
             ->add('availability');
     }
 
