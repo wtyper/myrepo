@@ -19,6 +19,14 @@
                 <th>Description</th>
                 <td>{{ genre.description }}</td>
             </tr>
+            <tr>
+                <th>DateOfCreate</th>
+                <td>{{ genre.dateOfCreate ? genre.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateOfUpdate</th>
+                <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
         </tbody>
     </table>
     <h3>Books for this genre</h3>

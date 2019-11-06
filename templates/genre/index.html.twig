@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>DateOfCreate</th>
+                <th>DateOfUpdate</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +22,8 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.name }}</td>
                 <td>{{ genre.description }}</td>
+                <td>{{ genre.dateOfCreate ? genre.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('genre_show', {'id': genre.id}) }}">show</a>
                     <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>

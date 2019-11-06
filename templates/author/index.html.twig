@@ -14,6 +14,8 @@
                 <th>OriginCountry</th>
                 <th>DateOfBirth</th>
                 <th>DateOfDeath</th>
+                <th>DateOfCreate</th>
+                <th>DateOfUpdate</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +28,8 @@
                 <td>{{ author.originCountry }}</td>
                 <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d ') : '' }}</td>
                 <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d ') : '' }}</td>
+                <td>{{ author.dateOfCreate ? author.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ author.dateOfUpdate ? author.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('author_show', {'id': author.id}) }}">show</a>
                     <a href="{{ path('author_edit', {'id': author.id}) }}">edit</a>

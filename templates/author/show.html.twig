@@ -24,12 +24,12 @@
                 <td>{{ author.originCountry }}</td>
             </tr>
             <tr>
-                <th>DateOfBirth</th>
-                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d') : '' }}</td>
+                <th>DateOfCreate</th>
+                <td>{{ author.dateOfCreate ? author.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>DateOfDeath</th>
-                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d') : '' }}</td>
+                <th>DateOfUpdate</th>
+                <td>{{ author.dateOfUpdate ? author.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

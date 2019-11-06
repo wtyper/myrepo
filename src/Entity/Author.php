@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
@@ -43,10 +44,23 @@ class Author
      */
     private $dateOfDeath;
 
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="Author")
      */
     private $books;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $dateOfCreate;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $dateOfUpdate;
 
     public function __construct()
     {
@@ -145,6 +159,30 @@ class Author
                 $book->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateOfCreate(): ?\DateTimeInterface
+    {
+        return $this->dateOfCreate;
+    }
+
+    public function setDateOfCreate(\DateTimeInterface $dateOfCreate): self
+    {
+        $this->dateOfCreate = $dateOfCreate;
+
+        return $this;
+    }
+
+    public function getDateOfUpdate(): ?\DateTimeInterface
+    {
+        return $this->dateOfUpdate;
+    }
+
+    public function setDateOfUpdate(\DateTimeInterface $dateOfUpdate): self
+    {
+        $this->dateOfUpdate = $dateOfUpdate;
 
         return $this;
     }
