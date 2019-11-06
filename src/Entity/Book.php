@@ -38,7 +38,7 @@ class Book
     private $countryOfPublishment;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
     private $availability;
 
@@ -56,15 +56,21 @@ class Book
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="books")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="author_id",
+     *      referencedColumnName="id",
+     *      onDelete="CASCADE",
+     *      nullable=false)
      */
     private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Genre", inversedBy="books")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="genre_id",
+     *      referencedColumnName="id",
+     *      onDelete="CASCADE",
+     *      nullable=false)
      */
-    private $genres;
+    private $genre;
 
 
     public function getId(): ?int
@@ -132,12 +138,12 @@ class Book
         return $this;
     }
 
-    public function getAvailability(): ?string
+    public function getAvailability(): ?bool
     {
         return $this->availability;
     }
 
-    public function setAvailability(string $availability): self
+    public function setAvailability(bool $availability): self
     {
         $this->availability = $availability;
 
@@ -170,12 +176,12 @@ class Book
 
     public function getGenre(): ?Genre
     {
-        return $this->genres;
+        return $this->genre;
     }
 
     public function setGenre(?Genre $genre): self
     {
-        $this->genres = $genre;
+        $this->genre = $genre;
 
         return $this;
     }

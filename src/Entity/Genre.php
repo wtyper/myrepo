@@ -30,7 +30,7 @@ class Genre
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="genres")
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="genre")
      */
     private $books;
 

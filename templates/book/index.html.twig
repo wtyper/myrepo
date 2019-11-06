@@ -34,7 +34,7 @@
                 </td>
                 <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
                 <td>{{ book.countryOfPublishment }}</td>
-                <td>{{ book.availability }}</td>
+                <td>{{ book.availability  ? 'Yes' : 'No' }}</td>
                 <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ book.dateOfUpdate ? book.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
