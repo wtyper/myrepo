@@ -46,7 +46,7 @@ class Author
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="Author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Book", mappedBy="author")
      */
     private $books;
 
