@@ -34,12 +34,9 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
-                <th>Description</th>
                 <th>Year Of Publishment</th>
-                <th>Country Of Publishment</th>
                 <th>Availabilyty</th>
                 <th>actions</th>
             </tr>
@@ -47,14 +44,11 @@
             <tbody>
             {% for book in genre.books %}
                 <tr class="striped-row">
-                    <td>{{ book.id }}</td>
                     <td>{{ book.title }}</td>
                     <td>
                         <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.name ~ ' ' ~ book.author.lastName }}</a>
                     </td>
-                    <td>{{ book.description }}</td>
-                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
-                    <td>{{ book.countryOfPublishment }}</td>
+                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y') : '' }}</td>
                     <td>{{ book.availability  ? 'Avaliable' : 'Loan'}}</td>
                     <td>
                         <a href="{{ path('book_show', {'id': book.id}) }}">show</a>

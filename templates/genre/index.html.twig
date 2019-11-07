@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Books</th>
+                <th>Updates</th>
                 <th>DateOfCreate</th>
                 <th>DateOfUpdate</th>
                 <th>actions</th>
@@ -22,6 +24,11 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.name }}</td>
                 <td>{{ genre.description }}</td>
+                <td>
+                    {%  for books in genre.books%} {{ books.id|length}}
+                    {% endfor %}
+                </td>
+                <td>{{ genre.updates }}</td>
                 <td>{{ genre.dateOfCreate ? genre.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
