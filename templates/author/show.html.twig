@@ -57,7 +57,7 @@
                     <td><a href="{{ path('genre_show', {id: book.genre.id }) }}">{{ book.genre.name }}</a></td>
                     <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
                     <td>{{ book.countryOfPublishment }}</td>
-                    <td>{{ book.availability}}</td>
+                    <td>{{ book.availability  ? 'Avaliable' : 'Loan'}}</td>
                     <td>
                         <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
                     </td>

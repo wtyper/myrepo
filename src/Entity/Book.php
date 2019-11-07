@@ -27,8 +27,7 @@ class Book
     private $description;
 
     /**
-     *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $yearOfPublishment;
 
@@ -114,12 +113,12 @@ class Book
         return $this;
     }
 
-    public function getYearOfPublishment(): ?\DateTimeInterface
+    public function getYearOfPublishment(): ?int
     {
         return $this->yearOfPublishment;
     }
 
-    public function setYearOfPublishment(\DateTimeInterface $yearOfPublishment): self
+    public function setYearOfPublishment(int $yearOfPublishment): self
     {
         $this->yearOfPublishment = $yearOfPublishment;
 

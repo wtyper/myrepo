@@ -27,7 +27,7 @@ class BookType extends AbstractType
                  return $author->getName() . ' ' . $author->getLastName();
                 }
                 ])
-            ->add('genres', EntityType::class,[
+            ->add('genre', EntityType::class,[
                 'class'=>Genre::class,
                 'choice_label' => 'name'])
             ->add('yearOfPublishment', IntegerType::class, [
