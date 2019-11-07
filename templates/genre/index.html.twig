@@ -25,7 +25,7 @@
                 <td>{{ genre.name }}</td>
                 <td>{{ genre.description }}</td>
                 <td>
-                    {%  for books in genre.books%} {{ books.id|length}}
+                    {%  for books in genre.books%} {{ books.id| length }}
                     {% endfor %}
                 </td>
                 <td>{{ genre.updates }}</td>

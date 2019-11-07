@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -25,16 +26,11 @@ class BookType extends AbstractType
                 'choice_label'=> static function ($author, $_, $__) {
                  /** @var Author $author */
                  return $author->getName() . ' ' . $author->getLastName();
-                }
-                ])
+                }])
             ->add('genre', EntityType::class,[
                 'class'=>Genre::class,
                 'choice_label' => 'name'])
-            ->add('yearOfPublishment', IntegerType::class, [
-            'attr' => [
-                'min' => 1,
-                'max' => date('Y'),
-            ]])
+            ->add('yearOfPublishment', NumberType::class)
             ->add('countryOfPublishment', CountryType::class)
             ->add('availability');
     }

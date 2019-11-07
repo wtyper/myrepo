@@ -17,18 +17,8 @@ class AuthorType extends AbstractType
             ->add('name')
             ->add('lastName')
             ->add('originCountry', CountryType::class)
-            ->add('dateOfBirth', IntegerType::class, [
-                'attr' => [
-                    'min' => 1,
-                    'max' => date('Y'),
-                ]])
-            ->add('dateOfDeath', IntegerType::class, [
-                'attr' => [
-                    'min' => 1,
-                    'max' => date('Y'),
-                ],
-            'required' => false
-            ]);
+            ->add('dateOfBirth')
+            ->add('dateOfDeath');
     }
 
     public function configureOptions(OptionsResolver $resolver)

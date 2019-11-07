@@ -27,7 +27,8 @@ class Book
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     *
+     *  @ORM\Column(type="integer")
      */
     private $yearOfPublishment;
 
