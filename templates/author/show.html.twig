@@ -55,7 +55,7 @@
                     <td>{{ book.title }}</td>
                     <td>{{ book.description }}</td>
                     <td><a href="{{ path('genre_show', {id: book.genre.id }) }}">{{ book.genre.name }}</a></td>
-                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y-m-d') : '' }}</td>
+                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y') : '' }}</td>
                     <td>{{ book.countryOfPublishment }}</td>
                     <td>{{ book.availability  ? 'Avaliable' : 'Loan'}}</td>
                     <td>

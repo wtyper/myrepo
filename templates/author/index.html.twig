@@ -26,8 +26,8 @@
                 <td>{{ author.name }}</td>
                 <td>{{ author.lastName }}</td>
                 <td>{{ author.originCountry }}</td>
-                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y-m-d ') : '' }}</td>
-                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y-m-d ') : '' }}</td>
+                <td>{{ author.dateOfBirth ? author.dateOfBirth|date('Y') : '' }}</td>
+                <td>{{ author.dateOfDeath ? author.dateOfDeath|date('Y ') : '' }}</td>
                 <td>{{ author.dateOfCreate ? author.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ author.dateOfUpdate ? author.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
