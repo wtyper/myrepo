@@ -24,10 +24,8 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.name }}</td>
                 <td>{{ genre.description }}</td>
-                <td>
-                    {{ genre.books| length }}
-                </td>
-                <td>{{ genre.updates | length }}</td>
+                <td>{{ genre.books| length }}</td>
+                <td>{{ genre.updates| length }}</td>
                 <td>{{ genre.dateOfCreate ? genre.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
