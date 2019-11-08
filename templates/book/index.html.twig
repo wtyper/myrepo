@@ -49,11 +49,11 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <td> Don't know what to read? Let's generate a book!</td>
+    {% for book in books %}
+    <a href="{{ path('book_show' , {'id': random([book.id])}) }}"> Random book</a> <br>
+    {% endfor %}
     <a href="{{ path('book_new') }}">Create new</a>
 {% endblock %}
-{#    {{ render(controller(#}
-{#        'App\\Controller\\BookController::random'#}
-{#    )) }}#}
-{#    <a href="{{ path('book_random') }}">RNG book</a>#}
+
 

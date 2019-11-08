@@ -1,3 +1,4 @@
-{% if books %}
-        <a href="{{ path('book_random') }}"</a>
-{% endif %}
+{% for book in books %}
+        <a href="{{ path('book_show', {'id': book.id}) }}"
+        >{{ book.title }}</a>
+{% endfor %}

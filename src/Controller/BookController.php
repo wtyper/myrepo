@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/book")
@@ -110,18 +110,5 @@ class BookController extends AbstractController
         return $this->render('book/_books.html.twig', [
             'books'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
         ]);
-    }
-
-    /**
-     * @Route("/random", name="book_random", methods={"GET"})
-     */
-    public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
-    {
-        $bookIds = $em->createQueryBuilder()
-            ->select('b.id')
-            ->from('App:Book', 'b')
-            ->getQuery()
-            ->getArrayResult();
-        return $this->show($bookRepository->find($bookIds[array_rand($bookIds)]['id']));
     }
 }
