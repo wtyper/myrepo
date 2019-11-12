@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -113,12 +114,16 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="random", methods="GET")
+     * @Route("/random-book", name="book_random", methods="GET")
      */
-    public function random(BookRepository $bookRepository): Response
+    public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
     {
-        return $this->render('book/_random.html.twig', [
-            'random'=> $bookRepository->findAll(),
-        ]);
+        $bookId = $em->createQueryBuilder()
+            ->select('b.id')
+            ->from('Book', 'b')
+            ->getQuery()
+            ->getArrayResult();
+        return $this->show($bookRepository->find($bookId[array_rand($bookId)]['id']));
     }
 }
+
