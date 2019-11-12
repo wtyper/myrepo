@@ -26,3 +26,7 @@ stof_doctrine_extensions:
       default:
         tree: true
         timestampable: true
+#services:
+#  twig.extension.array:
+#    class: Twig_Extensions_Extension_Array
+#    tags: [twig.extension]

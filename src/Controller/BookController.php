@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/book")
@@ -109,6 +109,16 @@ class BookController extends AbstractController
     {
         return $this->render('book/_books.html.twig', [
             'books'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="random", methods="GET")
+     */
+    public function random(BookRepository $bookRepository): Response
+    {
+        return $this->render('book/_random.html.twig', [
+            'random'=> $bookRepository->findAll(),
         ]);
     }
 }
