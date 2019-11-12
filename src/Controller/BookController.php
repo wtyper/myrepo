@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 /**
@@ -50,16 +51,6 @@ class BookController extends AbstractController
         return $this->render('book/new.html.twig', [
             'book' => $book,
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="book_show", methods={"GET"})
-     */
-    public function show(Book $book): Response
-    {
-        return $this->render('book/show.html.twig', [
-            'book' => $book,
         ]);
     }
 
@@ -114,16 +105,26 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/random-book", name="book_random", methods="GET")
+     * @Route("/random", name="random_book", methods="GET")
      */
     public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
     {
         $bookId = $em->createQueryBuilder()
             ->select('b.id')
-            ->from('Book', 'b')
+            ->from('App:Book', 'b')
             ->getQuery()
             ->getArrayResult();
         return $this->show($bookRepository->find($bookId[array_rand($bookId)]['id']));
+    }
+
+    /**
+     * @Route("/{id}", name="book_show", methods={"GET"})
+     */
+    public function show(Book $book): Response
+    {
+        return $this->render('book/show.html.twig', [
+            'book' => $book,
+        ]);
     }
 }
 
