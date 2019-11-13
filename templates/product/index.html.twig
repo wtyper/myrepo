@@ -31,6 +31,9 @@
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    {{ render(controller(
+                        'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
+                    )) }}
                 </td>
             </tr>
         {% else %}
