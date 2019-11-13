@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WishListController extends AbstractController
 {
     /**
-     * @Route("/wish/list", name="wish_list")
+     * @Route("/wishlist", name="wish_list")
      */
     public function index()
     {

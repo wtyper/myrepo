@@ -32,7 +32,9 @@
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                    <a>href="{{ path('') }}</a>
+                </td>
+                <td>
+                    <a href="{{ path('wish_list') }}">WishList</a>
                 </td>
             </tr>
         {% else %}
