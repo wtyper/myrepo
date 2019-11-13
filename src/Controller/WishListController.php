@@ -65,8 +65,8 @@ class WishListController extends AbstractController
      */
     public function dropdown(): Response
     {
-        return $this->render('wishlist/_dropdown.html.twig', [
-            'wishList' => $this->getSessionWishList()
+        return $this->render('wish_list/_dropdown.html.twig', [
+            'wishList' => $this->setSessionWishList()
         ]);
     }
     /**
