@@ -1,0 +1,13 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        {{ 'wishlist.title' | trans }}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        {% for id, productName in wishList %}
+            <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ productName }}</a>
+        {% else %}
+            <span class="ml-3">{{ 'wishlist.empty' | trans }}</span>
+        {% endfor %}
+    </div>
+</li>
