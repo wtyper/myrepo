@@ -37,6 +37,9 @@
                     <a href="{{ path('wish_list') }}">WishList</a>
                 </td>
             </tr>
+            {{ render(controller(
+                'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
+            )) }}
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
