@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class WhishListController extends AbstractController
+class WishListController extends AbstractController
 {
     /**
-     * @Route("/whishlist", name="whish_list")
+     * @Route("/wish/list", name="wish_list")
      */
     public function index()
     {
-        return $this->render('whish_list/index.html.twig', [
-            'controller_name' => 'WhishListController',
+        return $this->render('wish_list/index.html.twig', [
+            'controller_name' => 'WishListController',
         ]);
     }
 }

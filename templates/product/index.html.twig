@@ -15,6 +15,7 @@
                 <th>DateOfLastModification</th>
                 <th>Category</th>
                 <th>actions</th>
+                <th>WishList</th>
             </tr>
         </thead>
         <tbody>
@@ -31,9 +32,7 @@
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                    {{ render(controller(
-                        'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
-                    )) }}
+                    <a>href="{{ path('') }}</a>
                 </td>
             </tr>
         {% else %}
