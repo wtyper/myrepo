@@ -55,7 +55,7 @@ class WishListController extends AbstractController
     {
         $this->session->set(self::WISH_LIST_NAME, $this->wishList);
     }
-    
+
     /**
      * @return Response
      */
@@ -84,6 +84,9 @@ class WishListController extends AbstractController
 
     public function showWishListProductForm(Product $product): Response
     {
-        return $this->render(!isset($this->getSessionWishList()[$product->getId()]));
+        return $this->render(!isset($this->getSessionWishList()[$product->getId()])
+            ? 'wish_list/_add_form.html.twig' : [
+            'product' => $product
+        ]);
     }
 }
