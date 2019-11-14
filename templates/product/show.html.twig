@@ -38,6 +38,9 @@
 
     <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">back to list</a>
     <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit</a>
-
+    {{ render(controller(
+        'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
+    )) }}
+    
     {{ include('product/_delete_form.html.twig') }}
 {% endblock %}

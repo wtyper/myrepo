@@ -45,7 +45,7 @@ class WishListController extends AbstractController
     {
         if (!isset($this->getSessionWishList()[$product->getId()])) {
                 $this->wishList[$product->getId()] = $product->getName();
-                $this->addFlash('success', $product->getName() . ' ' . $this->trans('wishlist.added'));
+                $this->addFlash('Product added to wishlist!', $product->getName() . ' ');
                 $this->setSessionWishList();
             }
         return $this->showProducts();
