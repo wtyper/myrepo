@@ -6,7 +6,6 @@ use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -15,6 +14,7 @@ class WishListController extends AbstractController
 {
     /**
      * @Route("/wishlist", name="wish_list")
+     *
      */
     public function index()
     {
@@ -32,6 +32,10 @@ class WishListController extends AbstractController
      */
     private $wishList;
 
+    /**
+     * WishlistController constructor.
+     * @param SessionInterface $session
+     */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
@@ -39,7 +43,9 @@ class WishListController extends AbstractController
     }
 
     /**
+     * @param Product $product
      * @Route("/add/{id}", name="wishlist_add", methods={"POST"})
+     * @return Response
      */
     public function add(Product $product): Response
     {

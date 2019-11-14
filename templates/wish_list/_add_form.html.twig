@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('wishlist_add', {'id': product.id}) }}">
+<form method="post" action="{{ path('wish_list_add', {'id': product.id}) }}">
     <input type="hidden" name="_method" value="POST">
     <input type="hidden" name="_token" value="{{ csrf_token('post' ~ product.id) }}">
     <button class="btn btn-sm btn-secondary">(♥‿♥)️ {{ 'wishlist.add' }}</button>
