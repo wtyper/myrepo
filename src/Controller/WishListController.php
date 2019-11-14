@@ -26,6 +26,7 @@ class WishListController extends AbstractController
     private const WISH_LIST_NAME = 'WISHLIST';
 
     private $session;
+
     /**
      * @var array
      */
@@ -36,6 +37,7 @@ class WishListController extends AbstractController
         $this->session = $session;
         $this->wishList = $this->session->get(self::WISH_LIST_NAME, []);
     }
+
     /**
      * @Route("/add/{id}", name="wishlist_add", methods={"POST"})
      */
@@ -48,16 +50,26 @@ class WishListController extends AbstractController
             }
         return $this->showProducts();
     }
+
     public function setSessionWishList(): void
     {
         $this->session->set(self::WISH_LIST_NAME, $this->wishList);
     }
+    
     /**
      * @return Response
      */
     private function showProducts(): Response
     {
         return $this->redirectToRoute('product_index');
+    }
+
+    /**
+     * @return array
+     */
+    public function getSessionWishList(): array
+    {
+        return $this->session->get(self::WISH_LIST_NAME, []);
     }
 
     /**
@@ -74,5 +86,4 @@ class WishListController extends AbstractController
     {
         return $this->render(!isset($this->getSessionWishList()[$product->getId()]));
     }
-
 }
