@@ -29,16 +29,13 @@
                     <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a>
                 </td>
                 <td>
+                        <a class="btn btn-primary" role="button" href="{{ path ('wishlist_add',{'id':product.id}) }}">Add</a>
+                </td>
+                <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
                 </td>
-                <td>
-                    <a href="{{ path('wishlist') }}">WishList</a>
-                </td>
             </tr>
-            {{ render(controller(
-                'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
-            )) }}
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
