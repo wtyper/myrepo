@@ -28,6 +28,12 @@
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th>WishList</th>
+                <td>
+                    <a class="btn btn-primary" role="button" href="{{ path ('wishlist_add',{'id':product.id}) }}">Add</a>
+                </td>
+            </tr>
+            <tr>
                 <th>Category</th>
                 <td>
                     <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a>
@@ -38,9 +44,5 @@
 
     <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">back to list</a>
     <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit</a>
-    {{ render(controller(
-        'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
-    )) }}
-
     {{ include('product/_delete_form.html.twig') }}
 {% endblock %}
