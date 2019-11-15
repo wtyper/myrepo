@@ -13,17 +13,17 @@ class WishListController extends AbstractController
 
 {
     /**
-     * @Route("/wishlist", name="wish_list")
+     * @Route("/wishlist", name="wishlist")
      *
      */
     public function index()
     {
-        return $this->render('wish_list/index.html.twig', [
+        return $this->render('wishlist/index.html.twig', [
             'controller_name' => 'WishListController',
         ]);
     }
 
-    private const WISH_LIST_NAME = 'WISHLIST';
+    private const WISH_LIST = 'WISHLIST';
 
     private $session;
 
@@ -32,26 +32,20 @@ class WishListController extends AbstractController
      */
     private $wishList;
 
-    /**
-     * WishlistController constructor.
-     * @param SessionInterface $session
-     */
     public function __construct(SessionInterface $session)
     {
         $this->session = $session;
-        $this->wishList = $this->session->get(self::WISH_LIST_NAME, []);
+        $this->wishList = $this->session->get(self::WISH_LIST, []);
     }
 
     /**
-     * @param Product $product
      * @Route("/add/{id}", name="wishlist_add", methods={"POST"})
-     * @return Response
      */
     public function add(Product $product): Response
     {
         if (!isset($this->getSessionWishList()[$product->getId()])) {
                 $this->wishList[$product->getId()] = $product->getName();
-                $this->addFlash('Product added to wishlist!', $product->getName() . ' ');
+                $this->addFlash('Product added to wishlist!', $product->getName());
                 $this->setSessionWishList();
             }
         return $this->showProducts();
@@ -59,7 +53,7 @@ class WishListController extends AbstractController
 
     public function setSessionWishList(): void
     {
-        $this->session->set(self::WISH_LIST_NAME, $this->wishList);
+        $this->session->set(self::WISH_LIST, $this->wishList);
     }
 
     /**
@@ -75,7 +69,7 @@ class WishListController extends AbstractController
      */
     public function getSessionWishList(): array
     {
-        return $this->session->get(self::WISH_LIST_NAME, []);
+        return $this->session->get(self::WISH_LIST, []);
     }
 
     /**
@@ -83,7 +77,7 @@ class WishListController extends AbstractController
      */
     public function dropdown(): Response
     {
-        return $this->render('wish_list/_dropdown.html.twig', [
+        return $this->render('wishlist/_dropdown.html.twig', [
             'wishList' => $this->getSessionWishList()
         ]);
     }
@@ -91,7 +85,7 @@ class WishListController extends AbstractController
     public function showWishListProductForm(Product $product): Response
     {
         return $this->render(!isset($this->getSessionWishList()[$product->getId()])
-            ? 'wish_list/_add_form.html.twig' : [
+            ? 'wishlist/_add_form.html.twig' : [
             'product' => $product
         ]);
     }
