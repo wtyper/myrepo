@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/wishlist")
  */
-class WishlistController extends AbstractController
+class WishListController extends AbstractController
 {
     /**
      * @Route("/add/{id}", name ="wishlist_add")
