@@ -1,4 +1,8 @@
 {% for book in bookList %}
-        <a href="{{ path('book_show', {'id': book.id}) }}"
-        >{{ book.title }} </br> </a>
+        <ul>
+                <li>
+                        <a href="{{ path('book_show', {'id': book.id}) }}"
+                        >{{ book.title }} </br> </a>
+                </li>
+        </ul>
 {% endfor %}
