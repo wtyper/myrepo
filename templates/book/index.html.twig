@@ -49,11 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <td> Don't know what to read? Let's find a book! </td>
-    {% if books %}
-            <a href="{{ path('random_book') }}" >Random book</a>
-    {% endif %}
-<br>
+
     <a href="{{ path('book_new') }}">Create new</a>
 {% endblock %}
 

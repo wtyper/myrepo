@@ -61,9 +61,6 @@
         This author has no books yet<br>
     {% endif %}
 
-    <td> Don't know what to read? Let's find a book! </td>
-        <a href="{{ path('random_book') }}" >Random book</a> </br>
-
     <a href="{{ path('author_index') }}">back to list</a> </br>
 
     <a href="{{ path('author_edit', {'id': author.id}) }}">edit</a>
