@@ -7,16 +7,15 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>DateOfCreation</th>
-                <th>DateOfLastModification</th>
-                <th>Category</th>
-                <th>Wishlist</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>DateOfCreation</th>
+            <th>DateOfLastModification</th>
+            <th>Category</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for product in products %}
@@ -30,13 +29,16 @@
                     <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a>
                 </td>
                 <td>
-                        <a class="btn btn-primary" role="button" href="{{ path ('wishlist_add',{'id':product.id}) }}">Add to wishlist</a>
-                </td>
-                <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
                 </td>
+                <td>
+                    <a href="{{ path('wishlist') }}">WishList</a>
+                </td>
             </tr>
+            {{ render(controller(
+                'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}
+            )) }}
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
