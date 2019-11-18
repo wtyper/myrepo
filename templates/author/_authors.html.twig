@@ -1,8 +1,9 @@
-{% for author in authorList %}
 <ul>
-    <li>
+    {% for author in authorList %}
+        <li>
             <a href="{{ path('author_show', {'id': author.id}) }}"
-            >{{ author.name ~ ' ' ~ author.lastName  }}<br> </a>
-    </li>
+            >{{ author.name ~ ' ' ~ author.lastName  }}</a>
+        </li>
+    {% endfor %}
 </ul>
-{% endfor %}
+
