@@ -1,0 +1,50 @@
+{% extends 'libraryBase.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ book.title }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ book.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ book.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ book.description }}</td>
+            </tr>
+            <tr>
+                <th>YearOfPublishment</th>
+                <td>{{ book.yearOfPublishment}}</td>
+            </tr>
+            <tr>
+                <th>CountryOfPublishment</th>
+                <td>{{ book.countryOfPublishment }}</td>
+            </tr>
+            <tr>
+                <th>Availability</th>
+                <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
+            </tr>
+            <tr>
+                <th>DateOfCreate</th>
+                <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateOfUpdate</th>
+                <td>{{ book.dateOfUpdate ? book.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('book_index') }}">back to list</a> </br>
+
+    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+
+    {{ include('book/_delete_form.html.twig') }}
+{% endblock %}

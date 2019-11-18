@@ -1,0 +1,3 @@
+{%  for book in random %}
+    <a href="{{ path('book_show', {'id': book.id}) }}">{{ book.id }}</a>
+{% endfor %}

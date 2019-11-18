@@ -1,0 +1,55 @@
+{% extends 'libraryBase.html.twig' %}
+
+{% block title %}Books{% endblock %}
+
+{% block body %}
+    <h1>Books</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>YearOfPublishment</th>
+                <th>CountryOfPublishment</th>
+                <th>Availability</th>
+                <th>DateOfCreate</th>
+                <th>DateOfUpdate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.description }}</td>
+                <td><a  href="{{ path('author_show', {'id': book.author.id})}}">{{ book.author.name ~ ' ' ~ book.author.lastname}}</a>
+                    </td>
+                <td>
+                    <a href="{{ path('genre_show', {'id': book.genre.id}) }}">{{ book.genre.name }}</a>
+                </td>
+                <td>{{ book.yearOfPublishment }}</td>
+                <td>{{ book.countryOfPublishment }}</td>
+                <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
+                <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ book.dateOfUpdate ? book.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('book_new') }}">Create new</a>
+{% endblock %}
+

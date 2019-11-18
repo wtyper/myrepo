@@ -1,0 +1,13 @@
+{% extends 'libraryBase.html.twig' %}
+
+{% block title %}Edit {{ author.name ~ ' ' ~ author.lastName }}{% endblock %}
+
+{% block body %}
+    <h1>Edit {{ author.name ~ ' ' ~ author.lastName }}</h1>
+
+    {{ include('author/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('author_index') }}">back to list</a>
+
+    {{ include('author/_delete_form.html.twig') }}
+{% endblock %}

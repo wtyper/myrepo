@@ -1,0 +1,9 @@
+<ul>
+    {% for author in authorList %}
+        <li>
+            <a href="{{ path('author_show', {'id': author.id}) }}"
+            >{{ author.name ~ ' ' ~ author.lastName  }}</a>
+        </li>
+    {% endfor %}
+</ul>
+

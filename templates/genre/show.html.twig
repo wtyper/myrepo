@@ -1,0 +1,79 @@
+{% extends 'libraryBase.html.twig' %}
+
+{% block title %}Genre {{ genre.name }}{% endblock %}
+
+{% block body %}
+    <h1>Genre {{ genre.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ genre.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ genre.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ genre.description }}</td>
+            </tr>
+            <tr>
+                <th>DateOfCreate</th>
+                <td>{{ genre.dateOfCreate ? genre.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateOfUpdate</th>
+                <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        <tr>
+            <th>Books</th>
+            <td>{{ genre.books| length }}</td>
+        </tr>
+        <tr>
+            <th>Updates</th>
+            <td>{{ genre.updates| length }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Books for this genre</h3>
+    {% if genre.books %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year Of Publishment</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in genre.books %}
+                <tr class="striped-row">
+                    <td>{{ book.title }}</td>
+                    <td>
+                        <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.name ~ ' ' ~ book.author.lastName }}</a>
+                    </td>
+                    <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y') : '' }}</td>
+                    <td>
+                        <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        No books found for this genre.<br>
+    {% endif %}
+
+    <a href="{{ path('genre_index') }}">back to list</a> </br>
+
+    <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
+
+    {{ include('genre/_delete_form.html.twig') }}
+{% endblock %}

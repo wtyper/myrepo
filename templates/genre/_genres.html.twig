@@ -1,0 +1,8 @@
+<ul>
+    {% for genre in genreList %}
+        <li>
+            <a href="{{ path('genre_show', {'id': genre.id}) }}"
+            >{{ genre.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
