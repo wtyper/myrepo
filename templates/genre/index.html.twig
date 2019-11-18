@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}Genres{% endblock %}
 
@@ -40,5 +40,9 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <td> Don't know what to read? Let's find a book! </td>
+    <a href="{{ path('random_book') }}" >Random book</a> </br>
+
     <a href="{{ path('genre_new') }}">Create new</a>
 {% endblock %}

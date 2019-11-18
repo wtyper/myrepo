@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}Authors{% endblock %}
 
@@ -12,8 +12,8 @@
                 <th>Name</th>
                 <th>LastName</th>
                 <th>OriginCountry</th>
-                <th>DateOfBirth</th>
-                <th>DateOfDeath</th>
+                <th>yearOfBirth</th>
+                <th>yearOfDeath</th>
                 <th>DateOfCreate</th>
                 <th>DateOfUpdate</th>
                 <th>actions</th>
@@ -26,8 +26,8 @@
                 <td>{{ author.name }}</td>
                 <td>{{ author.lastName }}</td>
                 <td>{{ author.originCountry }}</td>
-                <td>{{ author.dateOfBirth}}</td>
-                <td>{{ author.dateOfDeath}}</td>
+                <td>{{ author.yearOfBirth}}</td>
+                <td>{{ author.yearOfDeath}}</td>
                 <td>{{ author.dateOfCreate ? author.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ author.dateOfUpdate ? author.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
@@ -42,6 +42,8 @@
         {% endfor %}
         </tbody>
     </table>
+    <td> Don't know what to read? Let's find a book! </td>
+    <a href="{{ path('random_book') }}" >Random book</a> </br>
 
     <a href="{{ path('author_new') }}">Create new</a>
 {% endblock %}

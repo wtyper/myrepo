@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}{{ book.title }}{% endblock %}
 
@@ -41,8 +41,10 @@
             </tr>
         </tbody>
     </table>
+    <td> Don't know what to read? Let's find a book! </td>
+    <a href="{{ path('random_book') }}" >Random book</a> </br>
 
-    <a href="{{ path('book_index') }}">back to list</a>
+    <a href="{{ path('book_index') }}">back to list</a> </br>
 
     <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
 
