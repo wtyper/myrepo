@@ -64,6 +64,18 @@ class WishListController extends AbstractController
     {
         return $this->redirectToRoute('product_index');
     }
+    /**
+     * @Route("/remove/{id}", name="wishlist_remove", methods={"POST"})
+     */
+    public function remove(Product $product): Response
+    {
+        if (isset($this->getSessionWishList()[$product->getId()])) {
+            unset($this->wishList[$product->getId()]);
+            $this->addFlash('Product removed from wishlist!', $product->getName() . ' ');
+        }
+        $this->setSessionWishList();
+        return $this->showProducts();
+    }
 
     /**
      * @return array
@@ -85,8 +97,21 @@ class WishListController extends AbstractController
 
     public function showWishListProductForm(Product $product): Response
     {
-        return $this->render('wishlist/_add_form.html.twig',[
+        return $this->render(!isset($this->getSessionWishList()[$product->getId()])
+            ? 'wishlist/_add_form.html.twig'
+            : 'wishlist/_remove_form.html.twig', [
             'product' => $product
         ]);
     }
+
+    /**
+     * @Route("/clear", name="wishlist_clear", methods={"POST"})
+     */
+    public function clearSessionWishList(): Response
+    {
+        $this->wishList = [];
+        $this->setSessionWishList();
+        return $this->showProducts();
+    }
+
 }
