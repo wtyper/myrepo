@@ -1,7 +1,19 @@
+
 fos_user:
-  db_driver: orm
+  db_driver: orm # other valid values are 'mongodb' and 'couchdb'
   firewall_name: main
-  user_class: Entity\User
+  user_class: App\Entity\User
   from_email:
-    address: "w.typer@wearevirua.com"
-    sender_name: "Wiktoria Typer"
+    address: "test@test"
+    sender_name: "test"
+  profile:
+    form:
+      type: App\Form\ProfileType
+  registration:
+    confirmation:
+      enabled: true
+  resetting:
+      email:
+        from_email:
+          address:       w.typer@wearevirtua.com
+          sender_name:    Wiktoria Typer
