@@ -13,7 +13,7 @@ class WishListController extends AbstractController
 
 {
     private const WISH_LIST_NAME = 'WISHLIST';
-    
+
     private $session;
 
     /**
