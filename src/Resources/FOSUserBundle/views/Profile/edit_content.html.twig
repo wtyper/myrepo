@@ -1,0 +1,7 @@
+<h1 class="mt-4 mb-4">{{ 'Edit your profile' }}</h1>
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_widget(form) }}
+<div>
+    <input type="submit" class="btn btn-primary" value="{{ 'Edit' }}"/>
+</div>
+{{ form_end(form) }}
