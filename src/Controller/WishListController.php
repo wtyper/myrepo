@@ -12,6 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class WishListController extends AbstractController
 
 {
+    private const WISH_LIST_NAME = 'WISHLIST';
+    
+    private $session;
+
+    /**
+     * @var array
+     */
+    private $wishList;
+
     /**
      * @Route("/wishlist", name="wishlist")
      */
@@ -21,15 +30,6 @@ class WishListController extends AbstractController
             'controller_name' => 'WishListController',
         ]);
     }
-
-    private const WISH_LIST_NAME = 'WISHLIST';
-
-    private $session;
-
-    /**
-     * @var array
-     */
-    private $wishList;
 
     public function __construct(SessionInterface $session)
     {
@@ -58,14 +58,6 @@ class WishListController extends AbstractController
     }
 
     /**
-     * @return Response
-     */
-    private function showProducts(): Response
-    {
-        return $this->redirectToRoute('product_index');
-    }
-
-    /**
      * @return array
      */
     public function getSessionWishList(): array
@@ -88,5 +80,13 @@ class WishListController extends AbstractController
         return $this->render('wishlist/_add_form.html.twig',[
             'product' => $product
         ]);
+    }
+
+    /**
+     * @return Response
+     */
+    private function showProducts(): Response
+    {
+        return $this->redirectToRoute('product_index');
     }
 }
