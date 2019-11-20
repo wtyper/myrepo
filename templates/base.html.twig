@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style type="text/css">
+        th {background: #555;color: #ffffff;}
+        tr:nth-child(odd) {background: 	#D3D3D3;color: 	#000000;}
+        tr:nth-child(even) {background: #A9A9A9;color: 	#000000;}
+    </style>
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
@@ -26,7 +31,7 @@
                         <a href="{{ path('product_category_index') }}">Product Category</a>
                     </li>
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Category
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

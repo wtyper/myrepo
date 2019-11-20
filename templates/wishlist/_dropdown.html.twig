@@ -1,11 +1,20 @@
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-       aria-haspopup="true" aria-expanded="false">
-        {{ 'Wishlist' }}
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        {% for id, productName in wishList %}
-            <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ productName }}</a>
-        {% endfor %}
+<li>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Wishlist
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            {% for id, productName in wishList %}
+                <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ productName }}</a>
+            {% else %}
+                <span class="ml-3">Nothing added to wishlist</span>
+            {% endfor %}
+            {% if wishList %}
+                <form method="post" action="{{ path('wishlist_clear') }}" class="dropdown-item">
+                    <input type="hidden" name="_method" value="POST">
+                    <button class="btn btn-sm btn-secondary">Clear wishlist</button>
+                </form>
+            {% endif %}
+        </div>
     </div>
 </li>

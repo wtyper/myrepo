@@ -102,12 +102,12 @@ class AuthorController extends AbstractController
         return $this->redirectToRoute('author_index');
     }
     /**
-     * @Route("/", name="authors", methods="GET")
+     * @Route("/authorlist", name="authorList", methods="GET")
      */
-    public function authors (AuthorRepository $authorRepository): Response
+    public function authorList (AuthorRepository $authorRepository): Response
     {
         return $this->render('author/_authors.html.twig', [
-            'authors'=> $authorRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
+            'authorList'=> $authorRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
         ]);
     }
 }
