@@ -140,10 +140,6 @@ class Genre
         return $this;
     }
 
-    /**
-     * @param int $updates
-     * @return Genre
-     */
     public function setUpdates(int $updates): self
     {
         $this->updates = $updates ?? 0;
