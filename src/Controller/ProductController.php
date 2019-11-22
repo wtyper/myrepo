@@ -23,13 +23,11 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $productRepository): Response
     {
-        $session = new Session(new NativeSessionStorage(), new NamespacedAttributeBag());
-        $wishlist = $session->all();
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
-            'wishlist'=>$wishlist,
         ]);
     }
+
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
