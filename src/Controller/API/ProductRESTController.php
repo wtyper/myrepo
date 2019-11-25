@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\API;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 /**
- * ProductRESTController
+ * ProductController
  * @Route("/api", name="api_")
  */
-class ProductRESTController extends AbstractController
+class ProductController extends AbstractController
 {
     /**
      * @var ProductRepository $productRepository
@@ -42,8 +42,10 @@ class ProductRESTController extends AbstractController
      */
     public function getProducts(): JsonResponse
     {
-        return new JsonResponse($this->em
-            ->createQuery("SELECT p.id, p.name FROM App\Entity\Product p")
+        return new JsonResponse($this->em->createQueryBuilder()
+            ->select(['p.id', 'p.name'])
+            ->from('App:Product', 'p')
+            ->getQuery()
             ->getResult()
         );
     }
@@ -70,7 +72,7 @@ class ProductRESTController extends AbstractController
             $this->em->flush();
             return new JsonResponse(['Product was successfully deleted!']);
         }
-        return new JsonResponse(['Could not delete the product']);
+        return new JsonResponse(['Could not find the product', JsonResponse::HTTP_NOT_FOUND]);
     }
     /**
      * Create Product.
@@ -83,7 +85,7 @@ class ProductRESTController extends AbstractController
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
-        $form->submit(json_decode($request->getContent(), true));
+        $form = $this->createForm(ProductType::class, $product, ['csrf_protection' => false]);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($product);
             $this->em->flush();
@@ -120,7 +122,7 @@ class ProductRESTController extends AbstractController
     public function editProduct(Request $request, int $id): JsonResponse
     {
         if ($product = $this->productRepository->find($id)) {
-            $form = $this->createForm(ProductType::class, $product);
+            $form = $this->createForm(ProductType::class, $product, ['csrf_protection' => false]);
             $form->submit(json_decode($request->getContent(), true));
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->em->persist($product);
