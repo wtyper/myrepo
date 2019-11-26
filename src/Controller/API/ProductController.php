@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller\API;
+
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
@@ -13,6 +14,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 /**
  * ProductController
  * @Route("/api", name="api_")
@@ -27,6 +30,7 @@ class ProductController extends AbstractController
      * @var EntityManager
      */
     private $em;
+
     /**
      * ProductRESTController constructor.
      * @param ProductRepository $productRepository
@@ -37,6 +41,7 @@ class ProductController extends AbstractController
         $this->productRepository = $productRepository;
         $this->em = $em;
     }
+
     /** Show all Products.
      * @Rest\Get("/product/all")
      */
@@ -49,6 +54,7 @@ class ProductController extends AbstractController
             ->getResult()
         );
     }
+
     /** Show one product.
      * @Rest\Get("/product/{id}")
      * @param int $id
@@ -59,6 +65,7 @@ class ProductController extends AbstractController
         $product = $this->productRepository->find($id);
         return new JsonResponse($product, $product ? JsonResponse::HTTP_OK : JsonResponse::HTTP_NOT_FOUND);
     }
+
     /** Delete a Product
      * @Rest\Delete("/product/remove/{id}")
      * @param int $id
@@ -74,6 +81,7 @@ class ProductController extends AbstractController
         }
         return new JsonResponse(['Could not find the product', JsonResponse::HTTP_NOT_FOUND]);
     }
+
     /**
      * Create Product.
      * @Rest\Post("/product")
@@ -93,6 +101,7 @@ class ProductController extends AbstractController
         }
         return new JsonResponse([$this->getErrorsFromForm($form)], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
     }
+
     /**
      * @param FormInterface $form
      * @return array
@@ -110,6 +119,7 @@ class ProductController extends AbstractController
         }
         return $errors;
     }
+
     /**
      * Edit Product.
      * @Rest\Put("/product/{id}/edit")
