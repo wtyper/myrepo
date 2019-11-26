@@ -27,12 +27,13 @@ class ProductType extends AbstractType
                         ->orderBy('n.name');
                 },
                 'choice_label' => 'name']);
-        }
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Product::class,
+            'csrf_protection' => false
         ]);
     }
 }
