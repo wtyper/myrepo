@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\API;
 
 use App\Entity\Product;
@@ -32,7 +33,7 @@ class ProductController extends AbstractController
     private $em;
 
     /**
-     * ProductRESTController constructor.
+     * ProductController constructor.
      * @param ProductRepository $productRepository
      * @param EntityManagerInterface $em
      */

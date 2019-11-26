@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "459fa30f4210b13ac98fd6c1c5bdd346",
+    "content-hash": "26974f2491b9a5e387c4a3e88a759591",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3235,7 +3235,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v4.3.5",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
