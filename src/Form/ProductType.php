@@ -7,8 +7,6 @@ use App\Entity\ProductCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use \App\Form\ProductCategoryType;
-use Doctrine\ORM\ProductCategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 
@@ -33,6 +31,7 @@ class ProductType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Product::class,
+            'allow_extra_fields' => true,
         ]);
     }
 }
