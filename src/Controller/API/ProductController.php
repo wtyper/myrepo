@@ -102,7 +102,6 @@ class ProductController extends AbstractController
         }
         return new JsonResponse([$this->getErrorsFromForm($form)], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
     }
-
     /**
      * @param FormInterface $form
      * @return array
@@ -120,7 +119,6 @@ class ProductController extends AbstractController
         }
         return $errors;
     }
-
     /**
      * Edit Product.
      * @Rest\Put("/product/{id}/edit")
