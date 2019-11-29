@@ -2,7 +2,7 @@
 namespace App\Command;
 use App\Repository\ProductRepository;
 use Symfony\Component\Serializer\SerializerInterface;
-class ExportProductsToCsvCommand extends ExportToCsvCommand
+class ExportProductToCsvCommand extends ExportToCsvCommand
 {
     /**
      * @var string
