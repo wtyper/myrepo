@@ -171,6 +171,9 @@
             "ref": "384cec52df45f3bfd46a09930d6960a58872b268"
         }
     },
+    "league/csv": {
+        "version": "9.4.1"
+    },
     "nikic/php-parser": {
         "version": "v4.2.4"
     },
