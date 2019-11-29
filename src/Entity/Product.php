@@ -17,34 +17,29 @@ class Product implements JsonSerializable
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"default"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups({"default"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"default"})
      */
     private $description;
 
     /**
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
-     * @Groups({"default"})
      */
     private $dateOfCreation;
 
     /**
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
-     * @Groups({"default"})
      */
     private $dateOfLastModification;
 
