@@ -53,23 +53,23 @@ class ImportProductFromCsvCommand extends Command
             $results = $reader->fetchAssoc();
             $output->writeln('Starting the import...');
             $dateTimeNow = new DateTime('now');
-            $categories = [];
+            $products = [];
             foreach ($results as $row) {
                 if (!($product = $this->repository->find($row['id']))) {
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                if (!isset($categories[$row['productCategory_id']])) {
-                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['productCategory_id']);
+                if (!isset($products[$row['id']])) {
+                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['id']);
                     if ($productCategory) {
-                        $categories[$row['productCategory_id']] = $productCategory;
+                        $products[$row['id']] = $productCategory;
                     }
                 }
-                if (!isset($categories[$row['productCategory_id']])) {
+                if (!isset($products[$row['id']])) {
                     $output->writeln('Item with key: ' . $results->key() . ' was not imported!');
                     continue;
                 }
-                $product->setProductCategory($categories[$row['productCategory_id']]);
+                $product->setProductCategory($products[$row['id']]);
                 $product->setName($row['name']);
                 $product->setDescription($row['description']);
                 $product->setDateOfLastModification($dateTimeNow);
