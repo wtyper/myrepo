@@ -89,11 +89,22 @@ class ProductCategory implements JsonSerializable
         return $this->dateOfCreation;
     }
 
+    public function setDateOfCreation(?\DateTimeInterface $dateOfCreation): self
+    {
+        $this->dateOfCreation = $dateOfCreation;
+        return $this;
+    }
+
     public function getDateOfLastModification(): ?\DateTimeInterface
     {
         return $this->dateOfLastModification;
     }
 
+        public function setDateOfLastModification(?\DateTimeInterface $dateOfLastModification): self
+    {
+        $this->dateOfLastModification = $dateOfLastModification;
+        return $this;
+    }
     /**
      * @return Collection|Product[]
      */
