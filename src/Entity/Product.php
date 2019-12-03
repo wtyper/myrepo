@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JsonSerializable;
@@ -49,6 +51,21 @@ class Product implements JsonSerializable
      * @Assert\NotBlank
      */
     private $productCategory;
+
+    /**
+     * @var @ORM\Column(type="string")
+     */
+    private $cover;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product")
+     */
+    private $gallery;
+
+    public function __construct()
+    {
+        $this->gallery = new ArrayCollection();
+    }
 
 
 
@@ -135,5 +152,38 @@ class Product implements JsonSerializable
                 'name' => $this->productCategory->getName(),
             ]
         ];
+    }
+
+    /**
+     * @param $cover
+     * @return $this
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+        return $this;
+    }
+    /**
+     * @return Image
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+    /**
+     * @return mixed
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+    /**
+     * @param $gallery
+     * @return Product
+     */
+    public function setGallery($gallery): Product
+    {
+        $this->gallery = $gallery;
+        return $this;
     }
 }

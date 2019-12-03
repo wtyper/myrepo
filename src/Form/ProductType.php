@@ -5,15 +5,21 @@ namespace App\Form;
 use App\Entity\Product;
 use App\Entity\ProductCategory;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 
 
 class ProductType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
@@ -24,14 +30,20 @@ class ProductType extends AbstractType
                     return $er->createQueryBuilder('n')
                         ->orderBy('n.name');
                 },
-                'choice_label' => 'name']);
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Product::class,
-            'allow_extra_fields' => true,
-        ]);
+                'choice_label' => 'name'])
+            ->add('cover', FileType::class, [
+                'label' => 'image',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '1024k',
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])
+                ],
+                'attr' => [
+                    'accept' => 'image/*',
+                ]
+            ]);
     }
 }

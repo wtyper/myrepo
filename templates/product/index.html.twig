@@ -11,6 +11,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Image</th>
             <th>DateOfCreation</th>
             <th>DateOfLastModification</th>
             <th>Category</th>
@@ -24,6 +25,13 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
+                <td>
+                    {% if product.cover %}
+                        <a href="/img/{{ product.cover }}" target="_blank"><img
+                                    src="/img/{{ product.cover }}" alt="{{ product.name }}"
+                                    style="max-width: 100px; max-height: 100px"></a>
+                    {% endif %}
+                </td>
                 <td>{{ product.dateOfCreation ? product.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
@@ -35,8 +43,9 @@
                     )) }}
                 </td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">Show</a> <br>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a> <br>
+                    <a href="{{ path('product_gallery_add', {id: product.id}) }}">Add image</a>
                 </td>
             </tr>
 
