@@ -95,12 +95,12 @@ class BookController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
     /**
-     * @Route("/", name="books", methods="GET")
+     * @Route("/booklist", name="bookList", methods="GET")
      */
-    public function books (BookRepository $bookRepository): Response
+    public function bookList (BookRepository $bookRepository): Response
     {
         return $this->render('book/_books.html.twig', [
-            'books'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
+            'bookList'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
         ]);
     }
 
