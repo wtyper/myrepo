@@ -26,7 +26,7 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
                 <td><a href="/img/{{ product.cover }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ product.cover }}"
-
+                                                                                              alt=""{{ product.name }}"
                                                                                               style="max-width: 200px; max-height: 200px"></a>
                 </td>
                 <td>{{ product.dateOfCreation ? product.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
