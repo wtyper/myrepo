@@ -45,4 +45,18 @@ class ProductGalleryController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/{product}/gallery/{image}", name="product_gallery_show_one", methods={"GET"})
+     * @param Product $product
+     * @param Image $image
+     * @return Response
+     */
+    public function show(Product $product, Image $image): Response
+    {
+        return $this->render('product/gallery/show.html.twig', [
+            'image' => $image,
+            'product' => $product
+        ]);
+    }
 }

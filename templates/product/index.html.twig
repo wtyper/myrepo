@@ -25,12 +25,9 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.description }}</td>
-                <td>
-                    {% if product.cover %}
-                        <a href="/img/{{ product.cover }}" target="_blank"><img
-                                    src="/img/{{ product.cover }}" alt="{{ product.name }}"
-                                    style="max-width: 100px; max-height: 100px"></a>
-                    {% endif %}
+                <td><a href="/img/{{ product.cover }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ product.cover }}"
+
+                                                                                              style="max-width: 200px; max-height: 200px"></a>
                 </td>
                 <td>{{ product.dateOfCreation ? product.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
