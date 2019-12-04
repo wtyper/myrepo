@@ -170,6 +170,7 @@ class Product implements JsonSerializable
     {
         return $this->cover;
     }
+
     /**
      * @return mixed
      */
@@ -177,6 +178,7 @@ class Product implements JsonSerializable
     {
         return $this->gallery;
     }
+
     /**
      * @param $gallery
      * @return Product

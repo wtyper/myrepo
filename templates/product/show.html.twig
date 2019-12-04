@@ -30,7 +30,7 @@
         <tr>
             <th>Cover</th>
             <td><a href="/img/{{ product.cover }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ product.cover }}"
-                                                                                          alt=""{{ product.name }}"
+                                                                                          alt="{{ product.name }}"
                                                                                           style="max-width: 200px; max-height: 200px"></a>
             </td>
         </tr>
@@ -41,13 +41,10 @@
         </tbody>
     </table>
 
-    <div class="d-flex mb-4">
-        <h3 class="mr-4">Gallery</h3>
-        <a href="{{ path('product_gallery_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
-    </div>
-
-    <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">back to list</a>
-    <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit</a>
+    <a href="{{ path('product_gallery_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
+    <a href="{{ path('product_gallery_add', {id: product.id}) }}" class="btn btn-primary">Edit image</a>
+    <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">Back to list</a>
+    <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit product</a>
     <br> <br>
     {{ render(controller(
         'App\\Controller\\WishListController::showWishListProductForm', {id: product.id}

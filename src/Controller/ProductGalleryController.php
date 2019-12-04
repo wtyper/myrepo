@@ -47,17 +47,22 @@ class ProductGalleryController extends AbstractController
     }
 
     /**
-     * @Route("/{product}/gallery/{image}", name="product_gallery_show_one", methods={"GET"})
+     * @Route("/{product}/gallery/{image}", name="product_gallery_delete_one", methods={"DELETE"})
+     * @param Request $request
      * @param Product $product
      * @param Image $image
      * @return Response
      */
-    public function show(Product $product, Image $image): Response
+    public function delete(Request $request, Product $product, Image $image): Response
     {
-        return $this->render('product/gallery/show.html.twig', [
-            'image' => $image,
-            'product' => $product
-        ]);
+        if ($this->isCsrfTokenValid('delete-gallery-item' . $image->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $this->fileUploader->delete($image->getFile());
+            $entityManager->remove($image);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
     }
+
 }
 

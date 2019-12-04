@@ -78,7 +78,6 @@ class ProductController extends AbstractController
     {
         $form = $this->createForm(ProductType::class, $product, ['method' => 'PATCH']);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             if (($cover = $form['cover']->getData()) instanceof UploadedFile) {
                 $product->setCover($this->fileUploader->upload($cover));
