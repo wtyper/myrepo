@@ -8,4 +8,5 @@ Część 1 - Symfony
 
 # Twórcy
 Wiktoria Typer
+
 w.typer@wearevirtua.com
