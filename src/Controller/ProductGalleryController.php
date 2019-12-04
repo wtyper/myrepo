@@ -60,3 +60,4 @@ class ProductGalleryController extends AbstractController
         ]);
     }
 }
+
