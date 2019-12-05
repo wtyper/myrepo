@@ -9,23 +9,22 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ImageType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('file', FileType::class, [
-                'label' =>'image',
+                'label' => 'image',
                 'mapped' => false,
                 'required' => false,
-                'multiple' => true,
                 'constraints' => [
                     new \Symfony\Component\Validator\Constraints\Image([
                         'maxSize' => '1024k',
-                        'mimeTypesMessage' => 'Please upload a valid format',
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
                     ])
                 ],
                 'attr' => [
                     'accept' => 'image/*',
-                    'multiple' => 'multiple'
                 ]
             ])
             ->add('alt');

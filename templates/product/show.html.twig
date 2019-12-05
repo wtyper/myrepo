@@ -16,6 +16,13 @@
             <td>{{ product.name }}</td>
         </tr>
         <tr>
+            <th>Cover</th>
+            <td><a href="/img/{{ product.cover }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ product.cover }}"
+                                                                                          alt="{{ product.name }}"
+                                                                                          style="max-width: 200px; max-height: 200px"></a>
+            </td>
+        </tr>
+        <tr>
             <th>Description</th>
             <td>{{ product.description }}</td>
         </tr>
@@ -33,7 +40,16 @@
         </tr>
         </tbody>
     </table>
-
+    <div class="d-flex mb-4">
+        <h3 class="mr-4">Gallery</h3>
+        <a href="{{ path('product_images_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
+    </div>
+    {% for image in product.images %}
+        <a href="{{ path('product_images_show_one',{product: product.id, image: image.id}) }}"
+           class="mr-4"><img src="/img/{{ image.file }}" alt=""
+                             style="max-width: 200px; max-height: 200px"></a>
+    {% endfor %}
+    <br><br>
     <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">Back to list</a>
     <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit product</a>
     <br> <br>
