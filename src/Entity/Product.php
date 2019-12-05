@@ -57,18 +57,6 @@ class Product implements JsonSerializable
      */
     private $cover;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product")
-     */
-    private $gallery;
-
-    public function __construct()
-    {
-        $this->gallery = new ArrayCollection();
-    }
-
-
-
     public function getId(): ?int
     {
         return $this->id;
@@ -171,21 +159,4 @@ class Product implements JsonSerializable
         return $this->cover;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getGallery()
-    {
-        return $this->gallery;
-    }
-
-    /**
-     * @param $gallery
-     * @return Product
-     */
-    public function setGallery($gallery): Product
-    {
-        $this->gallery = $gallery;
-        return $this;
-    }
 }

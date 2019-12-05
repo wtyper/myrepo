@@ -28,21 +28,12 @@
             <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
         </tr>
         <tr>
-            <th>Cover</th>
-            <td><a href="/img/{{ product.cover }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ product.cover }}"
-                                                                                          alt="{{ product.name }}"
-                                                                                          style="max-width: 200px; max-height: 200px"></a>
-            </td>
-        </tr>
-        <tr>
             <th>Category</th>
             <td><a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a></td>
         </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('product_gallery_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
-    <a href="{{ path('product_gallery_add', {id: product.id}) }}" class="btn btn-primary">Edit image</a>
     <a class="btn btn-primary"  href="{{ path('product_index') }}"  role="button">Back to list</a>
     <a class="btn btn-primary"  href="{{ path('product_edit', {'id': product.id}) }}"  role="button">Edit product</a>
     <br> <br>

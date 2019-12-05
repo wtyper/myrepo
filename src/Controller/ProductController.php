@@ -44,9 +44,6 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            if (($cover = $form['cover']->getData()) instanceof UploadedFile) {
-                $product->setCover($this->fileUploader->upload($cover));
-            }
             $entityManager->persist($product);
             $entityManager->flush();
             $this->addFlash(

@@ -32,7 +32,7 @@ class ProductType extends AbstractType
                 },
                 'choice_label' => 'name'])
             ->add('cover', FileType::class, [
-                'label' => 'image',
+                'label' => 'cover',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
