@@ -58,4 +58,22 @@ class ProductImagesController extends AbstractController
             'product' => $product
         ]);
     }
+
+     /**
+         * @Route("/{product}/images/{image}", name="product_images_delete_one", methods={"DELETE"})
+         * @param Request $request
+         * @param Product $product
+         * @param Image $image
+         * @return Response
+         */
+        public function delete(Request $request, Product $product, Image $image): Response
+        {
+            if ($this->isCsrfTokenValid('delete-images-item' . $image->getId(), $request->request->get('_token'))) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $this->fileUploader->delete($image->getFile());
+                $entityManager->remove($image);
+                $entityManager->flush();
+            }
+            return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
+        }
 }
