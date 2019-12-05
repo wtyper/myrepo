@@ -6,6 +6,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
+
 class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -15,6 +16,7 @@ class ImageType extends AbstractType
                 'label' =>'image',
                 'mapped' => false,
                 'required' => false,
+                'multiple' => true,
                 'constraints' => [
                     new \Symfony\Component\Validator\Constraints\Image([
                         'maxSize' => '1024k',
@@ -23,6 +25,7 @@ class ImageType extends AbstractType
                 ],
                 'attr' => [
                     'accept' => 'image/*',
+                    'multiple' => 'multiple'
                 ]
             ])
             ->add('alt');
