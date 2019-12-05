@@ -104,6 +104,9 @@ class ProductController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
+            if ($product->getCover()) {
+                $this->fileUploader->delete($product->getCover());
+            }
             $entityManager->flush();
             $this->addFlash(
                 'success',
@@ -111,5 +114,27 @@ class ProductController extends AbstractController
             );
         }
         return $this->redirectToRoute('product_index');
+    }
+
+    /**
+     * @Route("/{id}/delete-cover", name="product_delete_cover", methods={"DELETE"})
+     * @param Request $request
+     * @param Product $product
+     * @return Response
+     */
+    public function deleteCover(Request $request, Product $product): Response
+    {
+        if ($product->getCover() &&
+            $this->isCsrfTokenValid(
+                'delete-product-cover' . $product->getId(), $request->request->get('_token')
+            )
+        ) {
+            $em = $this->getDoctrine()->getManager();
+            $this->fileUploader->delete($product->getCover());
+            $product->setCover(null);
+            $em->flush();
+            $this->addFlash('success', 'Product cover deleted');
+        }
+        return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
     }
 }
