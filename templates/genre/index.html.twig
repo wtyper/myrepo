@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}Genres{% endblock %}
 
@@ -40,5 +40,6 @@
         {% endfor %}
         </tbody>
     </table>
+
     <a href="{{ path('genre_new') }}">Create new</a>
 {% endblock %}

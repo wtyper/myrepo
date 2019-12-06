@@ -40,7 +40,7 @@ class GenreController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Genre created successfully!'
+                'Genre "' . $genre->getName() . '" created successfully!'
             );
             return $this->redirectToRoute('genre_index');
         }
@@ -73,7 +73,7 @@ class GenreController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Genre updated successfully!'
+                'Genre "' . $genre->getName() . '" updated successfully!'
             );
             return $this->redirectToRoute('genre_index');
         }
@@ -95,19 +95,19 @@ class GenreController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Genre deleted successfully!'
+                'Genre "' . $genre->getName() . '" deleted successfully!'
             );
         }
 
         return $this->redirectToRoute('genre_index');
     }
     /**
-     * @Route("/", name="genres", methods="GET")
+     * @Route("/genrelist", name="genreList", methods="GET")
      */
-    public function genres (GenreRepository $genreRepository): Response
+    public function genreList (GenreRepository $genreRepository): Response
     {
         return $this->render('genre/_genres.html.twig', [
-            'genres'=> $genreRepository->findAll(),
+            'genreList'=> $genreRepository->findAll(),
         ]);
     }
 }
