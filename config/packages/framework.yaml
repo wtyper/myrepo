@@ -1,4 +1,5 @@
 framework:
+    serializer: true
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
     #http_method_override: true
@@ -9,6 +10,7 @@ framework:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+        gc_probability: 0
     #esi: true
     fragments: true
     php_errors:
