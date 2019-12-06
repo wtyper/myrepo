@@ -39,6 +39,7 @@ class ProductController extends AbstractController
      */
     public function __construct(ProductRepository $productRepository, EntityManagerInterface $em)
     {
+        //todo remove comment
         $this->productRepository = $productRepository;
         $this->em = $em;
     }
