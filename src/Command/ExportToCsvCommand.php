@@ -60,34 +60,33 @@ abstract class ExportToCsvCommand extends Command {
         parent::configure();
     }
 
-    function getDataFromRepository (InputInterface $input, OutputInterface $output){
-        $getDataFromRepository = $input->getArgument(self::ITEM_IDS)
+    protected function getDataFromRepository($input): array
+    {
+        return $input
             ? $this->repository->findBy(['id' => $input->getArgument(self::ITEM_IDS)])
             : $this->repository->findAll();
-        if (!$getDataFromRepository) {
-            return;
-        }
-        $output->writeln('No items were found, aborting...');
     }
-
-    function saveDataToCsv(InputInterface $input, OutputInterface $output){
-        $getDataFromRepository = $input->getArgument(self::ITEM_IDS);
-        $timeStart = microtime(true);
-        if($handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')){
-            $output->writeln('Found ' . count($getDataFromRepository) . ' items, starting the export...');
-            $data = $this->serializer->normalize($getDataFromRepository, 'csv', ['attributes' => $this->attributes]);
-            fwrite($handler, $this->serializer->serialize($data, 'csv'));
-            fclose($handler);
-            $timeEnd = microtime(true);
-            $output->writeln('Done! Export took ' . ($timeEnd - $timeStart) . ' seconds.');
-            return;
-        }
-        $output->writeln('Could not open the file, aborting...');
+    protected function saveDataToCsv(OutputInterface $output, array $getDataFromRepository, $handler, float $timeStart): void
+    {
+        $output->writeln('Found ' . count($getDataFromRepository) . ' items, starting the export...');
+        $data = $this->serializer->normalize($getDataFromRepository, 'csv', ['attributes' => $this->attributes]);
+        fwrite($handler, $this->serializer->serialize($data, 'csv'));
+        fclose($handler);
+        $output->writeln('Done! Export took ' . (microtime(true) - $timeStart) . ' seconds.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getDataFromRepository($input, $output);
-        $this->saveDataToCsv($input, $output);
+        $timeStart = microtime(true);
+        if (!$getDataFromRepository = $this->getDataFromRepository($input->getArgument(self::ITEM_IDS))) {
+            $output->writeln('No items were found, aborting...');
+            return;
+        }
+        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/',
+                '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
+            $output->writeln('Could not open the file, aborting...');
+            return;
+        }
+        $this->saveDataToCsv($output, $getDataFromRepository, $handler, $timeStart);
     }
 }
