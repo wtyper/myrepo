@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class ExportToCsvCommand extends Command {
+
     /**
      * Name of the file where data will be written (required)
      */
@@ -59,19 +60,22 @@ abstract class ExportToCsvCommand extends Command {
         parent::configure();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $timeStart = microtime(true);
-        $items = $input->getArgument(self::ITEM_IDS)
+    function getDataFromRepository (InputInterface $input, OutputInterface $output){
+        $getDataFromRepository = $input->getArgument(self::ITEM_IDS)
             ? $this->repository->findBy(['id' => $input->getArgument(self::ITEM_IDS)])
             : $this->repository->findAll();
-        if (!$items) {
-            $output->writeln('No items were found, aborting...');
+        if (!$getDataFromRepository) {
             return;
         }
-        if ($handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
-            $output->writeln('Found ' . count($items) . ' items, starting the export...');
-            $data = $this->serializer->normalize($items, 'csv', ['attributes' => $this->attributes]);
+        $output->writeln('No items were found, aborting...');
+    }
+
+    function saveDataToCsv(InputInterface $input, OutputInterface $output){
+        $getDataFromRepository = $input->getArgument(self::ITEM_IDS);
+        $timeStart = microtime(true);
+        if($handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')){
+            $output->writeln('Found ' . count($getDataFromRepository) . ' items, starting the export...');
+            $data = $this->serializer->normalize($getDataFromRepository, 'csv', ['attributes' => $this->attributes]);
             fwrite($handler, $this->serializer->serialize($data, 'csv'));
             fclose($handler);
             $timeEnd = microtime(true);
@@ -79,5 +83,11 @@ abstract class ExportToCsvCommand extends Command {
             return;
         }
         $output->writeln('Could not open the file, aborting...');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->getDataFromRepository($input, $output);
+        $this->saveDataToCsv($input, $output);
     }
 }
