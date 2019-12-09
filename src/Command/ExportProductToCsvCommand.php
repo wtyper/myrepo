@@ -1,7 +1,8 @@
 <?php
 namespace App\Command;
+
 use App\Repository\ProductRepository;
-use Symfony\Component\Serializer\SerializerInterface;
+
 class ExportProductToCsvCommand extends ExportToCsvCommand
 {
     /**
@@ -11,10 +12,9 @@ class ExportProductToCsvCommand extends ExportToCsvCommand
     /**
      * ExportProductsToCsvCommand constructor.
      * @param ProductRepository $repository
-     * @param SerializerInterface $serializer
      */
-    public function __construct(ProductRepository $repository, SerializerInterface $serializer)
+    public function __construct(ProductRepository $repository)
     {
-        parent::__construct($repository, $serializer);
+        parent::__construct($repository);
     }
 }
