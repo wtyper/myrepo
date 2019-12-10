@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\ProductLogger;
 use App\Repository\ProductRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +19,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductController extends AbstractController
 {
+    /**
+     * @var ProductLogger
+     */
+    private $logger;
+    public function __construct(ProductLogger $logger)
+    {
+        $this->logger = $logger;
+    }
+
+
     public function __construct(FileUploader $fileUploader)
     {
         $this->fileUploader = $fileUploader;
@@ -53,6 +64,7 @@ class ProductController extends AbstractController
                 'success',
                 'Product created successfully!'
             );
+            $this->logger->log($product->getId(), $this->logger::CREATE);
             return $this->redirectToRoute('product_index');
         }
         return $this->render('product/new.html.twig', [
@@ -66,6 +78,7 @@ class ProductController extends AbstractController
      */
     public function show(Product $product): Response
     {
+        $this->logger->log($product->getId(), $this->logger::DISPLAY);
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
@@ -88,6 +101,7 @@ class ProductController extends AbstractController
                 'success',
                 'Product edited successfully!'
             );
+            $this->logger->log($product->getId(), $this->logger::UPDATE);
             return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
         }
         return $this->render('product/edit.html.twig', [
@@ -101,7 +115,8 @@ class ProductController extends AbstractController
      */
     public function delete(Request $request, Product $product): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'. $product->getId(), $request->request->get('_token'))) {
+            $productId = $product->getId();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             if ($product->getCover()) {
@@ -113,6 +128,7 @@ class ProductController extends AbstractController
                 'Product deleted successfully!'
             );
         }
+        $this->logger->log($product->getId(), $this->logger::DELETE);
         return $this->redirectToRoute('product_index');
     }
 

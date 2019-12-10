@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductImagesController extends AbstractController
 {
+
     public function __construct(FileUploader $fileUploader)
     {
         $this->fileUploader = $fileUploader;
