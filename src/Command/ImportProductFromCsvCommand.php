@@ -39,7 +39,7 @@ class ImportProductFromCsvCommand extends Command
     }
 
     protected function configure(): void
-    {//todo remove
+    {
         $this
             ->setDescription('Import items from CSV')
             ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data will be saved');
