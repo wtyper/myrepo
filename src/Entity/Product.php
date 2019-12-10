@@ -5,13 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JsonSerializable;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
-class Product implements JsonSerializable
+class Product
 {
     /**
      * @ORM\Id()
@@ -46,7 +45,6 @@ class Product implements JsonSerializable
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ProductCategory", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
      */
     private $productCategory;
 
@@ -101,23 +99,5 @@ class Product implements JsonSerializable
         $this->productCategory = $productCategory;
 
         return $this;
-    }
-
-    /**
-     * @return array|mixed
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'description' => $this->getDescription(),
-            'dateOfCreation' => $this->getDateOfCreation(),
-            'dateOfLastModification' => $this->getDateOfLastModification(),
-            'productCategory' => [
-                'id' => $this->productCategory->getId(),
-                'name' => $this->productCategory->getName(),
-            ]
-        ];
     }
 }

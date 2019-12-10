@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}{{ author.name ~ ' ' ~ author.lastName }}{% endblock %}
 
@@ -41,7 +41,6 @@
                 <th>Title</th>
                 <th>Genre</th>
                 <th>Year</th>
-                <th>Available</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -51,7 +50,6 @@
                     <td>{{ book.title }}</td>
                     <td><a href="{{ path('genre_show', {id: book.genre.id }) }}">{{ book.genre.name }}</a></td>
                     <td>{{ book.yearOfPublishment  }}</td>
-                    <td>{{ book.availability  ? 'Avaliable' : 'Loan'}}</td>
                     <td>
                         <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
                     </td>
@@ -63,7 +61,7 @@
         This author has no books yet<br>
     {% endif %}
 
-    <a href="{{ path('author_index') }}">back to list</a>
+    <a href="{{ path('author_index') }}">back to list</a> </br>
 
     <a href="{{ path('author_edit', {'id': author.id}) }}">edit</a>
 
