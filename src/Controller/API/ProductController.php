@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * ProductController
- * @Route("product/api", name="api_product_")
+ * @Route("/api", name="api_")
  */
 class ProductController extends AbstractController
 {
@@ -39,13 +39,12 @@ class ProductController extends AbstractController
      */
     public function __construct(ProductRepository $productRepository, EntityManagerInterface $em)
     {
-        //todo remove comment
         $this->productRepository = $productRepository;
         $this->em = $em;
     }
 
     /** Show all Products.
-     * @Rest\Get("/product")
+     * @Rest\Get("/product/all")
      */
     public function getProducts(): JsonResponse
     {
@@ -94,6 +93,7 @@ class ProductController extends AbstractController
     public function postProduct(Request $request): JsonResponse
     {
         $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
         $form = $this->createForm(ProductType::class, $product, ['csrf_protection' => false]);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($product);
