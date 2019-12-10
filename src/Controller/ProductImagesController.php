@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\ImageType;
+use App\Repository\ImageRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
