@@ -12,6 +12,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class WishListController extends AbstractController
 
 {
+    private const WISH_LIST_NAME = 'WISHLIST';
+    
+    private $session;
+
+    /**
+     * @var array
+     */
+    private $wishList;
+
     /**
      * @Route("/wishlist", name="wishlist")
      */
@@ -21,15 +30,6 @@ class WishListController extends AbstractController
             'controller_name' => 'WishListController',
         ]);
     }
-
-    private const WISH_LIST_NAME = 'WISHLIST';
-
-    private $session;
-
-    /**
-     * @var array
-     */
-    private $wishList;
 
     public function __construct(SessionInterface $session)
     {
@@ -45,14 +45,9 @@ class WishListController extends AbstractController
     public function add(Product $product): Response
     {
         if (!isset($this->getSessionWishList()[$product->getId()])) {
-            if (count($this->wishList) >= 5) {
-                $this->addFlash('warning',
-                    'Too much product at wishlist!');
-            } else {
-                $this->wishList[$product->getId()] = $product->getName();
-                $this->addFlash('Product added to wishlist!', $product->getName() . ' ');
-                $this->setSessionWishList();
-            }
+            $this->wishList[$product->getId()] = $product->getName();
+            $this->addFlash('Product added to wishlist!', $product->getName() . ' ');
+            $this->setSessionWishList();
         }
         return $this->showProducts();
     }
@@ -60,26 +55,6 @@ class WishListController extends AbstractController
     public function setSessionWishList(): void
     {
         $this->session->set(self::WISH_LIST_NAME, $this->wishList);
-    }
-
-    /**
-     * @return Response
-     */
-    private function showProducts(): Response
-    {
-        return $this->redirectToRoute('product_index');
-    }
-    /**
-     * @Route("/remove/{id}", name="wishlist_remove", methods={"POST"})
-     */
-    public function remove(Product $product): Response
-    {
-        if (isset($this->getSessionWishList()[$product->getId()])) {
-            unset($this->wishList[$product->getId()]);
-            $this->addFlash('Product removed from wishlist!', $product->getName() . ' ');
-        }
-        $this->setSessionWishList();
-        return $this->showProducts();
     }
 
     /**
@@ -102,21 +77,16 @@ class WishListController extends AbstractController
 
     public function showWishListProductForm(Product $product): Response
     {
-        return $this->render(!isset($this->getSessionWishList()[$product->getId()])
-            ? 'wishlist/_add_form.html.twig'
-            : 'wishlist/_remove_form.html.twig', [
+        return $this->render('wishlist/_add_form.html.twig',[
             'product' => $product
         ]);
     }
 
     /**
-     * @Route("/clear", name="wishlist_clear", methods={"POST"})
+     * @return Response
      */
-    public function clearSessionWishList(): Response
+    private function showProducts(): Response
     {
-        $this->wishList = [];
-        $this->setSessionWishList();
-        return $this->showProducts();
+        return $this->redirectToRoute('product_index');
     }
-
 }

@@ -81,6 +81,12 @@
     "doctrine/instantiator": {
         "version": "1.2.0"
     },
+        "egulias/email-validator": {
+            "version": "2.1.11"
+        },
+        "friendsofsymfony/user-bundle": {
+            "version": "v2.1.2"
+        },
     "doctrine/lexer": {
         "version": "1.1.0"
     },
@@ -96,26 +102,50 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
-    "egulias/email-validator": {
-        "version": "2.1.11"
-    },
-    "friendsofsymfony/rest-bundle": {
-        "version": "2.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.2",
-            "ref": "cad41ef93d6150067ae2bb3c7fd729492dff6f0a"
-        }
-    },
-    "friendsofsymfony/user-bundle": {
-        "version": "v2.1.2"
-    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.37"
     },
     "hoa/compiler": {
         "version": "3.17.08.08"
+    },
+    "hoa/consistency": {
+        "version": "1.17.05.02"
+    },
+    "hoa/event": {
+        "version": "1.17.01.13"
+    },
+    "hoa/exception": {
+        "version": "1.17.01.16"
+    },
+    "hoa/file": {
+        "version": "1.17.07.11"
+    },
+    "hoa/iterator": {
+        "version": "2.17.01.10"
+    },
+    "hoa/math": {
+        "version": "1.17.05.16"
+    },
+    "hoa/protocol": {
+        "version": "1.17.01.14"
+    },
+    "hoa/regex": {
+        "version": "1.17.01.13"
+    },
+    "hoa/stream": {
+        "version": "1.17.02.21"
+    },
+    "hoa/ustring": {
+        "version": "4.17.01.16"
+    },
+    "hoa/visitor": {
+        "version": "2.17.01.16"
+    },
+    "hoa/zformat": {
+        "version": "1.17.01.10"
+    },
+    "jdorn/sql-formatter": {
+        "version": "v1.2.17"
     },
     "jms/metadata": {
         "version": "2.1.0"
@@ -143,15 +173,6 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
-    },
-    "phpdocumentor/reflection-common": {
-        "version": "2.0.0"
-    },
-    "phpdocumentor/reflection-docblock": {
-        "version": "4.3.2"
-    },
-    "phpdocumentor/type-resolver": {
-        "version": "1.0.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -186,9 +207,9 @@
             "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
-    "swiftmailer/swiftmailer": {
-        "version": "v6.2.1"
-    },
+     "swiftmailer/swiftmailer": {
+            "version": "v6.2.1"
+        },
     "symfony/asset": {
         "version": "v4.3.5"
     },
@@ -323,9 +344,6 @@
     "symfony/property-access": {
         "version": "v4.3.5"
     },
-    "symfony/property-info": {
-        "version": "v4.3.8"
-    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -342,35 +360,29 @@
         ]
     },
     "symfony/security-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
             "version": "3.3",
-            "ref": "e5a0228251d1dd2bca4c8ef918e14423c06db625"
+            "recipe": {
+                "repo": "github.com/symfony/recipes",
+                "branch": "master",
+                "version": "3.3",
+                "ref": "e5a0228251d1dd2bca4c8ef918e14423c06db625"
+            },
+            "files": [
+                "config/packages/security.yaml"
+            ]
         },
-        "files": [
-            "config/packages/security.yaml"
-        ]
-    },
     "symfony/security-core": {
         "version": "v4.3.5"
     },
     "symfony/security-csrf": {
         "version": "v4.3.5"
     },
-    "symfony/security-guard": {
-        "version": "v4.3.5"
-    },
-    "symfony/security-http": {
-        "version": "v4.3.5"
-    },
-    "symfony/serializer": {
-        "version": "v4.3.8"
-    },
-    "symfony/serializer-pack": {
-        "version": "v1.0.2"
-    },
+        "symfony/security-guard": {
+            "version": "v4.3.5"
+        },
+        "symfony/security-http": {
+            "version": "v4.3.5"
+        },
     "symfony/service-contracts": {
         "version": "v1.1.7"
     },
@@ -378,34 +390,37 @@
         "version": "v4.3.5"
     },
     "symfony/swiftmailer-bundle": {
-        "version": "2.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.5",
-            "ref": "429afc6c6778a1fdddb52a4f708cd94ff2c9960f"
-        },
-        "files": [
-            "config/packages/dev/swiftmailer.yaml",
-            "config/packages/swiftmailer.yaml",
-            "config/packages/test/swiftmailer.yaml"
-        ]
-    },
+           "version": "2.5",
+           "recipe": {
+               "repo": "github.com/symfony/recipes",
+               "branch": "master",
+               "version": "2.5",
+               "ref": "429afc6c6778a1fdddb52a4f708cd94ff2c9960f"
+           },
+           "files": [
+               "config/packages/dev/swiftmailer.yaml",
+               "config/packages/swiftmailer.yaml",
+               "config/packages/test/swiftmailer.yaml"
+           ]
+       },
+       "symfony/templating": {
+           "version": "v4.3.5"
+       },
+       "symfony/translation": {
+           "version": "3.5",
+           "recipe": {
+               "repo": "github.com/symfony/recipes",
+               "branch": "master",
+               "version": "3.5",
+               "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+           },
+           "files": [
+               "config/packages/translation.yaml",
+               "translations/.gitignore"
+           ]
+       },
     "symfony/templating": {
         "version": "v4.3.8"
-    },
-    "symfony/translation": {
-        "version": "3.5",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.5",
-            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
-        },
-        "files": [
-            "config/packages/translation.yaml",
-            "translations/.gitignore"
-        ]
     },
     "symfony/translation-contracts": {
         "version": "v1.1.7"
@@ -486,15 +501,6 @@
     },
     "twig/twig": {
         "version": "v2.12.1"
-    },
-    "webmozart/assert": {
-        "version": "1.6.0"
-    },
-    "willdurand/jsonp-callback-validator": {
-        "version": "v1.1.0"
-    },
-    "willdurand/negotiation": {
-        "version": "v2.3.1"
     },
     "zendframework/zend-code": {
         "version": "3.4.0"
