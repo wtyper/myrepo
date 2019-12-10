@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\ProductLogger;
@@ -23,15 +21,11 @@ class ProductController extends AbstractController
      * @var ProductLogger
      */
     private $logger;
-    public function __construct(ProductLogger $logger)
-    {
-        $this->logger = $logger;
-    }
 
-
-    public function __construct(FileUploader $fileUploader)
+    public function __construct(FileUploader $fileUploader, ProductLogger $logger)
     {
         $this->fileUploader = $fileUploader;
+        $this->logger = $logger;
     }
     /**
      * @Route("/", name="product_index", methods={"GET"})
