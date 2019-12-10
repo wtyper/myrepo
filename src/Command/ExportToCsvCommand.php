@@ -60,19 +60,18 @@ abstract class ExportToCsvCommand extends Command {
         parent::configure();
     }
 
-    protected function getDataFromRepository($input): array
+    protected function dataFromRepository($input): array
     {
         return $input
             ? $this->repository->findBy(['id' => $input->getArgument(self::ITEM_IDS)])
             : $this->repository->findAll();
     }
-    protected function saveDataToCsv(InputInterface $input, OutputInterface $output, array $getDataFromRepository, $handler, float $timeStart): void
+    protected function saveDataToCsv(InputInterface $input, $handler): void
     {
-        $data = $this->serializer->normalize($getDataFromRepository, 'csv', ['attributes' => $this->attributes]);
+        $data = $this->serializer->normalize($dataFromRepository, 'csv', ['attributes' => $this->attributes]);
         fwrite($handler, $this->serializer->serialize($data, 'csv'));
         fclose($handler);
-        if (!$getDataFromRepository = $this->getDataFromRepository($input->getArgument(self::ITEM_IDS))) {
-            $output->writeln('No items were found, aborting...');
+        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
             return;
         }
     }
@@ -80,15 +79,11 @@ abstract class ExportToCsvCommand extends Command {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $timeStart = microtime(true);
-        $getDataFromRepository = $this->getDataFromRepository($input->getArgument(self::ITEM_IDS));
-        $output->writeln('Done! Export took ' . (microtime(true) - $timeStart) . ' seconds.');
-        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
-            $output->writeln('Could not open the file, aborting...');
+        if (!$dataFromRepository = $this->dataFromRepository($input->getArgument(self::ITEM_IDS))) {
+            $output->writeln('No items were found, aborting...');
             return;
         }
-        $this->saveDataToCsv($input, $output, $getDataFromRepository, $handler, $timeStart);
-        $output->writeln('Found ' . count($getDataFromRepository) . ' items, starting the export...');
-
-
+        $output->writeln('Found ' . count($dataFromRepository) . ' items, starting the export...');
+        $output->writeln('Done! Export took ' . (microtime(true) - $timeStart) . ' seconds.');
         }
 }
