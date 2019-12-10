@@ -67,9 +67,9 @@ abstract class ExportToCsvCommand extends Command {
             : $this->repository->findAll();
     }
 
-    protected function saveDataToCsv(InputInterface $input, OutputInterface $output, array $dataFromRepository, $handler): void
+    protected function saveDataToCsv($data, array $dataFromRepository): void
     {
-        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $input->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
+        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $data->getArgument(self::FILENAME)) . '.csv', 'wb+')) {
             return;
         }
         $data = $this->serializer->normalize($dataFromRepository, 'csv', ['attributes' => $this->attributes]);
@@ -86,7 +86,7 @@ abstract class ExportToCsvCommand extends Command {
             return;
         }
         $output->writeln('Found ' . count($dataFromRepository) . ' items, starting the export...');
-        $this->saveDataToCsv($input, $output, $dataFromRepository, $timeStart);
+        $this->saveDataToCsv($input,  $dataFromRepository);
         $output->writeln('Done! Export took ' . (microtime(true) - $timeStart) . ' seconds.');
         }
 }
