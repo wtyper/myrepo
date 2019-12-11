@@ -13,19 +13,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/product")
- * @property FileUploader fileUploader
  */
 class ProductController extends AbstractController
 {
     /**
-     * @var ProductLogger
+     * @var ProductLogger $logger
      */
     private $logger;
+    /**
+     * @var FileUploader $fileUploader
+     */
+    private $fileUploader;
 
-    public function __construct(FileUploader $fileUploader, ProductLogger $logger)
+    public function __construct(ProductLogger $logger, FileUploader $fileUploader)
     {
-        $this->fileUploader = $fileUploader;
         $this->logger = $logger;
+        $this->fileUploader = $fileUploader;
     }
     /**
      * @Route("/", name="product_index", methods={"GET"})

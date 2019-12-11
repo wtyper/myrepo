@@ -4,12 +4,13 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Log\Logger;
+
 class ProductLogger implements LoggerAwareInterface
 {
-    public const CREATE = 'created';
-    public const UPDATE = 'updated';
-    public const DISPLAY = 'displayed';
-    public const DELETE = 'deleted';
+    public const CREATE = 'create';
+    public const UPDATE = 'update';
+    public const DISPLAY = 'display';
+    public const DELETE = 'delete';
     /**
      * @var Logger $logger
      */
@@ -36,6 +37,6 @@ class ProductLogger implements LoggerAwareInterface
     public function log(int $id, string $action): void
     {
         $request = $this->requestStack->getCurrentRequest();
-        $this->logger->info("Product with ID: $id was {$action} by " . ($request ? $request->getClientIp() : 'undefined IP'));
+        $this->logger->info("Product with id: $id was {$action} by " . ($request ? $request->getClientIp() : 'undefined IP'));
     }
 }
