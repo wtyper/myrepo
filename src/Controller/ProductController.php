@@ -127,7 +127,7 @@ class ProductController extends AbstractController
                 'Product deleted successfully!'
             );
         }
-        $this->logger->log($productId->getId(), $this->logger::DELETE);
+        $this->logger->log($productId, $this->logger::DELETE);
         return $this->redirectToRoute('product_index');
     }
 
