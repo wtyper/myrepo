@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\ProductLogger;
@@ -20,6 +21,7 @@ class ProductController extends AbstractController
      * @var ProductLogger $logger
      */
     private $logger;
+
     /**
      * @var FileUploader $fileUploader
      */
@@ -30,6 +32,7 @@ class ProductController extends AbstractController
         $this->logger = $logger;
         $this->fileUploader = $fileUploader;
     }
+
     /**
      * @Route("/", name="product_index", methods={"GET"})
      */
@@ -39,7 +42,6 @@ class ProductController extends AbstractController
             'products' => $productRepository->findAll(),
         ]);
     }
-
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
@@ -125,7 +127,7 @@ class ProductController extends AbstractController
                 'Product deleted successfully!'
             );
         }
-        $this->logger->log($product->getId(), $this->logger::DELETE);
+        $this->logger->log($productId->getId(), $this->logger::DELETE);
         return $this->redirectToRoute('product_index');
     }
 
@@ -140,8 +142,7 @@ class ProductController extends AbstractController
         if ($product->getCover() &&
             $this->isCsrfTokenValid(
                 'delete-product-cover' . $product->getId(), $request->request->get('_token')
-            )
-        ) {
+            )) {
             $em = $this->getDoctrine()->getManager();
             $this->fileUploader->delete($product->getCover());
             $product->setCover(null);

@@ -1,5 +1,6 @@
 <?php
 namespace App;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -11,18 +12,22 @@ class ProductLogger implements LoggerAwareInterface
     public const UPDATE = 'update';
     public const DISPLAY = 'display';
     public const DELETE = 'delete';
+
     /**
      * @var Logger $logger
      */
     private $logger;
+
     /**
      * @var RequestStack $requestStack
      */
     private $requestStack;
+
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
     }
+
     /**
      * @param LoggerInterface $logger
      */
@@ -30,6 +35,7 @@ class ProductLogger implements LoggerAwareInterface
     {
         $this->logger = $logger;
     }
+    
     /**
      * @param int $id
      * @param string $action
