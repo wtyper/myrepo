@@ -56,7 +56,7 @@ class ImportProductFromCsvCommand extends Command
             $dateTimeNow = new DateTime('now');
             $categories = [];
             foreach ($results as $row) {
-                $product = $this->repository->find($row['id']))
+                $product = $this->repository->find($row['id']);
                 if (!$product) {
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
