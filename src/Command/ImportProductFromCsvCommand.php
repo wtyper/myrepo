@@ -49,27 +49,29 @@ class ImportProductFromCsvCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $timeStart = microtime(true);
-        if ($reader = Reader::createFromPath($input->getArgument(self::FILENAME))) {
+        $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
+        if ($reader) {
             $results = $reader->fetchAssoc();
             $output->writeln('Starting the import...');
             $dateTimeNow = new DateTime('now');
-            $products = [];
+            $categories = [];
             foreach ($results as $row) {
-                if (!($product = $this->repository->find($row['id']))) {
+                $product = $this->repository->find($row['id']))
+                if (!$product) {
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                if (!isset($products[$row['id']])) {
-                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['id']);
+                if (!isset($categories[$row['productCategory_id']])) {
+                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['productCategory_id']);
                     if ($productCategory) {
-                        $products[$row['id']] = $productCategory;
+                        $categories[$row['productCategory_id']] = $productCategory;
                     }
                 }
-                if (!isset($products[$row['id']])) {
+                if (!isset($categories[$row['id']])) {
                     $output->writeln('Item with key: ' . $results->key() . ' was not imported!');
                     continue;
                 }
-                $product->setProductCategory($products[$row['id']]);
+                $product->setProductCategory($categories[$row['id']]);
                 $product->setName($row['name']);
                 $product->setDescription($row['description']);
                 $product->setDateOfLastModification($dateTimeNow);
