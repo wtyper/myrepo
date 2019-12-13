@@ -26,6 +26,10 @@ class ImportProductFromCsvCommand extends Command
      * @var ObjectRepository
      */
     private $repository;
+    /**
+     * @var ObjectRepository
+     */
+    private $repositoryCategory;
 
     /**
      * ExportToCsvCommand constructor.
@@ -35,9 +39,9 @@ class ImportProductFromCsvCommand extends Command
     {
         $this->em = $em;
         $this->repository = $em->getRepository('App:Product');
+        $this->repositoryCategory = $em->getRepository('App:ProductCategory');
         parent::__construct();
     }
-
     protected function configure(): void
     {
         $this
@@ -56,22 +60,20 @@ class ImportProductFromCsvCommand extends Command
             $dateTimeNow = new DateTime('now');
             $categories = [];
             foreach ($results as $row) {
+                $productCategory =$this->repositoryCategory->find($row['productCategory_id']);
+                if ($productCategory) {
+                    $categories[$row['productCategory_id']] = $productCategory;
+                }
+                if (!isset($categories[$row['productCategory_id']])) {
+                    $output->writeln('Item with key: ' . $results->key() . ' was not imported!');
+                    continue;
+                }
                 $product = $this->repository->find($row['id']);
                 if (!$product) {
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                if (!isset($categories[$row['productCategory_id']])) {
-                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['productCategory_id']);
-                    if ($productCategory) {
-                        $categories[$row['productCategory_id']] = $productCategory;
-                    }
-                }
-                if (!isset($categories[$row['id']])) {
-                    $output->writeln('Item with key: ' . $results->key() . ' was not imported!');
-                    continue;
-                }
-                $product->setProductCategory($categories[$row['id']]);
+                $product->setProductCategory($categories[$row['productCategory_id']]);
                 $product->setName($row['name']);
                 $product->setDescription($row['description']);
                 $product->setDateOfLastModification($dateTimeNow);
