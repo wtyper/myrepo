@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Command\ImportProductFromCsvCommand;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -48,7 +49,7 @@ class Product
      */
     private $productCategory;
 
-
+    private $productData;
 
     public function getId(): ?int
     {
@@ -115,5 +116,13 @@ class Product
         $this->productCategory = $productCategory;
 
         return $this;
+    }
+
+    public function setProductData($name, $description, $productCategory, $dateOfCreation, $dateOfLastModification){
+        $this->setName($name);
+        $this->setDescription($description);
+        $this->setProductCategory($productCategory);
+        $this->setDateOfCreation($dateOfCreation);
+        $this->setDateOfLastModification($dateOfLastModification);
     }
 }

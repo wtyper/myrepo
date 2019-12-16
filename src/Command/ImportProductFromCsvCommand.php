@@ -50,9 +50,8 @@ class ImportProductFromCsvCommand extends Command
         parent::configure();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function saveToDataBase ($input, $output)
     {
-        $timeStart = microtime(true);
         $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
         if ($reader) {
             $results = $reader->fetchAssoc();
@@ -60,7 +59,7 @@ class ImportProductFromCsvCommand extends Command
             $dateTimeNow = new DateTime('now');
             $categories = [];
             foreach ($results as $row) {
-                $productCategory =$this->repositoryCategory->find($row['productCategory_id']);
+                $productCategory = $this->repositoryCategory->find($row['productCategory_id']);
                 if ($productCategory) {
                     $categories[$row['productCategory_id']] = $productCategory;
                 }
@@ -80,8 +79,14 @@ class ImportProductFromCsvCommand extends Command
                 $this->em->persist($product);
             }
             $this->em->flush();
-            $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
-            return;
         }
     }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $timeStart = microtime(true);
+        $this->saveToDataBase($input, $output);
+        $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
+        return;
+        }
 }
