@@ -118,11 +118,10 @@ class Product
         return $this;
     }
 
-    public function setProductData($name, $description, $productCategory, $dateOfCreation, $dateOfLastModification){
+    public function setProductData($name, $description, $productCategory, $dateOfLastModification){
         $this->setName($name);
         $this->setDescription($description);
         $this->setProductCategory($productCategory);
-        $this->setDateOfCreation($dateOfCreation);
         $this->setDateOfLastModification($dateOfLastModification);
     }
 }
