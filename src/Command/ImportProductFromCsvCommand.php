@@ -73,11 +73,7 @@ class ImportProductFromCsvCommand extends Command
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                $name=$product->setName($row['name']);
-                $description=$product->setDescription($row['description']);
-                $dateOfLastModification=$product->setDateOfLastModification($dateTimeNow);
-                $this->setProductData($name, $description, $productCategory, $dateOfLastModification);
-                
+                $product->setProductData($row['name'], $row['description'], $categories[$row['productCategory_id']], $dateTimeNow);
                 $this->em->persist($product);
             }
             $this->em->flush();
@@ -92,7 +88,6 @@ class ImportProductFromCsvCommand extends Command
         return;
     }
 
-    private function setProductData(Product $name, Product $description, $productCategory,  Product $dateOfLastModification)
-    {
-    }
+
+
 }
