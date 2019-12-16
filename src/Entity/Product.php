@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Command\ImportProductFromCsvCommand;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JsonSerializable;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -48,7 +49,7 @@ class Product
      */
     private $productCategory;
 
-
+    private $productData;
 
     public function getId(): ?int
     {
@@ -84,9 +85,21 @@ class Product
         return $this->dateOfCreation;
     }
 
+    public function setDateOfCreation(?\DateTimeInterface $dateOfCreation): self
+    {
+        $this->dateOfCreation = $dateOfCreation;
+        return $this;
+    }
+
     public function getDateOfLastModification(): ?\DateTimeInterface
     {
         return $this->dateOfLastModification;
+    }
+
+    public function setDateOfLastModification(?\DateTimeInterface $dateOfLastModification): self
+    {
+        $this->dateOfLastModification = $dateOfLastModification;
+        return $this;
     }
 
     public function getProductCategory(): ?ProductCategory
@@ -94,10 +107,21 @@ class Product
         return $this->productCategory;
     }
 
+    /**
+     * @param ProductCategory|object|null $productCategory
+     * @return Product
+     */
     public function setProductCategory(?ProductCategory $productCategory): self
     {
         $this->productCategory = $productCategory;
 
         return $this;
+    }
+
+    public function setProductData($name, $description, $productCategory, $dateOfLastModification){
+        $this->setName($name);
+        $this->setDescription($description);
+        $this->setProductCategory($productCategory);
+        $this->setDateOfLastModification($dateOfLastModification);
     }
 }
