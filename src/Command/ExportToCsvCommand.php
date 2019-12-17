@@ -42,11 +42,12 @@ abstract class ExportToCsvCommand extends Command {
     /**
      * ExportToCsvCommand constructor.
      * @param ServiceEntityRepository $repository
+     * @param null $normalizer
      */
-    public function __construct(ServiceEntityRepository $repository)
+    public function __construct(ServiceEntityRepository $repository, $normalizer = null)
     {
         $this->repository = $repository;
-        $this->serializer = new Serializer([new DateTimeNormalizer(), new ObjectNormalizer()], [new CsvEncoder()]);
+        $this->serializer = new Serializer([new DateTimeNormalizer(), $normalizer ?? new ObjectNormalizer], [new CsvEncoder()]);
         parent::__construct();
     }
 
