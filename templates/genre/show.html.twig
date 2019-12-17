@@ -1,4 +1,4 @@
-{% extends 'baseBase.html.twig' %}
+{% extends 'libraryBase.html.twig' %}
 
 {% block title %}Genre {{ genre.name }}{% endblock %}
 
@@ -27,6 +27,14 @@
                 <th>DateOfUpdate</th>
                 <td>{{ genre.dateOfUpdate ? genre.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+        <tr>
+            <th>Books</th>
+            <td>{{ genre.books| length }}</td>
+        </tr>
+        <tr>
+            <th>Updates</th>
+            <td>{{ genre.updates| length }}</td>
+        </tr>
         </tbody>
     </table>
     <h3>Books for this genre</h3>
@@ -37,7 +45,6 @@
                 <th>Title</th>
                 <th>Author</th>
                 <th>Year Of Publishment</th>
-                <th>Availabilyty</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -49,7 +56,6 @@
                         <a href="{{ path('author_show', {'id': book.author.id}) }}">{{ book.author.name ~ ' ' ~ book.author.lastName }}</a>
                     </td>
                     <td>{{ book.yearOfPublishment ? book.yearOfPublishment|date('Y') : '' }}</td>
-                    <td>{{ book.availability  ? 'Avaliable' : 'Loan'}}</td>
                     <td>
                         <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
                     </td>
@@ -65,7 +71,7 @@
         No books found for this genre.<br>
     {% endif %}
 
-    <a href="{{ path('genre_index') }}">back to list</a>
+    <a href="{{ path('genre_index') }}">back to list</a> </br>
 
     <a href="{{ path('genre_edit', {'id': genre.id}) }}">edit</a>
 

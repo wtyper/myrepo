@@ -6,14 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use DateTimeInterface;
-use JsonSerializable;
-use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductCategoryRepository")
  */
-class ProductCategory implements JsonSerializable
+class ProductCategory
 {
     /**
      * @ORM\Id()
@@ -24,7 +22,6 @@ class ProductCategory implements JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $name;
 
@@ -62,6 +59,10 @@ class ProductCategory implements JsonSerializable
         return $this->id;
     }
 
+    public function setId(): ?int
+    {
+        return $this->id;
+    }
     public function getName(): ?string
     {
         return $this->name;
@@ -151,12 +152,5 @@ class ProductCategory implements JsonSerializable
             'updated_at' => $this->getDateOfLastModification(),
             'products' => $this->getProducts()->toArray()
         ];
-    }
-
-    public function setProductCategoryData($name, $description, $dateOfLastModification)
-    {
-        $this->setName($name);
-        $this->setDescription($description);
-        $this->setDateOfLastModification($dateOfLastModification);
     }
 }
