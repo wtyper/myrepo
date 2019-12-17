@@ -47,6 +47,8 @@ class ProductCategory
      */
     private $products;
 
+    private $productCategoryData;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -90,11 +92,22 @@ class ProductCategory
         return $this->dateOfCreation;
     }
 
+    public function setDateOfCreation(?\DateTimeInterface $dateOfCreation): self
+    {
+        $this->dateOfCreation = $dateOfCreation;
+        return $this;
+    }
+
     public function getDateOfLastModification(): ?\DateTimeInterface
     {
         return $this->dateOfLastModification;
     }
 
+        public function setDateOfLastModification(?\DateTimeInterface $dateOfLastModification): self
+    {
+        $this->dateOfLastModification = $dateOfLastModification;
+        return $this;
+    }
     /**
      * @return Collection|Product[]
      */
@@ -124,5 +137,20 @@ class ProductCategory
         }
 
         return $this;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'created_at' => $this->getDateOfCreation(),
+            'updated_at' => $this->getDateOfLastModification(),
+            'products' => $this->getProducts()->toArray()
+        ];
     }
 }
