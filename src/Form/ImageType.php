@@ -20,7 +20,7 @@ class ImageType extends AbstractType
                 'constraints' => [
                     new \Symfony\Component\Validator\Constraints\Image([
                         'maxSize' => '1024k',
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Please upload a valid size of image!',
                     ])
                 ],
                 'attr' => [

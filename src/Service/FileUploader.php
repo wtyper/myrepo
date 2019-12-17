@@ -30,7 +30,7 @@ class FileUploader
                 $newFilename
             );
         } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+          $file->getErrorMessage();
         }
         return $newFilename;
     }
@@ -49,4 +49,6 @@ class FileUploader
     {
         return $this->targetDirectory;
     }
+
+
 }

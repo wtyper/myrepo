@@ -32,19 +32,19 @@ class ProductController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $product = new Product();
-        $form = $this->createForm(ProductType::class, $product = new Product());
+        $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            if (($cover = $form['cover']->getData()) instanceof UploadedFile) {
+            $cover = $form['cover']->getData();
+            if ($cover instanceof UploadedFile) {
                 $product->setCover($this->fileUploader->upload($cover));
             }
             $entityManager->persist($product);

@@ -45,8 +45,8 @@
         <a href="{{ path('product_images_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
     </div>
     {% for image in product.images %}
-        <a href="{{ path('product_images_show_one',{product: product.id, image: image.id}) }}"
-           class="mr-4"><img src="/img/{{ image.file }}" alt=""
+        <a href="{{ path('product_images_show',{product: product.id, image: image.id}) }}"
+           class="mr-4"><img src="/img/{{ image.file }}" alt="{{ product.name }}"
                              style="max-width: 200px; max-height: 200px"></a>
     {% endfor %}
     <br><br>
