@@ -50,6 +50,8 @@ class ProductCategory implements JsonSerializable
      */
     private $products;
 
+    private $productCategoryData;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -149,5 +151,12 @@ class ProductCategory implements JsonSerializable
             'updated_at' => $this->getDateOfLastModification(),
             'products' => $this->getProducts()->toArray()
         ];
+    }
+
+    public function setProductCategoryData($name, $description, $dateOfLastModification)
+    {
+        $this->setName($name);
+        $this->setDescription($description);
+        $this->setDateOfLastModification($dateOfLastModification);
     }
 }
