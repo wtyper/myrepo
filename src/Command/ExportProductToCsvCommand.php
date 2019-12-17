@@ -13,16 +13,12 @@ class ExportProductToCsvCommand extends ExportToCsvCommand
     protected static $defaultName = 'app:export-products';
 
     /**
-     * @var ObjectRepository
-     */
-    private $repositoryCategory;
-
-    /**
      * ExportProductsToCsvCommand constructor.
      * @param ProductRepository $repository
+     * @param ProductNormalizer $normalizer
      */
-    public function __construct(ProductRepository $repository)
+    public function __construct(ProductRepository $repository, ProductNormalizer $normalizer)
     {
-        parent::__construct($repository, new ProductNormalizer);
+        parent::__construct($repository, $normalizer);
     }
 }
