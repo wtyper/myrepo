@@ -64,9 +64,7 @@ abstract class ExportToCsvCommand extends Command {
     {
         if ($input) {
             return $this->repository->findBy(['id' => $input->getArgument(self::ITEM_IDS)]);
-        } else {
-            return $this->repository->findAll();
-        }
+        } else return $this->repository->findAll();
     }
 
     protected function saveDataToCsv($fileName, array $dataFromRepository): void
