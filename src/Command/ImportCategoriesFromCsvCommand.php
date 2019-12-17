@@ -38,10 +38,10 @@ class ImportCategoriesFromCsvCommand extends Command
             ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data will be saved');
         parent::configure();
     }
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $timeStart = microtime(true);
-        if ($reader = Reader::createFromPath($input->getArgument(self::FILENAME))) {
+
+    private function saveToDataBase ($input, $output){
+        $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
+        if ($reader) {
             $results = $reader->fetchAssoc();
             $output->writeln('Starting the import...');
             $dateTimeNow = new DateTime('now');
@@ -50,13 +50,16 @@ class ImportCategoriesFromCsvCommand extends Command
                     $productCategory = new productCategory();
                     $productCategory->setDateOfCreation($dateTimeNow);
                 }
-                $productCategory->setName($row['name']);
-                $productCategory->setDescription($row['description']);
-                $productCategory->setDateOfLastModification($dateTimeNow);
+                $productCategory->setProductCategoryData($row['name'], $row['description'], $dateTimeNow);
                 $this->em->persist($productCategory);
             }
             $this->em->flush();
-            $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
         }
     }
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $timeStart = microtime(true);
+        $this->saveToDataBase($input, $output);
+        $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
+        }
 }
