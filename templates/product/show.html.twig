@@ -42,7 +42,7 @@
     </table>
     <div class="d-flex mb-4">
         <h3 class="mr-4">Gallery</h3>
-        <a href="{{ path('product_images_add', {id: product.id}) }}" class="btn btn-primary">Add image</a>
+        <a href="{{ path('product_images_add', {product: product.id}) }}" class="btn btn-primary">Add image</a>
     </div>
     {% for image in product.images %}
         <a href="{{ path('product_images_show',{product: product.id, image: image.id}) }}"
