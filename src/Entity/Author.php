@@ -37,12 +37,12 @@ class Author
     /**
      * @ORM\Column(type="integer")
      */
-    private $dateOfBirth;
+    private $yearOfBirth;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $dateOfDeath;
+    private $yearOfDeath;
 
 
     /**
@@ -108,26 +108,26 @@ class Author
         return $this;
     }
 
-    public function getDateOfBirth(): ?int
+    public function getYearOfBirth(): ?int
     {
-        return $this->dateOfBirth;
+        return $this->yearOfBirth;
     }
 
-    public function setDateOfBirth(int $dateOfBirth): self
+    public function setYearOfBirth(int $yearOfBirth): self
     {
-        $this->dateOfBirth = $dateOfBirth;
+        $this->yearOfBirth = $yearOfBirth;
 
         return $this;
     }
 
-    public function getDateOfDeath(): ?int
+    public function getYearOfDeath(): ?int
     {
-        return $this->dateOfDeath;
+        return $this->yearOfDeath;
     }
 
-    public function setDateOfDeath(int $dateOfDeath): self
+    public function setYearOfDeath(int $yearOfDeath): self
     {
-        $this->dateOfDeath = $dateOfDeath;
+        $this->yearOfDeath = $yearOfDeath;
 
         return $this;
     }

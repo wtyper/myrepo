@@ -16,12 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductImagesController extends AbstractController
 {
+
     public function __construct(FileUploader $fileUploader)
     {
-        $this->fileUploader = $fileUploader;
+       $this->fileUploader = $fileUploader;
+       parent::__construct();
     }
     /**
-     * @Route("/{id}/images/add", name="product_images_add", methods={"GET","POST"})
+     * @Route("/{product}/images/add", name="product_images_add", methods={"GET","POST"})
      * @param Request $request
      * @param Product $product
      * @return Response
@@ -47,7 +49,7 @@ class ProductImagesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{product}/images/{image}", name="product_images_show_one", methods={"GET"})
+     * @Route("/{product}/images/{image}", name="product_images_show", methods={"GET"})
      * @param Product $product
      * @param Image $image
      * @return Response
