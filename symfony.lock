@@ -96,15 +96,6 @@
     "egulias/email-validator": {
         "version": "2.1.11"
     },
-    "friendsofsymfony/ckeditor-bundle": {
-        "version": "2.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.0",
-            "ref": "8eb1cd0962ded6a6d6e1e5a9b6d3e888f9f94ff6"
-        }
-    },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
         "recipe": {
@@ -119,12 +110,6 @@
     },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.37"
-    },
-    "hoa/compiler": {
-        "version": "3.17.08.08"
-    },
-    "hoa/consistency": {
-        "version": "1.17.05.02"
     },
     "hoa/event": {
         "version": "1.17.01.13"
@@ -180,9 +165,6 @@
     "league/csv": {
         "version": "9.4.1"
     },
-    "monolog/monolog": {
-        "version": "1.25.2"
-    },
     "nikic/php-parser": {
         "version": "v4.2.4"
     },
@@ -192,17 +174,8 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
-    "php": {
-        "version": "7.3"
-    },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
-    },
-    "phpdocumentor/reflection-docblock": {
-        "version": "4.3.2"
-    },
-    "phpdocumentor/type-resolver": {
-        "version": "1.0.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -394,9 +367,6 @@
     "symfony/property-access": {
         "version": "v4.3.5"
     },
-    "symfony/property-info": {
-        "version": "v4.3.8"
-    },
     "symfony/routing": {
         "version": "4.2",
         "recipe": {
@@ -437,10 +407,7 @@
         "version": "v4.3.5"
     },
     "symfony/serializer": {
-        "version": "v4.3.8"
-    },
-    "symfony/serializer-pack": {
-        "version": "v1.0.2"
+        "version": "v4.3.9"
     },
     "symfony/service-contracts": {
         "version": "v1.1.7"
@@ -557,9 +524,6 @@
     },
     "twig/twig": {
         "version": "v2.12.1"
-    },
-    "webmozart/assert": {
-        "version": "1.6.0"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"

@@ -3,18 +3,39 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class FileUploader
 {
     private $targetDirectory;
+    private $container;
+    private $flashes;
+
     /**
      * FileUploader constructor.
      * @param $targetDirectory
+     * @param SessionInterface $session
      */
-    public function __construct($targetDirectory)
+    public function __construct($targetDirectory, SessionInterface $session)
     {
         $this->targetDirectory = $targetDirectory;
+        $this->session = $session;
+
     }
+
+    protected function addFlash(string $type, string $message)
+    {
+        if (!$this->session) {
+            throw new \LogicException('You can not use the addFlash method if sessions are disabled. Enable them in "config/packages/framework.yaml".');
+        }
+        $this->session->getFlashBag()->add($type, $message);
+    }
+
+    public function add(string $type, $message)
+    {
+        $this->flashes[$type][] = $message;
+    }
+
     /**
      * @param UploadedFile $file
      * @return string
@@ -30,7 +51,9 @@ class FileUploader
                 $newFilename
             );
         } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+            $errorMessage = $e->getMessage();
+            $this->addFlash('error', $errorMessage);
+
         }
         return $newFilename;
     }
@@ -49,4 +72,7 @@ class FileUploader
     {
         return $this->targetDirectory;
     }
+
+
 }
+

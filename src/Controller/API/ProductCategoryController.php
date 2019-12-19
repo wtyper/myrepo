@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 /**
  * ProductController
- * @Route("/api", name="api_")
+ * @Route("product/category/api", name="api_product_category_")
  */
 class ProductCategoryController extends AbstractController
 {
@@ -38,7 +38,7 @@ class ProductCategoryController extends AbstractController
         $this->em = $em;
     }
     /** Show all Categories.
-     * @Rest\Get("/product/category/all")
+     * @Rest\Get("/product/category")
      */
     public function getCategories(): JsonResponse
     {

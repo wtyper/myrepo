@@ -26,6 +26,10 @@ class ImportProductFromCsvCommand extends Command
      * @var ObjectRepository
      */
     private $repository;
+    /**
+     * @var ObjectRepository
+     */
+    private $repositoryCategory;
 
     /**
      * ExportToCsvCommand constructor.
@@ -35,9 +39,9 @@ class ImportProductFromCsvCommand extends Command
     {
         $this->em = $em;
         $this->repository = $em->getRepository('App:Product');
+        $this->repositoryCategory = $em->getRepository('App:ProductCategory');
         parent::__construct();
     }
-
     protected function configure(): void
     {
         $this
@@ -46,38 +50,44 @@ class ImportProductFromCsvCommand extends Command
         parent::configure();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function saveToDataBase ($input, $output)
     {
-        $timeStart = microtime(true);
-        if ($reader = Reader::createFromPath($input->getArgument(self::FILENAME))) {
+
+        $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
+        if ($reader) {
             $results = $reader->fetchAssoc();
             $output->writeln('Starting the import...');
             $dateTimeNow = new DateTime('now');
-            $products = [];
+            $categories = [];
             foreach ($results as $row) {
-                if (!($product = $this->repository->find($row['id']))) {
-                    $product = new Product();
-                    $product->setDateOfCreation($dateTimeNow);
+                $productCategory = $this->repositoryCategory->find($row['productCategory_id']);
+                if ($productCategory) {
+                    $categories[$row['productCategory_id']] = $productCategory;
                 }
-                if (!isset($products[$row['id']])) {
-                    $productCategory = $this->em->getRepository('App:ProductCategory')->find($row['id']);
-                    if ($productCategory) {
-                        $products[$row['id']] = $productCategory;
-                    }
-                }
-                if (!isset($products[$row['id']])) {
+                if (!isset($categories[$row['productCategory_id']])) {
                     $output->writeln('Item with key: ' . $results->key() . ' was not imported!');
                     continue;
                 }
-                $product->setProductCategory($products[$row['id']]);
-                $product->setName($row['name']);
-                $product->setDescription($row['description']);
-                $product->setDateOfLastModification($dateTimeNow);
+                $product = $this->repository->find($row['id']);
+                if (!$product) {
+                    $product = new Product();
+                    $product->setDateOfCreation($dateTimeNow);
+                }
+                $product->setProductData($row['name'], $row['description'], $categories[$row['productCategory_id']], $dateTimeNow);
                 $this->em->persist($product);
             }
             $this->em->flush();
-            $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
-            return;
         }
     }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $timeStart = microtime(true);
+        $this->saveToDataBase($input, $output);
+        $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
+        return;
+    }
+
+
+
 }
