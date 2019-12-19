@@ -1,4 +1,19 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+{% block form_widget_simple -%}
+    {% if product.cover %}
+        <a href="/img/{{ product.cover }}" target="_blank">
+            <img src="{{ asset('img/' ~ product.cover) }}"
+                 alt="{{ product.name }}"
+                 style="max-width: 300px; max-height: 300px">
+        </a>
+        <br><br>
+        <button class="btn btn-primary">Delete cover</button>
+        <br><br>
+    {% endif %}
+{%- endblock form_widget_simple %}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+ {% if product.cover %}
+     {{ include('product/_delete_cover_form.html.twig') }}
+ {% endif %}
