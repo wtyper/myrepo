@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Command\ImportProductFromCsvCommand;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -49,7 +51,22 @@ class Product
      */
     private $productCategory;
 
-    private $productData;
+    /**
+     * @var @ORM\Column(type="string")
+     */
+    private $cover;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product")
+     * @var Image[] $images
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -124,4 +141,38 @@ class Product
         $this->setProductCategory($productCategory);
         $this->setDateOfLastModification($dateOfLastModification);
     }
+
+    /**
+     * @param $cover
+     * @return $this
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+        return $this;
+    }
+    /**
+     * @return Image
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+    /**
+     * @return mixed
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    /**
+     * @param $images
+     * @return Product
+     */
+    public function setImages($images): Product
+    {
+        $this->images = $images;
+        return $this;
+    }
+
 }
