@@ -18,7 +18,8 @@ class ProductImagesController extends AbstractController
 
     public function __construct(FileUploader $fileUploader)
     {
-        parent::__construct( $fileUploader);
+       $this->fileUploader = $fileUploader;
+       parent::__construct();
     }
     /**
      * @Route("/{product}/images/add", name="product_images_add", methods={"GET","POST"})
