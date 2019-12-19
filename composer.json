@@ -32,8 +32,7 @@
         "symfony/web-server-bundle": "4.3.*",
         "symfony/yaml": "4.3.*",
         "twbs/bootstrap": "4.3.1",
-        "twig/extensions": "^1.5",
-      "ext-json": "*"
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.2",
