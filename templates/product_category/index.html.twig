@@ -1,43 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories{% endblock %}
+{% block title %}{% trans %}Categories{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>ProductCategory index</h1>
+    <h1>{% trans %}ProductCategory index{% endtrans %}</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>DateOfCreation</th>
-                <th>DateOfLastModification</th>
-                <th>actions</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Description{% endtrans %}</th>
+                <th>{% trans %}Date Of Creation{% endtrans %}</th>
+                <th>{% trans %}Date Of Last Modification{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for product_category in product_categories %}
             <tr>
                 <td>{{ product_category.id }}</td>
-                <td>{{ product_category.name }}</td>
-                <td>{{ product_category.description }}</td>
+                <td>{{ product_category.name | trans}}</td>
+                <td>{{ product_category.description | trans }}</td>
                 <td>{{ product_category.dateOfCreation ? product_category.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product_category.dateOfLastModification ? product_category.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('product_category_show', {'id': product_category.id}) }}">show</a>
-                    <a href="{{ path('product_category_edit', {'id': product_category.id}) }}">edit</a>
+                    <a href="{{ path('product_category_show', {'id': product_category.id}) }}">{% trans %}Show {% endtrans %}</a> <br>
+                    <a href="{{ path('product_category_edit', {'id': product_category.id}) }}">{% trans %}Edit{% endtrans %}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">{% trans %}No records found{% endtrans %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-primary"  href="{{ path('product_category_new') }}"  role="button">Create new</a>
+    <a class="btn btn-primary"  href="{{ path('product_category_new') }}"  role="button">{% trans %}Create new{% endtrans %}</a>
 
 {% endblock %}
 

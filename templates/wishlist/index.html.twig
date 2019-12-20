@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WishListController!{% endblock %}
+{% block title %}{% trans %}Hello WishListController!{% endtrans %}{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>{% trans %}Hello{% endtrans %} {{ controller_name | trans}}! ✅</h1>
 
-    This friendly message is coming from:
+    {% trans %}This friendly message is coming from:{% endtrans %}
     <ul>
-        <li>Your controller at <code><a href="{{ '/application/src/Controller/WishListController.php'|file_link(0) }}">src/Controller/WishListController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/application/templates/wish_list/index.html.twig'|file_link(0) }}">templates/wish_list/index.html.twig</a></code></li>
+        <li>{% trans %}Your controller at {% endtrans %}<code><a href="{{ '/application/src/Controller/WishListController.php'|file_link(0) }}">src/Controller/WishListController.php</a></code></li>
+        <li>{% trans %}Your template at {% endtrans %}<code><a href="{{ '/application/templates/wish_list/index.html.twig'|file_link(0) }}">templates/wish_list/index.html.twig</a></code></li>
     </ul>
 </div>
 {% endblock %}

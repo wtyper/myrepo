@@ -1,18 +1,18 @@
 <li>
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Wishlist
+            {% trans %}Wishlist{% endtrans %}
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for id, productName in wishList %}
-                <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ productName }}</a>
+                <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ product.name | trans}}</a>
             {% else %}
-                <span class="ml-3">Nothing added to wishlist</span>
+                <span class="ml-3">{% trans %}Nothing added to wishlist{% endtrans %}</span>
             {% endfor %}
             {% if wishList %}
                 <form method="post" action="{{ path('wishlist_clear') }}" class="dropdown-item">
                     <input type="hidden" name="_method" value="POST">
-                    <button class="btn btn-sm btn-secondary">Clear wishlist</button>
+                    <button class="btn btn-sm btn-secondary">{% trans %}Clear wishlist{% endtrans %}</button>
                 </form>
             {% endif %}
         </div>

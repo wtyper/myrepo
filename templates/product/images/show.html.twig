@@ -5,7 +5,7 @@
 {% block body %}
     <div class="mt-3 d-flex mb-3">
         <a class="btn btn-secondary mr-3 "
-           href="{{ path('product_show', {id: product.id}) }}">{{ 'Back to list'}}</a>
+           href="{{ path('product_show', {id: product.id}) }}">{{ 'Back to list' | trans}}</a>
         {{ include('product/images/_delete_form.html.twig') }}
     </div>
     <a href="/img/{{ image.file }}" target="_blank" class="mr-4 mt-4"><img src="/img/{{ image.file }}" alt=""

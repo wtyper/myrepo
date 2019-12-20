@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Products{% endblock %}
+{% block title %}{% trans %}Products{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+    <h1>{% trans %}Product{% endtrans %}</h1>
 
     <table class="table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Cover</th>
-            <th>DateOfCreation</th>
-            <th>DateOfLastModification</th>
-            <th>Category</th>
-            <th>Wishlist</th>
-            <th>actions</th>
+            <th>{% trans %}Name{% endtrans %}</th>
+            <th>{% trans %}Description{% endtrans %}</th>
+            <th>{% trans %}Cover{% endtrans %}</th>
+            <th>{% trans %}Date Of Creation{% endtrans %}</th>
+            <th>{% trans %}Date Of Last Modification{% endtrans %}</th>
+            <th>{% trans %}Category{% endtrans %}</th>
+            <th>{% trans %}Wishlist{% endtrans %}</th>
+            <th>{% trans %}Action{% endtrans %}</th>
         </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
+                <td>{{ product.name | trans }}</td>
+                <td>{{ product.description | trans }}</td>
                 <td>
                     {% if product.cover %}
                         <a href="/img/{{ product.cover }}" target="_blank"><img
@@ -35,7 +35,7 @@
                 <td>{{ product.dateOfCreation ? product.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name }}</a>
+                    <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name | trans}}</a>
                 </td>
                 <td>
                     {{ render(controller(
@@ -43,18 +43,18 @@
                     )) }}
                 </td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">Show</a> <br>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a> <br>
+                    <a href="{{ path('product_show', {'id': product.id}) }}">{% trans %}Show{% endtrans %}</a> <br>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">{% trans %}Edit{% endtrans %}</a> <br>
                 </td>
             </tr>
 
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">{% trans %}'no records found' {% endtrans %}}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-primary"  href="{{ path('product_new') }}"  role="button">Create new</a>
+    <a class="btn btn-primary"  href="{{ path('product_new') }}"  role="button"> {%  trans %}Create new {% endtrans %}</a>
 {% endblock %}
