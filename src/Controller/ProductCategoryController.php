@@ -9,12 +9,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/product/category")
  */
 class ProductCategoryController extends AbstractController
 {
+    /**
+     * @var TranslatorInterface $translator
+     */
+    private $translator;
+
+    /**
+     * ProductCategoryController constructor.
+     * @param TranslatorInterface $translator
+     */
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
     /**
      * @Route("/", name="product_category_index", methods={"GET"})
      */
@@ -40,7 +55,7 @@ class ProductCategoryController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Category created successfully!'
+                $this->translator->trans('Category created successfully!')
             );
             return $this->redirectToRoute('product_category_index');
         }
@@ -72,7 +87,7 @@ class ProductCategoryController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Category edited successfully!'
+                $this->translator->trans('Category edited successfully!')
             );
             return $this->redirectToRoute('product_category_index');
         }
@@ -93,7 +108,7 @@ class ProductCategoryController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Category deleted successfully!'
+                $this->translator->trans('Category deleted successfully!')
             );
         }
         return $this->redirectToRoute('product_category_index');

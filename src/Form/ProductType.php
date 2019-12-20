@@ -11,10 +11,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 class ProductType extends AbstractType
 {
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -22,8 +32,8 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('description')
+            ->add('name', null, ['label' => $this->translator->trans('name')])
+            ->add('description', null, ['label' => $this->translator->trans('description')])
             ->add('productCategory', EntityType::class, [
                 'class' => ProductCategory::class,
                 'query_builder' => static function (EntityRepository $er) {
@@ -32,13 +42,13 @@ class ProductType extends AbstractType
                 },
                 'choice_label' => 'name'])
             ->add('cover', FileType::class, [
-                'label' => 'cover',
+                'label' => $this->translator->trans('cover'),
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new Image([
                         'maxSize' => '1024k',
-                        'mimeTypesMessage' => 'Please upload a valid size of image',
+                        'mimeTypesMessage' => $this->translator->trans( 'Please upload a valid size of image'),
                     ])
                 ],
                 'attr' => [

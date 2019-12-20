@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/product")
@@ -27,10 +28,23 @@ class ProductController extends AbstractController
      */
     private $fileUploader;
 
-    public function __construct(ProductLogger $logger, FileUploader $fileUploader)
+    /**
+     * @var TranslatorInterface $translator
+     */
+    private $translator;
+
+    /**
+     * ProductController constructor.
+     * @param ProductLogger $logger
+     * @param FileUploader $fileUploader
+     * @param TranslatorInterface $translator
+     */
+
+    public function __construct(ProductLogger $logger, FileUploader $fileUploader, TranslatorInterface $translator)
     {
         $this->logger = $logger;
         $this->fileUploader = $fileUploader;
+        $this->translator = $translator;
     }
 
     /**
@@ -66,7 +80,7 @@ class ProductController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Product created successfully!'
+                $this->translator->trans('Product created successfully!')
             );
             $this->logger->log($product->getId(), $this->logger::CREATE);
             return $this->redirectToRoute('product_index');
@@ -105,7 +119,7 @@ class ProductController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
-                'Product edited successfully!'
+                $this->translator->trans('Product edited successfully!')
             );
             $this->logger->log($product->getId(), $this->logger::UPDATE);
             return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
@@ -133,7 +147,7 @@ class ProductController extends AbstractController
             $entityManager->flush();
             $this->addFlash(
                 'success',
-                'Product deleted successfully!'
+                $this->translator->trans('Product deleted successfully!')
             );
         }
         $this->logger->log($product->getId(), $this->logger::DELETE);
@@ -156,7 +170,9 @@ class ProductController extends AbstractController
             $this->fileUploader->delete($product->getCover());
             $product->setCover(null);
             $em->flush();
-            $this->addFlash('success', 'Product cover deleted');
+            $this->addFlash('success',
+                $this->translator->trans('Product cover deleted')
+            );
         }
         return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
     }
