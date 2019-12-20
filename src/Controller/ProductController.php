@@ -7,7 +7,6 @@ use App\ProductLogger;
 use App\Repository\ProductRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +35,8 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/", name="product_index", methods={"GET"})
+     * @param ProductRepository $productRepository
+     * @return Response
      */
     public function index(ProductRepository $productRepository): Response
     {
@@ -46,6 +47,8 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -76,6 +79,8 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_show", methods={"GET"})
+     * @param Product $product
+     * @return Response
      */
     public function show(Product $product): Response
     {
@@ -113,11 +118,13 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Product $product
+     * @return Response
      */
     public function delete(Request $request, Product $product): Response
     {
         if ($this->isCsrfTokenValid('delete'. $product->getId(), $request->request->get('_token'))) {
-            $productId = $product->getId();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             if ($product->getCover()) {
@@ -129,7 +136,7 @@ class ProductController extends AbstractController
                 'Product deleted successfully!'
             );
         }
-        $this->logger->log($productId, $this->logger::DELETE);
+        $this->logger->log($product->getId(), $this->logger::DELETE);
         return $this->redirectToRoute('product_index');
     }
 

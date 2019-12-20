@@ -8,10 +8,10 @@ use Symfony\Component\HttpKernel\Log\Logger;
 
 class ProductLogger implements LoggerAwareInterface
 {
-    public const CREATE = 'create';
-    public const UPDATE = 'update';
-    public const DISPLAY = 'display';
-    public const DELETE = 'delete';
+    public const CREATE = 'created';
+    public const UPDATE = 'updated';
+    public const DISPLAY = 'displayed';
+    public const DELETE = 'deleted';
 
     /**
      * @var Logger $logger
@@ -27,7 +27,6 @@ class ProductLogger implements LoggerAwareInterface
     {
         $this->requestStack = $requestStack;
     }
-
     /**
      * @param LoggerInterface $logger
      */
