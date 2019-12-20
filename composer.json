@@ -10,10 +10,11 @@
         "friendsofsymfony/ckeditor-bundle": "^2.1",
         "friendsofsymfony/rest-bundle": "^2.6",
         "friendsofsymfony/user-bundle": "~2.0",
-        "jms/serializer-bundle": "^3.4",
+        "jms/serializer-bundle": "^3.5",
         "league/csv": "^8.0",
         "sensio/framework-extra-bundle": "^5.5",
         "stof/doctrine-extensions-bundle": "^1.3",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
@@ -21,6 +22,7 @@
         "symfony/form": "4.3.*",
         "symfony/framework-bundle": "4.3.*",
         "symfony/http-kernel": "4.3.*",
+        "symfony/monolog-bundle": "^3.5",
         "symfony/orm-pack": "^1.0",
         "symfony/security-csrf": "4.3.*",
         "symfony/swiftmailer-bundle": "^3.2",
@@ -28,16 +30,15 @@
         "symfony/translation": "4.3.*",
         "symfony/twig-pack": "^1.0",
         "symfony/validator": "4.3.*",
+        "symfony/web-server-bundle": "4.3.*",
         "symfony/yaml": "4.3.*",
         "twbs/bootstrap": "4.3.1",
-        "twig/extensions": "^1.5",
-      "ext-json": "*"
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.2",
         "symfony/maker-bundle": "^1.13",
-        "symfony/profiler-pack": "^1.0",
-        "symfony/web-server-bundle": "4.3.*"
+        "symfony/profiler-pack": "^1.0"
     },
     "config": {
         "preferred-install": {

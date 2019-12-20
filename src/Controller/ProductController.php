@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\ProductLogger;
 use App\Repository\ProductRepository;
 use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,16 +14,29 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/product")
- * @property FileUploader fileUploader
  */
 class ProductController extends AbstractController
 {
-    public function __construct(FileUploader $fileUploader)
+    /**
+     * @var ProductLogger $logger
+     */
+    private $logger;
+
+    /**
+     * @var FileUploader $fileUploader
+     */
+    private $fileUploader;
+
+    public function __construct(ProductLogger $logger, FileUploader $fileUploader)
     {
+        $this->logger = $logger;
         $this->fileUploader = $fileUploader;
     }
+
     /**
      * @Route("/", name="product_index", methods={"GET"})
+     * @param ProductRepository $productRepository
+     * @return Response
      */
     public function index(ProductRepository $productRepository): Response
     {
@@ -35,6 +47,8 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -54,6 +68,7 @@ class ProductController extends AbstractController
                 'success',
                 'Product created successfully!'
             );
+            $this->logger->log($product->getId(), $this->logger::CREATE);
             return $this->redirectToRoute('product_index');
         }
         return $this->render('product/new.html.twig', [
@@ -64,9 +79,12 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_show", methods={"GET"})
+     * @param Product $product
+     * @return Response
      */
     public function show(Product $product): Response
     {
+        $this->logger->log($product->getId(), $this->logger::DISPLAY);
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
@@ -89,6 +107,7 @@ class ProductController extends AbstractController
                 'success',
                 'Product edited successfully!'
             );
+            $this->logger->log($product->getId(), $this->logger::UPDATE);
             return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
         }
         return $this->render('product/edit.html.twig', [
@@ -99,10 +118,13 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Product $product
+     * @return Response
      */
     public function delete(Request $request, Product $product): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'. $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             if ($product->getCover()) {
@@ -114,6 +136,7 @@ class ProductController extends AbstractController
                 'Product deleted successfully!'
             );
         }
+        $this->logger->log($product->getId(), $this->logger::DELETE);
         return $this->redirectToRoute('product_index');
     }
 
@@ -128,8 +151,7 @@ class ProductController extends AbstractController
         if ($product->getCover() &&
             $this->isCsrfTokenValid(
                 'delete-product-cover' . $product->getId(), $request->request->get('_token')
-            )
-        ) {
+            )) {
             $em = $this->getDoctrine()->getManager();
             $this->fileUploader->delete($product->getCover());
             $product->setCover(null);
