@@ -13,11 +13,11 @@
             </tr>
             <tr>
                 <th>{% trans %}Name{% endtrans %}</th>
-                <td>{{ product_category.name |trans }}</td>
+                <td>{{ product_category.name|trans }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Description{% endtrans %}</th>
-                <td>{{ product_category.description | trans}}</td>
+                <td>{{ product_category.description|trans}}</td>
             </tr>
             <tr>
                 <th>{% trans %}Date Of Creation{% endtrans %}</th>
@@ -30,7 +30,7 @@
             <tr>
                 <th>{% trans %}Products{% endtrans %}</th>
                 <td>{%for products in product_category.products %}
-                       <li> {{products.name |trans}} </li>  {% endfor %} </td>
+                       <li> {{products.name|trans}} </li>  {% endfor %} </td>
             </tr>
         </tbody>
     </table>

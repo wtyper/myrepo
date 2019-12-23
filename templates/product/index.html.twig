@@ -25,8 +25,8 @@
         {% for product in products %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td>{{ product.name | trans }}</td>
-                <td>{{ product.description | trans }}</td>
+                <td>{{ product.name|trans }}</td>
+                <td>{{ product.description|trans }}</td>
                 <td>
                     {% if product.cover %}
                         <a href="/img/{{ product.cover }}" target="_blank"><img
@@ -37,7 +37,7 @@
                 <td>{{ product.dateOfCreation ? product.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ product.dateOfLastModification ? product.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name | trans}}</a>
+                    <a href="{{ path('product_category_show', {'id': product.productCategory.id }) }}"> {{ product.productCategory.name|trans}}</a>
                 </td>
                 <td>
                     {{ render(controller(
