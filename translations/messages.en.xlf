@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="XsIM_HF" resname="Category created successfully!">
+        <source>Category created successfully!</source>
+        <target>Category created successfully!</target>
+      </trans-unit>
+      <trans-unit id="zDstO7x" resname="Category edited successfully!">
+        <source>Category edited successfully!</source>
+        <target>Category edited successfully!</target>
+      </trans-unit>
+      <trans-unit id="L1hG6Za" resname="Category deleted successfully!">
+        <source>Category deleted successfully!</source>
+        <target>Category deleted successfully!</target>
+      </trans-unit>
+      <trans-unit id="0sj_WER" resname="Product created successfully!">
+        <source>Product created successfully!</source>
+        <target>Product created successfully!</target>
+      </trans-unit>
+      <trans-unit id="AMQ64.R" resname="Product edited successfully!">
+        <source>Product edited successfully!</source>
+        <target>Product edited successfully!</target>
+      </trans-unit>
+      <trans-unit id="1s1G3Xh" resname="Product deleted successfully!">
+        <source>Product deleted successfully!</source>
+        <target>Product deleted successfully!</target>
+      </trans-unit>
+      <trans-unit id="oxcBdO." resname="Product cover deleted">
+        <source>Product cover deleted</source>
+        <target>Product cover deleted</target>
+      </trans-unit>
+      <trans-unit id="Zsv0Ro9" resname="Too much product at wishlist!">
+        <source>Too much product at wishlist!</source>
+        <target>Too much product at wishlist!</target>
+      </trans-unit>
+      <trans-unit id="IcuGvaI" resname="Product added to wishlist!">
+        <source>Product added to wishlist!</source>
+        <target>Product added to wishlist!</target>
+      </trans-unit>
+      <trans-unit id="_CkCnUb" resname="Product removed from wishlist!">
+        <source>Product removed from wishlist!</source>
+        <target>Product removed from wishlist!</target>
+      </trans-unit>
+      <trans-unit id="YQXWzHa" resname="image">
+        <source>image</source>
+        <target>image</target>
+      </trans-unit>
+      <trans-unit id="y8otv6w" resname="Please upload a valid size of image!">
+        <source>Please upload a valid size of image!</source>
+        <target>Please upload a valid size of image!</target>
+      </trans-unit>
+      <trans-unit id="gqNTf.D" resname="name">
+        <source>name</source>
+        <target>name</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>description</source>
+        <target>description</target>
+      </trans-unit>
+      <trans-unit id="P6QFqDA" resname="cover">
+        <source>cover</source>
+        <target>cover</target>
+      </trans-unit>
+      <trans-unit id="kY31E2O" resname="Please upload a valid size of image">
+        <source>Please upload a valid size of image</source>
+        <target>Please upload a valid size of image</target>
+      </trans-unit>
+      <trans-unit id="u6W0C90" resname="Choose language">
+        <source>Choose language</source>
+        <target>Choose language</target>
+      </trans-unit>
+      <trans-unit id="7cJ5xkP" resname="Wishlist">
+        <source>Wishlist</source>
+        <target>Wishlist</target>
+      </trans-unit>
+      <trans-unit id="N3upEjt" resname="Nothing added to wishlist">
+        <source>Nothing added to wishlist</source>
+        <target>Nothing added to wishlist</target>
+      </trans-unit>
+      <trans-unit id="0OhPAhE" resname="Clear wishlist">
+        <source>Clear wishlist</source>
+        <target>Clear wishlist</target>
+      </trans-unit>
+      <trans-unit id="JSpuYCF" resname="Remove from wishlist">
+        <source>Remove from wishlist</source>
+        <target>Remove from wishlist</target>
+      </trans-unit>
+      <trans-unit id="pW6owCe" resname="Add to wishlist">
+        <source>Add to wishlist</source>
+        <target>Add to wishlist</target>
+      </trans-unit>
+      <trans-unit id="KvNjcKV" resname="Hello WishListController!">
+        <source>Hello WishListController!</source>
+        <target>Hello WishListController!</target>
+      </trans-unit>
+      <trans-unit id="GF_NsyJ" resname="Hello">
+        <source>Hello</source>
+        <target>Hello</target>
+      </trans-unit>
+      <trans-unit id="e8ajuMI" resname="This friendly message is coming from:">
+        <source>This friendly message is coming from:</source>
+        <target>This friendly message is coming from:</target>
+      </trans-unit>
+      <trans-unit id="_43haIJ" resname="Your controller at">
+        <source>Your controller at</source>
+        <target>Your controller at</target>
+      </trans-unit>
+      <trans-unit id="rPGZ2.r" resname="Your template at">
+        <source>Your template at</source>
+        <target>Your template at</target>
+      </trans-unit>
+      <trans-unit id="eV7.2Hy" resname="New Product">
+        <source>New Product</source>
+        <target>New Product</target>
+      </trans-unit>
+      <trans-unit id="xGLeTFY" resname="Create new Product">
+        <source>Create new Product</source>
+        <target>Create new Product</target>
+      </trans-unit>
+      <trans-unit id="Xaj3_8K" resname="Back to list">
+        <source>Back to list</source>
+        <target>Back to list</target>
+      </trans-unit>
+      <trans-unit id="asl01Gn" resname="Delete cover">
+        <source>Delete cover</source>
+        <target>Delete cover</target>
+      </trans-unit>
+      <trans-unit id="KYYlqoz" resname="'Are you sure you want to delete this item?'">
+        <source>'Are you sure you want to delete this item?'</source>
+        <target>'Are you sure you want to delete this item?'</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="yq9oQvd" resname="Edit Product">
+        <source>Edit Product</source>
+        <target>Edit Product</target>
+      </trans-unit>
+      <trans-unit id="43vsoaZ" resname="Adding images to gallery">
+        <source>Adding images to gallery</source>
+        <target>Adding images to gallery</target>
+      </trans-unit>
+      <trans-unit id="8T2llST" resname="Add image to gallery">
+        <source>Add image to gallery</source>
+        <target>Add image to gallery</target>
+      </trans-unit>
+      <trans-unit id="e6EMyVi" resname="'Are you sure you want to delete this cover?'">
+        <source>'Are you sure you want to delete this cover?'</source>
+        <target>'Are you sure you want to delete this cover?'</target>
+      </trans-unit>
+      <trans-unit id="_574lBd" resname="Product">
+        <source>Product</source>
+        <target>Product</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="_o2EVmZ" resname="Cover">
+        <source>Cover</source>
+        <target>Cover</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="zeSKmfh" resname="Date Of Creation">
+        <source>Date Of Creation</source>
+        <target>Date Of Creation</target>
+      </trans-unit>
+      <trans-unit id="hehaaDD" resname="Date Of Last Modification">
+        <source>Date Of Last Modification</source>
+        <target>Date Of Last Modification</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category">
+        <source>Category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="NSz8dJ5" resname="Gallery">
+        <source>Gallery</source>
+        <target>Gallery</target>
+      </trans-unit>
+      <trans-unit id="BBNgYLQ" resname="Add image">
+        <source>Add image</source>
+        <target>Add image</target>
+      </trans-unit>
+      <trans-unit id="QrNMCgy" resname="Edit product">
+        <source>Edit product</source>
+        <target>Edit product</target>
+      </trans-unit>
+      <trans-unit id="TtyL_vx" resname="Products">
+        <source>Products</source>
+        <target>Products</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="DfbxytN" resname="Show">
+        <source>Show</source>
+        <target>Show</target>
+      </trans-unit>
+      <trans-unit id=".2NX_3l" resname="'no records found'">
+        <source>'no records found'</source>
+        <target>'no records found'</target>
+      </trans-unit>
+      <trans-unit id="nz33U6Q" resname="Create new">
+        <source>Create new</source>
+        <target>Create new</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="rIYnrws" resname="Product Category">
+        <source>Product Category</source>
+        <target>Product Category</target>
+      </trans-unit>
+      <trans-unit id="1pajW90" resname="Profile">
+        <source>Profile</source>
+        <target>Profile</target>
+      </trans-unit>
+      <trans-unit id="4P6fHWN" resname="Show profile">
+        <source>Show profile</source>
+        <target>Show profile</target>
+      </trans-unit>
+      <trans-unit id="FcSqEwN" resname="Edit profile">
+        <source>Edit profile</source>
+        <target>Edit profile</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="zI.Z63_" resname="Welcome!">
+        <source>Welcome!</source>
+        <target>Welcome!</target>
+      </trans-unit>
+      <trans-unit id="6QiG8Wt" resname="New ProductCategory">
+        <source>New ProductCategory</source>
+        <target>New ProductCategory</target>
+      </trans-unit>
+      <trans-unit id="64IkqFb" resname="Create new ProductCategory">
+        <source>Create new ProductCategory</source>
+        <target>Create new ProductCategory</target>
+      </trans-unit>
+      <trans-unit id="rH.Huo2" resname="Edit ProductCategory">
+        <source>Edit ProductCategory</source>
+        <target>Edit ProductCategory</target>
+      </trans-unit>
+      <trans-unit id="U0M9PNE" resname="back to list">
+        <source>back to list</source>
+        <target>back to list</target>
+      </trans-unit>
+      <trans-unit id="vwx9dtb" resname="ProductCategory">
+        <source>ProductCategory</source>
+        <target>ProductCategory</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="kv0GiPQ" resname="ProductCategory index">
+        <source>ProductCategory index</source>
+        <target>ProductCategory index</target>
+      </trans-unit>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="bi6mN7M" resname="No records found">
+        <source>No records found</source>
+        <target>No records found</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
