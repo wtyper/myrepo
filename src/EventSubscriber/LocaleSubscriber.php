@@ -12,7 +12,7 @@ class LocaleSubscriber implements EventSubscriberInterface
     {
         $this->defaultLocale = $defaultLocale;
     }
-    
+
     /**
      * @return array
      */

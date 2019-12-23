@@ -42,17 +42,6 @@ class UserType extends AbstractType
         if (!empty($options['validation_groups'])) {
             $constraintsOptions['groups'] = array(reset($options['validation_groups']));
         }
-        $builder->add('current_password', PasswordType::class, array(
-            'label' => $this->translator->trans('current_password'),
-            'mapped' => false,
-            'constraints' => array(
-                new NotBlank(),
-                new UserPassword($constraintsOptions),
-            ),
-            'attr' => array(
-                'autocomplete' => 'current-password',
-            ),
-        ));
     }
     /**
      * Builds the embedded form representing the user.
