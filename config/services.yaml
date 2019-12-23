@@ -33,6 +33,7 @@ services:
       $targetDirectory: 'img'
 
   App\EventListener\LoginListener:
+    arguments: ['%kernel.default_locale%']
     tags:
       - { name: 'kernel.event_listener', event: 'security.interactive_login' }
     # add more service definitions when explicit configuration is needed

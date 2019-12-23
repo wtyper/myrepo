@@ -289,6 +289,18 @@
         <source>No records found</source>
         <target>No records found</target>
       </trans-unit>
+      <trans-unit id="WproAJI" resname="current_password">
+        <source>current_password</source>
+        <target>Current password</target>
+      </trans-unit>
+      <trans-unit id="shD9QSW" resname="Your username">
+        <source>Your username</source>
+        <target>Your username</target>
+      </trans-unit>
+      <trans-unit id="M.6VzgI" resname="Your email">
+        <source>Your email</source>
+        <target>Your email</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

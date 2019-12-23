@@ -1,7 +1,9 @@
 <?php
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
@@ -16,9 +18,10 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     protected $locale;
+
     public function getLocale()
     {
         return $this->locale;

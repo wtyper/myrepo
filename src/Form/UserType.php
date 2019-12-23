@@ -1,5 +1,6 @@
 <?php
 namespace App\Form;
+
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class ProfileType extends AbstractType
+class UserType extends AbstractType
 {
     /**
      * @var string
@@ -37,22 +38,19 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->buildUserForm($builder, $options);
-        $constraintsOptions = array(
-            'message' => 'fos_user.current_password.invalid',
-        );
+        $constraintsOptions = array($this->translator->trans('Passwords dont match'));
         if (!empty($options['validation_groups'])) {
             $constraintsOptions['groups'] = array(reset($options['validation_groups']));
         }
         $builder->add('current_password', PasswordType::class, array(
-            'label' => 'form.current_password',
-            'translation_domain' => 'FOSUserBundle',
+            'label' => $this->translator->trans('current_password'),
             'mapped' => false,
             'constraints' => array(
                 new NotBlank(),
                 new UserPassword($constraintsOptions),
             ),
             'attr' => array(
-                'autocomplete' => 'current-password',
+                'autocomplete' => 'current_password',
             ),
         ));
     }
@@ -65,11 +63,13 @@ class ProfileType extends AbstractType
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, ['label' => 'form.username', 'translation_domain' => 'FOSUserBundle'])
-            ->add('email', EmailType::class, ['label' => 'form.email', 'translation_domain' => 'FOSUserBundle'])
+            ->add('Your username', null, [
+                'label'  => $this->translator->trans('Your username')])
+            ->add('Your email', EmailType::class,[
+                'label' => $this->translator->trans('Your email')])
             ->add('locale', ChoiceType::class, [
                 'choices' => ['🇬🇧English' => 'en', '🇵🇱Polski' => 'pl'],
-                'label' => $this->translator->trans('profile.edit.locale')
+                'label' => $this->translator->trans('locale')
             ]);
     }
     // BC for SF < 3.0
