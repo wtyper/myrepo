@@ -76,13 +76,14 @@
       <trans-unit id="lRKnA.B" resname="Are you sure you want to delete this cover?">
         <source>Are you sure you want to delete this cover?</source>
         <target> Na pewno chcesz usunąć obraz główny?</target>
+      </trans-unit>
       <trans-unit id="7cJ5xkP" resname="Wishlist">
         <source>Wishlist</source>
         <target>Ulubione</target>
       </trans-unit>
       <trans-unit id="N3upEjt" resname="Nothing added to wishlist">
         <source>Nothing added to wishlist</source>
-        <target>Nic nie dodane do ulubionych </target>
+        <target>Nic nie zostało dodane do ulubionych </target>
       </trans-unit>
       <trans-unit id="0OhPAhE" resname="Clear wishlist">
         <source>Clear wishlist</source>

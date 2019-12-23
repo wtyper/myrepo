@@ -5,7 +5,7 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             {% for id, productName in wishList %}
-                <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ product.name | trans}}</a>
+                <a class="dropdown-item" href="{{ path('product_show', {id: id}) }}">{{ productName|trans}}</a>
             {% else %}
                 <span class="ml-3">{% trans %}Nothing added to wishlist{% endtrans %}</span>
             {% endfor %}
