@@ -12,7 +12,16 @@ class LocaleSubscriber implements EventSubscriberInterface
     {
         $this->defaultLocale = $defaultLocale;
     }
-
+    
+    /**
+     * @return array
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            KernelEvents::REQUEST => [['onKernelRequest', 20]],
+        ];
+    }
     /**
      * @param RequestEvent $event
      */
@@ -22,20 +31,8 @@ class LocaleSubscriber implements EventSubscriberInterface
         if (!$request->hasPreviousSession()) {
             return;
         }
-        if ($locale = $request->attributes->get('_locale')) {
-            $request->getSession()->set('_locale', $locale);
-        } else {
-            $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            KernelEvents::REQUEST => [['onKernelRequest', 20]],
-        ];
+        ($locale = $request->get('fos_user_profile_form')['locale'] ?? false)
+            ? $request->getSession()->set('_locale', $locale)
+            : $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
     }
 }

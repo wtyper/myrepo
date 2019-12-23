@@ -38,7 +38,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $this->buildUserForm($builder, $options);
-        $constraintsOptions = array($this->translator->trans('Passwords dont match'));
+        $constraintsOptions = array("message"=>'Password dont match');
         if (!empty($options['validation_groups'])) {
             $constraintsOptions['groups'] = array(reset($options['validation_groups']));
         }
@@ -50,7 +50,7 @@ class UserType extends AbstractType
                 new UserPassword($constraintsOptions),
             ),
             'attr' => array(
-                'autocomplete' => 'current_password',
+                'autocomplete' => 'current-password',
             ),
         ));
     }
@@ -63,10 +63,10 @@ class UserType extends AbstractType
     protected function buildUserForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Your username', null, [
-                'label'  => $this->translator->trans('Your username')])
-            ->add('Your email', EmailType::class,[
-                'label' => $this->translator->trans('Your email')])
+            ->add('username', null, [
+                'label'  => $this->translator->trans('username')])
+            ->add('email', EmailType::class,[
+                'label' => $this->translator->trans('email')])
             ->add('locale', ChoiceType::class, [
                 'choices' => ['🇬🇧English' => 'en', '🇵🇱Polski' => 'pl'],
                 'label' => $this->translator->trans('locale')
