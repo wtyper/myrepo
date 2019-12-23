@@ -10,7 +10,7 @@
         tr:nth-child(odd) {background: 	#D3D3D3;color: 	#000000;}
         tr:nth-child(even) {background: #A9A9A9;color: 	#000000;}
     </style>
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{% trans %}Welcome!{% endtrans %}{% endblock %}</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
@@ -21,18 +21,18 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('welcome') }}">Home</a>
+            <a class="navbar-brand" href="{{ path('welcome') }}">{% trans %}Home{% endtrans %}</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="navbar-brand">
-                        <a href="{{ path('product_index') }}">Product</a>
+                        <a href="{{ path('product_index') }}">{% trans %}Product{% endtrans %}</a>
                     </li>
                     <li class="navbar-brand">
-                        <a href="{{ path('product_category_index') }}">Product Category</a>
+                        <a href="{{ path('product_category_index') }}">{% trans %}Product Category{% endtrans %}</a>
                     </li>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Category
+                            {% trans %}Category{% endtrans %}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {{ render(controller(
@@ -49,21 +49,21 @@
                             <a class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                Profile
+                                {% trans %}Profile{% endtrans %}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">Show profile</a>
-                                <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}">Edit profile</a>
-                                <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}">{% trans %}Show profile{% endtrans %}</a>
+                                <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}">{% trans %}Edit profile{% endtrans %}</a>
+                                <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a>
                             </div>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="navbar-brand" href="{{ path('fos_user_registration_register') }}">Register <span
+                            <a class="navbar-brand" href="{{ path('fos_user_registration_register') }}">{% trans %}Register{% endtrans %} <span
                                         class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="navbar-brand" href="{{ path('fos_user_security_login') }}">Login</a>
+                            <a class="navbar-brand" href="{{ path('fos_user_security_login') }}">{% trans %}Login{% endtrans %}</a>
                         </li>
                     {% endif %}
                 </ul>

@@ -9,18 +9,25 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ImageType extends AbstractType
 {
-
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('file', FileType::class, [
-                'label' => 'image',
+                'label' => $this->translator->trans('image'),
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new \Symfony\Component\Validator\Constraints\Image([
                         'maxSize' => '1024k',
-                        'mimeTypesMessage' => 'Please upload a valid size of image!',
+                        'mimeTypesMessage' => $this->translator->trans('Please upload a valid size of image!'),
                     ])
                 ],
                 'attr' => [

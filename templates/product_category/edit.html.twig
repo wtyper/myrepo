@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit {{product_category.name}}{% endblock %}
+{% block title %}{% trans %}Edit {% endtrans %} {{product_category.name | trans}}{% endblock %}
 
 {% block body %}
-    <h1>Edit ProductCategory</h1>
+    <h1>{% trans %}Edit ProductCategory{% endtrans %}</h1>
 
     {{ include('product_category/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a class="btn btn-primary"  href="{{ path('product_category_index') }}"  role="button">back to list</a>
+    <a class="btn btn-primary"  href="{{ path('product_category_index') }}"  role="button">{% trans %}back to list{% endtrans %}</a>
 
     {{ include('product_category/_delete_form.html.twig') }}
 {% endblock %}

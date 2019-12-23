@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{product_category.name}}{% endblock %}
+{% block title %}{{product_category.name | trans}}{% endblock %}
 
 {% block body %}
-    <h1>ProductCategory</h1>
+    <h1>{% trans %}ProductCategory{% endtrans %}</h1>
 
     <table class="table">
         <tbody>
@@ -12,31 +12,31 @@
                 <td>{{ product_category.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ product_category.name }}</td>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <td>{{ product_category.name|trans }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ product_category.description }}</td>
+                <th>{% trans %}Description{% endtrans %}</th>
+                <td>{{ product_category.description|trans}}</td>
             </tr>
             <tr>
-                <th>DateOfCreation</th>
+                <th>{% trans %}Date Of Creation{% endtrans %}</th>
                 <td>{{ product_category.dateOfCreation ? product_category.dateOfCreation|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>DateOfLastModification</th>
+                <th>{% trans %}Date Of Last Modification{% endtrans %}</th>
                 <td>{{ product_category.dateOfLastModification ? product_category.dateOfLastModification|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Products</th>
+                <th>{% trans %}Products{% endtrans %}</th>
                 <td>{%for products in product_category.products %}
-                       <li> {{products.name}} </li>  {% endfor %} </td>
+                       <li> {{products.name|trans}} </li>  {% endfor %} </td>
             </tr>
         </tbody>
     </table>
 
-    <a class="btn btn-primary"  href="{{ path('product_category_index') }}"  role="button">back to list</a>
-    <a class="btn btn-primary"  href="{{ path('product_category_edit', {'id': product_category.id}) }}"  role="button">Edit</a>
+    <a class="btn btn-primary"  href="{{ path('product_category_index') }}"  role="button">{% trans %}Back to list{% endtrans %}</a>
+    <a class="btn btn-primary"  href="{{ path('product_category_edit', {'id': product_category.id}) }}"  role="button">{% trans %}Edit{% endtrans %}</a>
 
     {{ include('product_category/_delete_form.html.twig') }}
 {% endblock %}

@@ -2,7 +2,7 @@
     {% for category in productCategories %}
         <li>
             <a href="{{ path('product_category_show', {'id': category.id}) }}"
-            >{{ category.name }}</a>
+            >{{ category.name  }}</a>
         </li>
     {% endfor %}
 </ul>
