@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-
 /**
  * @Route("/book")
  */
@@ -97,7 +96,7 @@ class BookController extends AbstractController
     /**
      * @Route("/booklist", name="bookList", methods="GET")
      */
-    public function bookList (BookRepository $bookRepository): Response
+    public function bookList(BookRepository $bookRepository): Response
     {
         return $this->render('book/_books.html.twig', [
             'bookList'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
@@ -127,4 +126,3 @@ class BookController extends AbstractController
         ]);
     }
 }
-

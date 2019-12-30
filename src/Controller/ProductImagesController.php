@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+
 use App\Entity\Image;
 use App\Entity\Product;
 use App\Form\ImageType;
@@ -20,8 +21,8 @@ class ProductImagesController extends AbstractController
 
     public function __construct(FileUploader $fileUploader)
     {
-       $this->fileUploader = $fileUploader;
-       parent::__construct();
+        $this->fileUploader = $fileUploader;
+        parent::__construct();
     }
     /**
      * @Route("/{product}/images/add", name="product_images_add", methods={"GET","POST"})
@@ -70,14 +71,14 @@ class ProductImagesController extends AbstractController
          * @param Image $image
          * @return Response
          */
-        public function delete(Request $request, Product $product, Image $image): Response
-        {
-            if ($this->isCsrfTokenValid('delete-images-item' . $image->getId(), $request->request->get('_token'))) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $this->fileUploader->delete($image->getFile());
-                $entityManager->remove($image);
-                $entityManager->flush();
-            }
-            return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
+    public function delete(Request $request, Product $product, Image $image): Response
+    {
+        if ($this->isCsrfTokenValid('delete-images-item' . $image->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $this->fileUploader->delete($image->getFile());
+            $entityManager->remove($image);
+            $entityManager->flush();
         }
+        return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
+    }
 }

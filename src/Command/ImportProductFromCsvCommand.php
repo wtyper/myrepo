@@ -50,7 +50,7 @@ class ImportProductFromCsvCommand extends Command
         parent::configure();
     }
 
-    private function saveToDataBase ($input, $output)
+    private function saveToDataBase($input, $output)
     {
 
         $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
@@ -87,7 +87,4 @@ class ImportProductFromCsvCommand extends Command
         $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
         return;
     }
-
-
-
 }

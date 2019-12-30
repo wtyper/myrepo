@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+
 use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,8 +57,10 @@ class WishListController extends AbstractController
     {
         if (!isset($this->getSessionWishList()[$product->getId()])) {
             if (count($this->wishList) >= 5) {
-                $this->addFlash('warning',
-                    $this->translator->trans('Too much product at wishlist!'));
+                $this->addFlash(
+                    'warning',
+                    $this->translator->trans('Too much product at wishlist!')
+                );
             } else {
                 $this->wishList[$product->getId()] = $product->getName();
                 $this->addFlash($this->translator->trans('Product added to wishlist!'), $product->getName() . ' ');

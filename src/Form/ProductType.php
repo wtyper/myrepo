@@ -13,7 +13,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
 class ProductType extends AbstractType
 {
     /**
@@ -48,7 +47,7 @@ class ProductType extends AbstractType
                 'constraints' => [
                     new Image([
                         'maxSize' => '1024k',
-                        'mimeTypesMessage' => $this->translator->trans( 'Please upload a valid size of image'),
+                        'mimeTypesMessage' => $this->translator->trans('Please upload a valid size of image'),
                     ])
                 ],
                 'attr' => [

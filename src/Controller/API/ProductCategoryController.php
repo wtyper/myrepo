@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller\API;
+
 use App\Entity\ProductCategory;
 use App\Form\ProductCategoryType;
 use App\Repository\ProductCategoryRepository;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 /**
  * ProductController
  * @Route("product/category/api", name="api_product_category_")
@@ -46,8 +48,7 @@ class ProductCategoryController extends AbstractController
             ->select(['c.id', 'c.name'])
             ->from('App:ProductCategory', 'c')
             ->getQuery()
-            ->getResult()
-        );
+            ->getResult());
     }
     /** Show one productCategory.
      * @Rest\Get("/product/category/{id}")
