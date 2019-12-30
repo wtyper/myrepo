@@ -48,7 +48,10 @@ abstract class ExportToCsvCommand extends Command
     public function __construct(ServiceEntityRepository $repository, $normalizer = null)
     {
         $this->repository = $repository;
-        $this->serializer = new Serializer([new DateTimeNormalizer(), $normalizer ?? new ObjectNormalizer], [new CsvEncoder()]);
+        $this->serializer = new Serializer(
+            [new DateTimeNormalizer(), $normalizer ?? new ObjectNormalizer],
+            [new CsvEncoder()]
+        );
         parent::__construct();
     }
 
@@ -56,11 +59,13 @@ abstract class ExportToCsvCommand extends Command
     {
         $this
             ->setDescription('Exports items to CSV')
-            ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data will be saved')
+            ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data
+             will be saved')
             ->addArgument(
                 self::ITEM_IDS,
                 InputArgument::IS_ARRAY,
-                'IDs of items which will be exported. If this parameter is omitted, all items will be exported (separate multiple IDS with a space)'
+                'IDs of items which will be exported. If this parameter is omitted, all items will be
+                 exported (separate multiple IDS with a space)'
             );
         parent::configure();
     }
@@ -76,7 +81,10 @@ abstract class ExportToCsvCommand extends Command
 
     protected function saveDataToCsv($fileName, array $dataFromRepository): void
     {
-        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $fileName) . '.csv', 'wb+')) {
+        if (!$handler = fopen(
+            preg_replace('/[^A-Za-z0-9]/', '', $fileName) . '.csv',
+            'wb+'
+        )) {
             return;
         }
         $data = $this->serializer->normalize($dataFromRepository, 'csv', ['attributes' => $this->attributes]);

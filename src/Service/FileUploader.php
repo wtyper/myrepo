@@ -25,7 +25,8 @@ class FileUploader
     protected function addFlash(string $type, string $message)
     {
         if (!$this->session) {
-            throw new \LogicException('You can not use the addFlash method if sessions are disabled. Enable them in "config/packages/framework.yaml".');
+            throw new \LogicException('You can not use the addFlash method if sessions are disabled.
+             Enable them in "config/packages/framework.yaml".');
         }
         $this->session->getFlashBag()->add($type, $message);
     }

@@ -73,7 +73,12 @@ class ImportProductFromCsvCommand extends Command
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                $product->setProductData($row['name'], $row['description'], $categories[$row['productCategory_id']], $dateTimeNow);
+                $product->setProductData(
+                    $row['name'],
+                    $row['description'],
+                    $categories[$row['productCategory_id']],
+                    $dateTimeNow
+                );
                 $this->em->persist($product);
             }
             $this->em->flush();

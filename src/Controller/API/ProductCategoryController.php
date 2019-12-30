@@ -58,7 +58,8 @@ class ProductCategoryController extends AbstractController
     public function getProductCategory(int $id): JsonResponse
     {
         $productCategory = $this->productCategoryRepository->find($id);
-        return new JsonResponse($productCategory, $productCategory ? JsonResponse::HTTP_OK : JsonResponse::HTTP_NOT_FOUND);
+        return new JsonResponse($productCategory, $productCategory ? JsonResponse::HTTP_OK :
+            JsonResponse::HTTP_NOT_FOUND);
     }
     /** Delete a productCategory
      * @Rest\Delete("/product/category/remove/{id}")
