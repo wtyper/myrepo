@@ -65,7 +65,7 @@ class UserType extends AbstractType
         $builder
             ->add('username', null, [
                 'label'  => $this->translator->trans('username')])
-            ->add('email', EmailType::class,[
+            ->add('email', EmailType::class, [
                 'label' => $this->translator->trans('email')])
             ->add('locale', ChoiceType::class, [
                 'choices' => ['🇬🇧English' => 'en', '🇵🇱Polski' => 'pl'],

@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * ProductController
  * @Route("/api", name="api_")
@@ -52,8 +51,7 @@ class ProductController extends AbstractController
             ->select(['p.id', 'p.name'])
             ->from('App:Product', 'p')
             ->getQuery()
-            ->getResult()
-        );
+            ->getResult());
     }
 
     /** Show one product.

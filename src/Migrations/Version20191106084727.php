@@ -20,17 +20,24 @@ final class Version20191106084727 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE book CHANGE genre_id genres_id INT NOT NULL');
-        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3316A3B2603 FOREIGN KEY (genres_id) REFERENCES genre (id)');
+        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3316A3B2603 
+                        FOREIGN KEY (genres_id) REFERENCES genre (id)');
         $this->addSql('CREATE INDEX IDX_CBE5A3316A3B2603 ON book (genres_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE book DROP FOREIGN KEY FK_CBE5A3316A3B2603');
         $this->addSql('DROP INDEX IDX_CBE5A3316A3B2603 ON book');

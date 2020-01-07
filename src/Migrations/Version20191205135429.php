@@ -20,16 +20,23 @@ final class Version20191205135429 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
-        $this->addSql('ALTER TABLE image ADD CONSTRAINT FK_C53D045F4584665A FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE image ADD CONSTRAINT FK_C53D045F4584665A 
+                        FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE CASCADE');
         $this->addSql('CREATE INDEX IDX_C53D045F4584665A ON image (product_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE image DROP FOREIGN KEY FK_C53D045F4584665A');
         $this->addSql('DROP INDEX IDX_C53D045F4584665A ON image');

@@ -135,7 +135,8 @@ class Product
         return $this;
     }
 
-    public function setProductData($name, $description, $productCategory, $dateOfLastModification){
+    public function setProductData($name, $description, $productCategory, $dateOfLastModification)
+    {
         $this->setName($name);
         $this->setDescription($description);
         $this->setProductCategory($productCategory);
@@ -174,5 +175,4 @@ class Product
         $this->images = $images;
         return $this;
     }
-
 }

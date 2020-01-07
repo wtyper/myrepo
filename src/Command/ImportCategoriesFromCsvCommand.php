@@ -1,5 +1,6 @@
 <?php
 namespace App\Command;
+
 use App\Entity\ProductCategory;
 use DateTime;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -9,6 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 class ImportCategoriesFromCsvCommand extends Command
 {
     private const FILENAME = 'fileName';
@@ -39,7 +41,8 @@ class ImportCategoriesFromCsvCommand extends Command
         parent::configure();
     }
 
-    private function saveToDataBase ($input, $output){
+    private function saveToDataBase($input, $output)
+    {
         $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
         if ($reader) {
             $results = $reader->fetchAssoc();
@@ -61,5 +64,5 @@ class ImportCategoriesFromCsvCommand extends Command
         $timeStart = microtime(true);
         $this->saveToDataBase($input, $output);
         $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
-        }
+    }
 }

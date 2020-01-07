@@ -164,13 +164,15 @@ class ProductController extends AbstractController
     {
         if ($product->getCover() &&
             $this->isCsrfTokenValid(
-                'delete-product-cover' . $product->getId(), $request->request->get('_token')
+                'delete-product-cover' . $product->getId(),
+                $request->request->get('_token')
             )) {
             $em = $this->getDoctrine()->getManager();
             $this->fileUploader->delete($product->getCover());
             $product->setCover(null);
             $em->flush();
-            $this->addFlash('success',
+            $this->addFlash(
+                'success',
                 $this->translator->trans('Product cover deleted')
             );
         }

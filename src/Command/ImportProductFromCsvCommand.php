@@ -50,7 +50,7 @@ class ImportProductFromCsvCommand extends Command
         parent::configure();
     }
 
-    private function saveToDataBase ($input, $output)
+    private function saveToDataBase($input, $output)
     {
 
         $reader = Reader::createFromPath($input->getArgument(self::FILENAME));
@@ -73,7 +73,12 @@ class ImportProductFromCsvCommand extends Command
                     $product = new Product();
                     $product->setDateOfCreation($dateTimeNow);
                 }
-                $product->setProductData($row['name'], $row['description'], $categories[$row['productCategory_id']], $dateTimeNow);
+                $product->setProductData(
+                    $row['name'],
+                    $row['description'],
+                    $categories[$row['productCategory_id']],
+                    $dateTimeNow
+                );
                 $this->em->persist($product);
             }
             $this->em->flush();
@@ -87,7 +92,4 @@ class ImportProductFromCsvCommand extends Command
         $output->writeln('Done! Import took ' . (microtime(true) - $timeStart) . ' seconds.');
         return;
     }
-
-
-
 }

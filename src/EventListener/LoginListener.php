@@ -3,6 +3,7 @@ namespace App\EventListener;
 
 use App\Entity\User;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+
 class LoginListener
 {
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)

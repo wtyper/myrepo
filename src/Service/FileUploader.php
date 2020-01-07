@@ -20,13 +20,13 @@ class FileUploader
     {
         $this->targetDirectory = $targetDirectory;
         $this->session = $session;
-
     }
 
     protected function addFlash(string $type, string $message)
     {
         if (!$this->session) {
-            throw new \LogicException('You can not use the addFlash method if sessions are disabled. Enable them in "config/packages/framework.yaml".');
+            throw new \LogicException('You can not use the addFlash method if sessions are disabled.
+             Enable them in "config/packages/framework.yaml".');
         }
         $this->session->getFlashBag()->add($type, $message);
     }
@@ -42,8 +42,10 @@ class FileUploader
      */
     public function upload(UploadedFile $file): string
     {
-        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
-            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME));
+        $safeFilename = transliterator_transliterate(
+            'Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
+            pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)
+        );
         $newFilename = $safeFilename . '-' . uniqid('', true) . '.' . $file->guessExtension();
         try {
             $file->move(
@@ -53,7 +55,6 @@ class FileUploader
         } catch (FileException $e) {
             $errorMessage = $e->getMessage();
             $this->addFlash('error', $errorMessage);
-
         }
         return $newFilename;
     }
@@ -72,7 +73,4 @@ class FileUploader
     {
         return $this->targetDirectory;
     }
-
-
 }
-

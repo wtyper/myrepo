@@ -21,13 +21,13 @@ class BookType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('author', EntityType::class,[
+            ->add('author', EntityType::class, [
                 'class'=>Author::class,
                 'choice_label'=> static function ($author) {
                  /** @var Author $author */
-                 return $author->getName() . ' ' . $author->getLastName();
+                    return $author->getName() . ' ' . $author->getLastName();
                 }])
-            ->add('genre', EntityType::class,[
+            ->add('genre', EntityType::class, [
                 'class'=>Genre::class,
                 'choice_label' => 'name'])
             ->add('yearOfPublishment', NumberType::class)

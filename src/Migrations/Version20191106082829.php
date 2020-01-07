@@ -20,24 +20,32 @@ final class Version20191106082829 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE book DROP FOREIGN KEY FK_CBE5A3314296D31F');
         $this->addSql('DROP INDEX UNIQ_CBE5A3314296D31F ON book');
         $this->addSql('ALTER TABLE book CHANGE genre_id genres_id INT NOT NULL');
-        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3316A3B2603 FOREIGN KEY (genres_id) REFERENCES genre (id)');
+        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3316A3B2603 
+                        FOREIGN KEY (genres_id) REFERENCES genre (id)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_CBE5A3316A3B2603 ON book (genres_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE book DROP FOREIGN KEY FK_CBE5A3316A3B2603');
         $this->addSql('DROP INDEX UNIQ_CBE5A3316A3B2603 ON book');
         $this->addSql('ALTER TABLE book CHANGE genres_id genre_id INT NOT NULL');
-        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3314296D31F FOREIGN KEY (genre_id) REFERENCES genre (id)');
+        $this->addSql('ALTER TABLE book ADD CONSTRAINT FK_CBE5A3314296D31F 
+                        FOREIGN KEY (genre_id) REFERENCES genre (id)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_CBE5A3314296D31F ON book (genre_id)');
     }
 }

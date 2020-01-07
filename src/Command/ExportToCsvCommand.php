@@ -12,7 +12,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
-abstract class ExportToCsvCommand extends Command {
+abstract class ExportToCsvCommand extends Command
+{
 
     /**
      * Name of the file where data will be written (required)
@@ -47,7 +48,10 @@ abstract class ExportToCsvCommand extends Command {
     public function __construct(ServiceEntityRepository $repository, $normalizer = null)
     {
         $this->repository = $repository;
-        $this->serializer = new Serializer([new DateTimeNormalizer(), $normalizer ?? new ObjectNormalizer], [new CsvEncoder()]);
+        $this->serializer = new Serializer(
+            [new DateTimeNormalizer(), $normalizer ?? new ObjectNormalizer],
+            [new CsvEncoder()]
+        );
         parent::__construct();
     }
 
@@ -55,9 +59,14 @@ abstract class ExportToCsvCommand extends Command {
     {
         $this
             ->setDescription('Exports items to CSV')
-            ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data will be saved')
-            ->addArgument(self::ITEM_IDS, InputArgument::IS_ARRAY,
-                'IDs of items which will be exported. If this parameter is omitted, all items will be exported (separate multiple IDS with a space)');
+            ->addArgument(self::FILENAME, InputArgument::REQUIRED, 'a name of a file where data
+             will be saved')
+            ->addArgument(
+                self::ITEM_IDS,
+                InputArgument::IS_ARRAY,
+                'IDs of items which will be exported. If this parameter is omitted, all items will be
+                 exported (separate multiple IDS with a space)'
+            );
         parent::configure();
     }
 
@@ -65,12 +74,17 @@ abstract class ExportToCsvCommand extends Command {
     {
         if ($input) {
             return $this->repository->findBy(['id' => $input->getArgument(self::ITEM_IDS)]);
-        } else return $this->repository->findAll();
+        } else {
+            return $this->repository->findAll();
+        }
     }
 
     protected function saveDataToCsv($fileName, array $dataFromRepository): void
     {
-        if (!$handler = fopen(preg_replace('/[^A-Za-z0-9]/', '', $fileName) . '.csv', 'wb+')) {
+        if (!$handler = fopen(
+            preg_replace('/[^A-Za-z0-9]/', '', $fileName) . '.csv',
+            'wb+'
+        )) {
             return;
         }
         $data = $this->serializer->normalize($dataFromRepository, 'csv', ['attributes' => $this->attributes]);
@@ -83,12 +97,12 @@ abstract class ExportToCsvCommand extends Command {
         $fileName = $input->getArgument(self::FILENAME);
         $timeStart = microtime(true);
         $dataFromRepository = $this->dataFromRepository($input->getArgument(self::ITEM_IDS));
-        if(!$dataFromRepository){
+        if (!$dataFromRepository) {
             $output->writeln('No items were found, aborting...');
             return;
         }
         $output->writeln('Found ' . count($dataFromRepository) . ' items, starting the export...');
-        $this->saveDataToCsv($fileName,  $dataFromRepository);
+        $this->saveDataToCsv($fileName, $dataFromRepository);
         $output->writeln('Done! Export took ' . (microtime(true) - $timeStart) . ' seconds.');
     }
 }

@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductCategoryRepository")
  */
@@ -103,7 +102,7 @@ class ProductCategory
         return $this->dateOfLastModification;
     }
 
-        public function setDateOfLastModification(?\DateTimeInterface $dateOfLastModification): self
+    public function setDateOfLastModification(?\DateTimeInterface $dateOfLastModification): self
     {
         $this->dateOfLastModification = $dateOfLastModification;
         return $this;
