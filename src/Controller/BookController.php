@@ -6,11 +6,13 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Service\RandomBookService;
 
 /**
  * @Route("/book")
@@ -106,14 +108,20 @@ class BookController extends AbstractController
     /**
      * @Route("/random", name="random_book", methods="GET")
      */
-    public function random(BookRepository $bookRepository, EntityManagerInterface $em): Response
+    public function random(BookRepository $bookRepository, EntityManagerInterface $em, RandomBookService $randomBookService, LoggerInterface $logger): Response
     {
         $bookId = $em->createQueryBuilder()
             ->select('b.id')
             ->from('App:Book', 'b')
             ->getQuery()
             ->getArrayResult();
-        return $this->show($bookRepository->find($bookId[array_rand($bookId)]['id']));
+        $randomBook = $bookRepository->find($bookId[array_rand($bookId)]['id']);
+        if (!$randomBook) {
+            throw $this->createNotFoundException('There are no products.');
+        }
+        $randomBookService->setSessionBook($randomBook->getId());
+        $logger->info('Book with ID:' . $randomBook->getId() . ' was randomly chosen.');
+        return $this->show($randomBook);
     }
 
     /**
