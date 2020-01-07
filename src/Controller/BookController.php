@@ -123,8 +123,19 @@ class BookController extends AbstractController
         $logger->info('Book with ID:' . $randomBook->getId() . ' was randomly chosen.');
         return $this->show($randomBook);
     }
-
     /**
+     * @param RandomBookService $randomBookService
+     * @return Response
+     */
+    public function lastRandomBookLink(RandomBookService $randomBookService)
+    {
+        if ($id = $randomBookService->getSessionBook()) {
+            return $this->render('_last_random_book.html.twig', ['id' => $id]);
+        }
+        return $this->render('libraryBase.html.twig');
+    }
+
+/**
      * @Route("/{id}", name="book_show", methods={"GET"})
      */
     public function show(Book $book): Response
