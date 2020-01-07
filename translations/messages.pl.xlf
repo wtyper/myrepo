@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+  <file source-language="pl" target-language="pl" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
@@ -288,6 +288,30 @@
       <trans-unit id="bi6mN7M" resname="No records found">
         <source>No records found</source>
         <target>Nic nie znaleziono</target>
+      </trans-unit>
+      <trans-unit id="WproAJI" resname="current_password">
+        <source>current_password</source>
+        <target>Aktualne hasło</target>
+      </trans-unit>
+      <trans-unit id="FveKfWM" resname="username">
+        <source>username</source>
+        <target>Nazwa użytkownika</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="d9m85KE" resname="locale">
+        <source>locale</source>
+        <target>Język</target>
+      </trans-unit>
+      <trans-unit id="6yJdWHs" resname="Author has books">
+        <source>Author has books</source>
+        <target>Autor ma ksiażki</target>
+      </trans-unit>
+      <trans-unit id="VIuC6sD" resname="Author has books book(s)">
+        <source>Author has books book(s)</source>
+        <target>Autor ma books książek </target>
       </trans-unit>
     </body>
   </file>

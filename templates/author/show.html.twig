@@ -4,7 +4,8 @@
 
 {% block body %}
     <h1>{{ author.name ~ ' ' ~ author.lastName }}</h1>
-
+    <h3>Books</h3>
+    {{ 'Author has books book(s)'| trans({'books': author.books| length}) }}
     <table class="table">
         <tbody>
             <tr>
