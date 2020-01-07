@@ -32,6 +32,14 @@
                 <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
             </tr>
             <tr>
+                <th>Cover photo</th>
+                <td><a href="/img/{{ book.cover }}" target="_blank">
+                            <img src="/img/{{ book.cover }}"
+                                 alt="{{ book.title }}">
+                    </a>
+                </td>
+            </tr>
+            <tr>
                 <th>DateOfCreate</th>
                 <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>

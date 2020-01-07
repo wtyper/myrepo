@@ -16,6 +16,7 @@
                 <th>YearOfPublishment</th>
                 <th>CountryOfPublishment</th>
                 <th>Availability</th>
+                <th>Cover photo</th>
                 <th>DateOfCreate</th>
                 <th>DateOfUpdate</th>
                 <th>actions</th>
@@ -35,6 +36,12 @@
                 <td>{{ book.yearOfPublishment }}</td>
                 <td>{{ book.countryOfPublishment }}</td>
                 <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
+                <td>
+                    <a href="/img/{{ book.cover }}" target="_blank">
+                        <img src="/img/{{ book.cover }}"
+                             alt="{{ book.title }}">
+                    </a>
+                </td>
                 <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ book.dateOfUpdate ? book.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

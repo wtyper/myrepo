@@ -73,6 +73,10 @@ class Book
      */
     private $genre;
 
+    /**
+     * @var @ORM\Column(type="string", nullable=true)
+     */
+    private $cover;
 
     public function getId(): ?int
     {
@@ -185,5 +189,22 @@ class Book
         $this->genre = $genre;
 
         return $this;
+    }
+
+    /**
+     * @param $cover
+     * @return $this
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+        return $this;
+    }
+    /**
+     * @return Image
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }

@@ -13,12 +13,24 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Service\RandomBookService;
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/book")
+ * @property FileUploader fileUploader
  */
 class BookController extends AbstractController
 {
+    /**
+     * BookController constructor.
+     * @param FileUploader $fileUploader
+     */
+    public function __construct(FileUploader $fileUploader)
+    {
+        $this->fileUploader = $fileUploader;
+    }
+
     /**
      * @Route("/", name="book_index", methods={"GET"})
      */
@@ -40,6 +52,9 @@ class BookController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            if (($cover = $form['cover']->getData()) instanceof UploadedFile) {
+                $book->setCover($this->fileUploader->upload($cover));
+            }
             $entityManager->persist($book);
             $entityManager->flush();
             $this->addFlash(
@@ -64,6 +79,9 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (($cover = $form['cover']->getData()) instanceof UploadedFile) {
+                $book->setCover($this->fileUploader->upload($cover));
+            }
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash(
                 'success',
@@ -83,9 +101,12 @@ class BookController extends AbstractController
      */
     public function delete(Request $request, Book $book): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($book);
+            if ($book->getCover()) {
+                $this->fileUploader->delete($book->getCover());
+            }
             $entityManager->flush();
             $this->addFlash(
                 'success',
@@ -95,13 +116,14 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('book_index');
     }
+
     /**
      * @Route("/booklist", name="bookList", methods="GET")
      */
     public function bookList(BookRepository $bookRepository): Response
     {
         return $this->render('book/_books.html.twig', [
-            'bookList'=> $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
+            'bookList' => $bookRepository->findBy([], ['dateOfCreate' => 'ASC'], 5),
         ]);
     }
 
@@ -123,6 +145,7 @@ class BookController extends AbstractController
         $logger->info('Book with ID:' . $randomBook->getId() . ' was randomly chosen.');
         return $this->show($randomBook);
     }
+
     /**
      * @param RandomBookService $randomBookService
      * @return Response
@@ -135,7 +158,7 @@ class BookController extends AbstractController
         return $this->render('libraryBase.html.twig');
     }
 
-/**
+    /**
      * @Route("/{id}", name="book_show", methods={"GET"})
      */
     public function show(Book $book): Response
@@ -143,5 +166,27 @@ class BookController extends AbstractController
         return $this->render('book/show.html.twig', [
             'book' => $book,
         ]);
+    }
+
+    /**
+     * @Route("/{id}/delete-cover", name="book_delete_cover", methods={"DELETE"})
+     * @param Request $request
+     * @param Book $book
+     * @return Response
+     */
+    public function deleteCover(Request $request, Book $book): Response
+    {
+        if ($book->getCover() &&
+            $this->isCsrfTokenValid(
+                'delete-book-cover' . $book->getId(), $request->request->get('_token')
+            )
+        ) {
+            $em = $this->getDoctrine()->getManager();
+            $this->fileUploader->delete($book->getCover());
+            $book->setCover(null);
+            $em->flush();
+            $this->addFlash('success', 'Book cover deleted successfully!');
+        }
+        return $this->redirectToRoute('book_edit', ['id' => $book->getId()]);
     }
 }
