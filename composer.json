@@ -83,10 +83,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.3.*",
-            "scripts": {
-                "phpcs": "phpcs --standard=PSR2"
-            }
+            "require": "4.3.*"
         }
     }
 }
