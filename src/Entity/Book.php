@@ -216,9 +216,9 @@ class Book  implements JsonSerializable
             'description' => $this->description,
             'author' => $this->getAuthor()->getName() . ' ' . $this->getAuthor()->getLastName(),
             'genre' => $this->getGenre()->getName(),
-            'country' => $this->getCountryOfPublishment(),
-            'year' => $this->yearOfPublishment,
-            'available' => $this->availability
+            'countryOfPublishment' => $this->getCountryOfPublishment(),
+            'yearOfPublishment' => $this->yearOfPublishment,
+            'availability' => $this->availability
         ];
     }
 }

@@ -15,20 +15,31 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Service\RandomBookService;
 use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/book")
- * @property FileUploader fileUploader
  */
 class BookController extends AbstractController
 {
     /**
+     * @var TranslatorInterface $translator
+     */
+    private $translator;
+    /**
+     * @var FileUploader
+     */
+    private $fileUploader;
+
+    /**
      * BookController constructor.
      * @param FileUploader $fileUploader
+     * @param TranslatorInterface $translator
      */
-    public function __construct(FileUploader $fileUploader)
+    public function __construct(FileUploader $fileUploader, TranslatorInterface $translator)
     {
         $this->fileUploader = $fileUploader;
+        $this->translator = $translator;
     }
 
     /**

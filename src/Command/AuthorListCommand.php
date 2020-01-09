@@ -74,7 +74,8 @@ class AuthorListCommand extends Command
      */
     private function getDataFromAuthors(InputInterface $input)
     {
-        if($char=$input->getOption('char')){
+        $char=$input->getOption('char');
+        if($char){
             if(strlen($char) !=1 || !ctype_alpha($char)){
                 return false;
             }
@@ -91,7 +92,6 @@ class AuthorListCommand extends Command
     private function processFileName(string $fileName, OutputInterface $output){
         if (!StringHelper::endWith($fileName, '.txt')){
             $output->writeln('You should add .txt extension!');
-            return;
         }
         $fileName =  transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', pathinfo($fileName, PATHINFO_FILENAME));
         while($this->fileSystem->exists($fileName . '.txt')){

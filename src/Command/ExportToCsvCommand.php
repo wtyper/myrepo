@@ -1,6 +1,7 @@
 <?php
 namespace App\Command;
 
+use App\Helper\StringHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
