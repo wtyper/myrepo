@@ -160,10 +160,7 @@ class BookController extends AbstractController
      */
     public function lastRandomBookLink(RandomBookService $randomBookService)
     {
-        if ($id = $randomBookService->getSessionBook()) {
-            return $this->render('_last_random_book.html.twig', ['id' => $id]);
-        }
-        return $this->render('libraryBase.html.twig');
+        return $this->render('_last_random_book.html.twig', ['id' => $randomBookService->getSessionBook()]);
     }
 
     /**

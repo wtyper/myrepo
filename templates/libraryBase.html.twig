@@ -53,10 +53,12 @@
                     </div>
                     <a class="btn btn-secondary toggle" href="{{ path('random_book') }}" role="button">Random book</a>
                     <div class="btn btn-secondary toggle" role="button"
-                    {{ render(controller(
+                        {{ render(controller(
                         'App\\Controller\\BookController::lastRandomBookLink'
-                    )) }}
+                        )) }}
                     </div>
+                </ul>
+            </div>
         </div>
     </nav>
 </header>
