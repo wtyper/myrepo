@@ -9,7 +9,7 @@ use JsonSerializable;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-class Book  implements JsonSerializable
+class Book implements JsonSerializable
 {
     /**
      * @ORM\Id()

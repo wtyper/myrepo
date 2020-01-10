@@ -11,7 +11,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
 class AuthorListCommand extends Command
 {
     /**
@@ -36,7 +35,8 @@ class AuthorListCommand extends Command
         parent::__construct();
     }
 
-    public function configure(): void {
+    public function configure(): void
+    {
         $this
             ->addOption('char', null, InputOption::VALUE_REQUIRED, 'Give a first letter of authors last name')
             ->addOption('save', null, InputOption::VALUE_REQUIRED, 'Give a file name!');
@@ -46,10 +46,10 @@ class AuthorListCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $authors = $this->getDataFromAuthors($input);
-            if ($authors === false){
-                $output->writeln('Give a valid character!');
-                return;
-    }
+        if ($authors === false) {
+            $output->writeln('Give a valid character!');
+            return;
+        }
         $table = new Table($output);
         $table->setHeaders(['Id', 'Nazwisko', 'Imię', 'Ilość książek']);
         $data = '';
@@ -57,13 +57,13 @@ class AuthorListCommand extends Command
         foreach ($authors as $author) {
             $fields = [$author->getId(), $author->getLastName(), $author->getName(), count($author->getBooks())];
             $table->addRow(array_values($fields));
-            if ($fileName){
+            if ($fileName) {
                 $data .=implode(' ', array_values($fields)) . "\n";
             }
         }
         $table->setStyle('box');
         $table->render();
-        if($fileName){
+        if ($fileName) {
             $this->fileSystem->dumpFile($fileName, $data);
             $output->writeln('Your data has been saved in ' . $fileName);
         }
@@ -75,8 +75,8 @@ class AuthorListCommand extends Command
     private function getDataFromAuthors(InputInterface $input)
     {
         $char=$input->getOption('char');
-        if($char){
-            if(strlen($char) !=1 || !ctype_alpha($char)){
+        if ($char) {
+            if (strlen($char) !=1 || !ctype_alpha($char)) {
                 return false;
             }
             return $this->authorRepository
@@ -89,18 +89,22 @@ class AuthorListCommand extends Command
         return $this->authorRepository->findAll();
     }
 
-    private function processFileName(string $fileName, OutputInterface $output){
-        if (!StringHelper::endWith($fileName, '.txt')){
+    private function processFileName(string $fileName, OutputInterface $output)
+    {
+        if (!StringHelper::endWith($fileName, '.txt')) {
             $output->writeln('You should add .txt extension!');
         }
-        $fileName =  transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', pathinfo($fileName, PATHINFO_FILENAME));
-        while($this->fileSystem->exists($fileName . '.txt')){
+        $fileName =  transliterator_transliterate(
+            'Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
+            pathinfo($fileName, PATHINFO_FILENAME)
+        );
+        while ($this->fileSystem->exists($fileName . '.txt')) {
             preg_match('/([a-z A-Z]*)(\d+)$/', $fileName, $matches);
-            if (isset($matches[1], $matches[2])){
+            if (isset($matches[1], $matches[2])) {
                 $fileName = $matches[1] . ++$matches[2];
             } else {
                 $i = 1;
-                while ($this->fileSystem->exists($fileName . "$i.txt")){
+                while ($this->fileSystem->exists($fileName . "$i.txt")) {
                     $i++;
                 }
                 $fileName .= $i;

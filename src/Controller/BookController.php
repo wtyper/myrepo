@@ -11,21 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Service\RandomBookService;
 use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/book")
  */
 class BookController extends AbstractController
 {
-    /**
-     * @var TranslatorInterface $translator
-     */
-    private $translator;
+
     /**
      * @var FileUploader
      */
@@ -34,12 +29,10 @@ class BookController extends AbstractController
     /**
      * BookController constructor.
      * @param FileUploader $fileUploader
-     * @param TranslatorInterface $translator
      */
-    public function __construct(FileUploader $fileUploader, TranslatorInterface $translator)
+    public function __construct(FileUploader $fileUploader)
     {
         $this->fileUploader = $fileUploader;
-        $this->translator = $translator;
     }
 
     /**
@@ -141,8 +134,12 @@ class BookController extends AbstractController
     /**
      * @Route("/random", name="random_book", methods="GET")
      */
-    public function random(BookRepository $bookRepository, EntityManagerInterface $em, RandomBookService $randomBookService, LoggerInterface $logger): Response
-    {
+    public function random(
+        BookRepository $bookRepository,
+        EntityManagerInterface $em,
+        RandomBookService $randomBookService,
+        LoggerInterface $logger
+    ): Response {
         $bookId = $em->createQueryBuilder()
             ->select('b.id')
             ->from('App:Book', 'b')
@@ -189,7 +186,8 @@ class BookController extends AbstractController
     {
         if ($book->getCover() &&
             $this->isCsrfTokenValid(
-                'delete-book-cover' . $book->getId(), $request->request->get('_token')
+                'delete-book-cover' . $book->getId(),
+                $request->request->get('_token')
             )
         ) {
             $em = $this->getDoctrine()->getManager();

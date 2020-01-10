@@ -1,8 +1,10 @@
 <?php
 namespace App\Helper;
 
-class StringHelper{
-    public static function endWith($string, $endString){
+class StringHelper
+{
+    public static function endWith($string, $endString)
+    {
         $len = strlen($endString);
         if ($len === 0) {
             return true;
