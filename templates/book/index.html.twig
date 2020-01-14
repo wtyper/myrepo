@@ -37,10 +37,9 @@
                 <td>{{ book.countryOfPublishment }}</td>
                 <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
                 <td>
-                    <a href="/img/{{ book.cover }}" target="_blank">
-                        <img src="/img/{{ book.cover }}"
-                             alt="{{ book.title }}">
-                    </a>
+                    {% if book.cover %}
+                        <img src="{{ asset('img/{{ book.cover}}') }}" alt="{{ book.title }}"/>
+                    {% endif %}
                 </td>
                 <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ book.dateOfUpdate ? book.dateOfUpdate|date('Y-m-d H:i:s') : '' }}</td>

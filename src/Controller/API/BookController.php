@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * BookController
- * @Route("/api", name="api_")
+ * @Route("/api/book", name="api_book_")
  */
 class BookController extends AbstractController
 {
@@ -22,7 +22,7 @@ class BookController extends AbstractController
         $this->bookRepository = $repository;
     }
     /** Show one product.
-     * @Rest\Get("/book/{id}")
+     * @Rest\Get("/{id}")
      * @param int $id
      * @return JsonResponse
      */
@@ -32,7 +32,7 @@ class BookController extends AbstractController
         return new JsonResponse($book, $book ? JsonResponse::HTTP_OK : JsonResponse::HTTP_NOT_FOUND);
     }
     /** Show one product.
-     * @Rest\Get("/books")
+     * @Rest\Get("/all")
      * @return JsonResponse
      */
     public function getBooks(): JsonResponse

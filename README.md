@@ -10,4 +10,3 @@ Część 1 - Symfony
 Wiktoria Typer
 
 w.typer@wearevirtua.com
-# shopware

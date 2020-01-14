@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\RandomBookService;
 use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/book")
@@ -25,14 +26,20 @@ class BookController extends AbstractController
      * @var FileUploader
      */
     private $fileUploader;
+    /**
+     * @var TranslatorInterface $translator
+     */
+    private $translator;
 
     /**
      * BookController constructor.
      * @param FileUploader $fileUploader
+     * @param TranslatorInterface $translator
      */
-    public function __construct(FileUploader $fileUploader)
+    public function __construct(FileUploader $fileUploader, TranslatorInterface $translator)
     {
         $this->fileUploader = $fileUploader;
+        $this->translator = $translator;
     }
 
     /**

@@ -33,10 +33,9 @@
             </tr>
             <tr>
                 <th>Cover photo</th>
-                <td><a href="/img/{{ book.cover }}" target="_blank">
-                            <img src="/img/{{ book.cover }}"
-                                 alt="{{ book.title }}">
-                    </a>
+                <td> {% if book.cover %}
+                        <img src="{{ asset('img/{{ book.cover}}') }}" alt="{{ book.title }}"/>
+                    {% endif %}
                 </td>
             </tr>
             <tr>

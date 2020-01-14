@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class RandomBookService
 {
-    private const LAST_RNG_BOOK = 'LAST_RNG_BOOK';
+    private const LAST_RANDOM_BOOK = 'LAST_RANDOM_BOOK';
     /**
      * @var SessionInterface
      */
@@ -19,13 +19,13 @@ class RandomBookService
      */
     public function setSessionBook(string $book)
     {
-        $this->session->set(self::LAST_RNG_BOOK, $book);
+        $this->session->set(self::LAST_RANDOM_BOOK, $book);
     }
     /**
      * @return mixed
      */
     public function getSessionBook()
     {
-        return $this->session->get(self::LAST_RNG_BOOK, '');
+        return $this->session->get(self::LAST_RANDOM_BOOK, '');
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="pl" target-language="pl" datatype="plaintext" original="file.ext">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
@@ -305,13 +305,10 @@
         <source>locale</source>
         <target>Język</target>
       </trans-unit>
-      <trans-unit id="6yJdWHs" resname="Author has books">
-        <source>Author has books</source>
-        <target>Autor ma ksiażki</target>
-      </trans-unit>
-      <trans-unit id="VIuC6sD" resname="Author has books book(s)">
-        <source>Author has books book(s)</source>
-        <target>Autor ma books książek </target>
+      <trans-unit id="rmYgcRq" resname="{0,2,3,4} Author has no book | Author has one book | Author has %count% books">
+        <source>{0} Author has no book | Author has one book | Author has %count% books</source>
+        <target>{books, plural, {0} Autor nie ma żadnej książki | {few} Autor ma %count% książki |
+              {one} Autor ma jedną książkę | {other} Autor ma %count% książek}</target>
       </trans-unit>
     </body>
   </file>
