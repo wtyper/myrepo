@@ -305,10 +305,10 @@
         <source>locale</source>
         <target>Język</target>
       </trans-unit>
-      <trans-unit id="rmYgcRq" resname="{0,2,3,4} Author has no book | Author has one book | Author has %count% books">
+      <trans-unit id="rmYgcRq" resname="{0} Author has no book | Author has one book | Author has %count% books">
         <source>{0} Author has no book | Author has one book | Author has %count% books</source>
         <target>{books, plural, {0} Autor nie ma żadnej książki | {few} Autor ma %count% książki |
-              {one} Autor ma jedną książkę | {other} Autor ma %count% książek}</target>
+                {one} Autor ma jedną książkę | {other} Autor ma %count% książek}</target>
       </trans-unit>
     </body>
   </file>
