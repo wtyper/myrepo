@@ -5,9 +5,11 @@
 {% block body %}
     <h1>{{ author.name ~ ' ' ~ author.lastName }}</h1>
     <h3>Books</h3>
-    {% transchoice author.books|length%}
+  {#  {% transchoice author.books|length%}
     {0} Author has no book | Author has one book | Author has %count% books
-    {% endtranschoice %}
+    {% endtranschoice %}#}
+
+    {% transchoice author.books|length with {'%count%': author.books|length} %}amount_of_books{% endtranschoice %}
     <table class="table">
         <tbody>
             <tr>

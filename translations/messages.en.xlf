@@ -313,8 +313,8 @@
         <source>locale</source>
         <target>locale</target>
       </trans-unit>
-      <trans-unit id="rmYgcRq" resname="{0} Author has no book | Author has one book | Author has %count% books">
-        <source>{0} Author has no book | Author has one book | Author has %count% books</source>
+      <trans-unit id="9l7omig" resname="amount_of_books">
+        <source>amount_of_books</source>
         <target>{0} Author has no book | Author has one book | Author has %count% books</target>
       </trans-unit>
     </body>
