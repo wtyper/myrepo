@@ -3,10 +3,7 @@
     <button class="btn">{{ button_label|default('Save') }}</button>
 {% block form_widget_simple %}
     {% if book.cover %}
-        <a href="/img/{{ book.cover }}" target="_blank">
-            <img src="/img/{{ book.cover }}"
-                 alt="{{ book.title }}">
-        </a>
+        <img src="{{ asset('img/{{ book.cover}}') }}" alt="{{ book.title }}"/>
         <br>
         <br>
         <button class="btn"
