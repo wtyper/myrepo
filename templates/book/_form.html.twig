@@ -1,4 +1,18 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
+{% block form_widget_simple %}
+    {% if book.cover %}
+        <img src="{{ asset('img/{{ book.cover}}') }}" alt="{{ book.title }}"/>
+        <br>
+        <br>
+        <button class="btn"
+                onclick="event.preventDefault(); console.log('deleting'); document.getElementById('book-cover-delete').submit()">Delete cover
+        </button>
+        <br>
+    {% endif %}
+{% endblock form_widget_simple %}
 {{ form_end(form) }}
+ {% if book.cover %}
+     {{ include('book/_delete_cover_form.html.twig') }}
+ {% endif %}

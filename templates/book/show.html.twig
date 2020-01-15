@@ -32,6 +32,13 @@
                 <td>{{ book.availability  ? 'Avaliable' : 'Loan' }}</td>
             </tr>
             <tr>
+                <th>Cover photo</th>
+                <td> {% if book.cover %}
+                        <img src="{{ asset('img/{{ book.cover}}') }}" alt="{{ book.title }}"/>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
                 <th>DateOfCreate</th>
                 <td>{{ book.dateOfCreate ? book.dateOfCreate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
@@ -42,7 +49,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('book_index') }}">back to list</a> </br>
+    <a href="{{ path('book_index') }}">back to list</a> <br>
 
     <a href="{{ path('book_edit', {'id': book.id}) }}">edit</a>
 

@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
-class Book
+class Book implements JsonSerializable
 {
     /**
      * @ORM\Id()
@@ -73,6 +74,10 @@ class Book
      */
     private $genre;
 
+    /**
+     * @var @ORM\Column(type="string", nullable=true)
+     */
+    private $cover;
 
     public function getId(): ?int
     {
@@ -185,5 +190,35 @@ class Book
         $this->genre = $genre;
 
         return $this;
+    }
+
+    /**
+     * @param $cover
+     * @return $this
+     */
+    public function setCover($cover)
+    {
+        $this->cover = $cover;
+        return $this;
+    }
+    /**
+     * @return Image
+     */
+    public function getCover()
+    {
+        return $this->cover;
+    }
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->title,
+            'description' => $this->description,
+            'author' => $this->getAuthor()->getName() . ' ' . $this->getAuthor()->getLastName(),
+            'genre' => $this->getGenre()->getName(),
+            'countryOfPublishment' => $this->getCountryOfPublishment(),
+            'yearOfPublishment' => $this->yearOfPublishment,
+            'availability' => $this->availability
+        ];
     }
 }
